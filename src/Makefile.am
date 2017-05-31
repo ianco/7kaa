@@ -3,9 +3,11 @@ if USE_CURL
 SUBDIRS += curl
 endif
 
+TESTS = 7kaaTestApp
+check_PROGRAMS = $(TESTS)
+
 bin_PROGRAMS = 7kaa
-7kaa_SOURCES = \
-	AM.cpp \
+7kaa_base_SOURCES = \
 	OAI_ACT.cpp \
 	OAI_ACT2.cpp \
 	OAI_ATTK.cpp \
@@ -313,11 +315,22 @@ if USE_CURL
 endif
 
 if USE_WINDOWS
-7kaa_SOURCES += ico.rc
+7kaa_base_SOURCES += ico.rc
 SUFFIXES = .rc
 .rc.o:
 	windres -I "$(top_srcdir)/include" -i $< $@
 ico.o: $(top_srcdir)/include/version.h 7k.ico
 endif
+
+7kaaTestApp_SOURCES = \
+	$(7kaa_base_SOURCES) \
+	OGAMESTATETest.cpp \
+	7kaaTestApp.cpp
+
+7kaa_SOURCES = $(7kaa_base_SOURCES) AM.cpp
+
+7kaaTestApp_CXXFLAGS = $(CXXFLAGS) $(CPPUNIT_CFLAGS) -fPIC
+
+7kaaTestApp_LDADD = $(7kaa_LDADD) $(CPPUNIT_LIBS)
 
 EXTRA_DIST = 7k.ico ico.rc

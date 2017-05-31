@@ -51,6 +51,7 @@ AC_DEFUN([EVAL_SHELL_VAR], [
 ])
 
 # Checks for programs.
+AM_PATH_CPPUNIT(1.9.6)
 AC_PROG_CXX
 AC_PROG_CC
 AC_PROG_RANLIB
