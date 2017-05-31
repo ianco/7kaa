@@ -74,3 +74,11 @@ po/quot.sed
 po/remove-potcdate.sin
 po/*.gmo
 po/stamp-po
+compile
+po/POTFILES
+src/7kaaTestApp
+src/7kaaTestApp.log
+src/7kaaTestApp.trs
+src/test-suite.log
+test-driver
+
