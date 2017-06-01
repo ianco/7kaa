@@ -2,6 +2,9 @@
 #include "OGAMESTATETest.h"
 //#include "Money.h"
 
+//#include <OGAMESTATE.h>
+
+
 // Registers the fixture into the 'registry'
 CPPUNIT_TEST_SUITE_REGISTRATION( OGAMESTATETest );
 

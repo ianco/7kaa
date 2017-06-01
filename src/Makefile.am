@@ -95,6 +95,7 @@ bin_PROGRAMS = 7kaa
 	OGAMENCY.cpp \
 	OGAMEND.cpp \
 	OGAMESET.cpp \
+	OGAMESTATE.cpp \
 	OGAMHALL.cpp \
 	OGAMMAIN.cpp \
 	OGAMMENU.cpp \
@@ -323,6 +324,7 @@ ico.o: $(top_srcdir)/include/version.h 7k.ico
 endif
 
 7kaaTestApp_SOURCES = \
+	$(7kaa_base_SOURCES) \
 	OGAMESTATETest.cpp \
 	7kaaTestApp.cpp
 
