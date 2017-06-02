@@ -180,7 +180,7 @@ int main(int argc, char **argv)
 
 #if defined(DEBUG) && defined(ENABLE_LOG)
 	//String logLine("startup 7kaa ... ");
-	LOG_MSG("startup 7kaa ...");
+	LOG_MSG("AM::startup 7kaa ...");
 	LOG_DUMP;
 #endif
 

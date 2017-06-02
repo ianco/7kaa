@@ -83,7 +83,7 @@ void Log::mark(char *msg, char *file, int line)
 	String t(log_text);
 	t += "\r\n";
 	//strcpy( text_buffer[0].reserve(t.len())-1, t );		// minus 1 to remove the '\0' at the end 
-	std::cout << t;
+	std::cout << "_:" << t;
 }
 // -------- end of function Log::mark ----------//
 
@@ -98,7 +98,7 @@ void Log::mark(int n , char *file, int line)
 	String t(log_text);
 	t += "\r\n";
 	//strcpy( text_buffer[0].reserve(t.len())-1, t );
-	std::cout << t;
+	std::cout << "_:" << t;
 }
 // -------- end of function Log::mark ----------//
 
@@ -132,7 +132,7 @@ void Log::debug_log(const char *msg)
 	OutputDebugString(s);
 #endif
 	MSG("%s\n", msg);
-	std::cout << msg << "\n";
+	std::cout << "_:" << msg << "\n";
 }
 
 
@@ -147,6 +147,6 @@ void Log::debug_log(int n)
 	OutputDebugString(s);
 #endif
 	MSG("%d\n", n);
-	std::cout << n << "\n";
+	std::cout << "_:" << n << "\n";
 }
 // -------- end of function Log::debug_log ----------//
