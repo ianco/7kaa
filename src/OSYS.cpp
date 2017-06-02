@@ -181,6 +181,11 @@ Sys::~Sys()
 //
 int Sys::init()
 {
+#if defined(DEBUG) && defined(ENABLE_LOG)
+	String logLine("sys::init ");
+	LOG_MSG(logLine);
+	LOG_DUMP;
+#endif
    err_when( init_flag );
 
    //------- initialize basic vars --------//
@@ -582,6 +587,11 @@ static void test_lzw()
 //
 void Sys::main_loop(int isLoadedGame)
 {
+#if defined(DEBUG) && defined(ENABLE_LOG)
+	String logLine("sys::main_loop ");
+	LOG_MSG(logLine);
+	LOG_DUMP;
+#endif
    // #### begin Gilbert 31/10 #####//
    // int rc;
    // #### end Gilbert 31/10 #####//

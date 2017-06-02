@@ -105,7 +105,7 @@ void Log::mark(int n , char *file, int line)
 
 // -------- begin of function Log::dump ----------//
 void Log::dump()
-{
+{/*
 	// write old_buffer
 	char filename[20];
 	strcpy(filename, "AM_A.LOG");
@@ -116,7 +116,7 @@ void Log::dump()
 		f.file_write( text_buffer[n].queue_buf, text_buffer[n].length() );
 		f.file_close();
 	}
-}
+*/}
 // -------- end of function Log::dump ----------//
 
 
