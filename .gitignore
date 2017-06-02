@@ -81,4 +81,5 @@ src/7kaaTestApp.log
 src/7kaaTestApp.trs
 src/test-suite.log
 test-driver
+*.LOG
 

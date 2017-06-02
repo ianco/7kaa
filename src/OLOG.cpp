@@ -25,6 +25,8 @@
 
 #include <OLOG.h>
 #include <stdio.h>
+#include <iostream>
+#include <string>
 #include <OFILE.h>
 #ifdef WIN32
 #include <windows.h> // OutputDebugString
@@ -58,7 +60,7 @@ void Log::mark_begin()
 void Log::mark_end()
 {
 	// enable next line to trace hang
-	// dump();
+	dump();
 
 	// rotate buffers
 	text_buffer[LOG_VERSION-1].clear();
@@ -81,6 +83,7 @@ void Log::mark(char *msg, char *file, int line)
 	String t(log_text);
 	t += "\r\n";
 	strcpy( text_buffer[0].reserve(t.len())-1, t );		// minus 1 to remove the '\0' at the end 
+	std::cout << t;
 }
 // -------- end of function Log::mark ----------//
 
@@ -95,6 +98,7 @@ void Log::mark(int n , char *file, int line)
 	String t(log_text);
 	t += "\r\n";
 	strcpy( text_buffer[0].reserve(t.len())-1, t );
+	std::cout << t;
 }
 // -------- end of function Log::mark ----------//
 
@@ -128,6 +132,7 @@ void Log::debug_log(const char *msg)
 	OutputDebugString(s);
 #endif
 	MSG("%s\n", msg);
+	std::cout << msg << "\n";
 }
 
 
@@ -142,5 +147,6 @@ void Log::debug_log(int n)
 	OutputDebugString(s);
 #endif
 	MSG("%d\n", n);
+	std::cout << n << "\n";
 }
 // -------- end of function Log::debug_log ----------//

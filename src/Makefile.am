@@ -289,7 +289,7 @@ bin_PROGRAMS = 7kaa
 	vgautil.cpp \
 	vgautil2.cpp
 
-CXXFLAGS += $(SDL_CFLAGS)
+CXXFLAGS += $(SDL_CFLAGS) -DDEBUG -DENABLE_LOG
 
 7kaa_LDADD =
 

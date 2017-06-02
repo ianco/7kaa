@@ -178,6 +178,12 @@ int main(int argc, char **argv)
 	int demoSelection = 0;
 	int demoSpeed = 99;
 
+#if defined(DEBUG) && defined(ENABLE_LOG)
+	String logLine("startup 7kaa ... ");
+	LOG_MSG(logLine);
+	LOG_DUMP;
+#endif
+
 	sys.set_config_dir();
 
 	//try to read from CONFIG.DAT, moved to AM.CPP
