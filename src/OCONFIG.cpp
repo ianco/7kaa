@@ -27,6 +27,7 @@
 #include <OUNITRES.h>
 #include <OFIRMRES.h>
 #include <OCONFIG.h>
+#include <OLOG.h>
 #include <dbglog.h>
 #include "gettext.h"
 
@@ -55,6 +56,10 @@ static char  table_random_start_up[5] = { 0, 0, 0, 1, 1 };
 
 void Config::init()
 {
+#if defined(DEBUG) && defined(ENABLE_LOG)
+	LOG_MSG("congig::init()");
+	LOG_DUMP;
+#endif
 	default_game_setting();
 	default_cheat_setting();
 	default_local_game_setting();
@@ -67,6 +72,10 @@ void Config::init()
 
 void Config::deinit()
 {
+#if defined(DEBUG) && defined(ENABLE_LOG)
+	LOG_MSG("config::deinit()");
+	LOG_DUMP;
+#endif
 	config.save("CONFIG.DAT");		// save the config when the game quits
 
 	default_game_setting();
@@ -388,6 +397,13 @@ void Config::disable_weather_audio()
 //--------- Begin of function Config::save -------------//
 int Config::save(const char *filename)
 {
+#if defined(DEBUG) && defined(ENABLE_LOG)
+	String logLine("config::save ");
+	logLine += filename;
+	LOG_MSG(logLine);
+	LOG_DUMP;
+#endif
+
 	char full_path[MAX_PATH+1];
 	File configFile;
 
@@ -417,6 +433,12 @@ int Config::save(const char *filename)
 //
 int Config::load(const char *filename)
 {
+#if defined(DEBUG) && defined(ENABLE_LOG)
+	String logLine("config::load ");
+	logLine += filename;
+	LOG_MSG(logLine);
+	LOG_DUMP;
+#endif
 	char full_path[MAX_PATH+1];
 	File configFile;
 

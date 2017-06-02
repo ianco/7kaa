@@ -179,8 +179,8 @@ int main(int argc, char **argv)
 	int demoSpeed = 99;
 
 #if defined(DEBUG) && defined(ENABLE_LOG)
-	String logLine("startup 7kaa ... ");
-	LOG_MSG(logLine);
+	//String logLine("startup 7kaa ... ");
+	LOG_MSG("startup 7kaa ...");
 	LOG_DUMP;
 #endif
 
@@ -192,6 +192,7 @@ int main(int argc, char **argv)
 	{
 		new_config_dat_flag = 1;
 		config.init();
+		config.save("CONFIG.DAT");
 	}
 
 	//----- read command line arguments -----//

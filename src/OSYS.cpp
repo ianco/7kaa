@@ -85,6 +85,7 @@
 #include <OOPTMENU.h>
 #include <OINGMENU.h>
 // ##### end Gilbert 23/10 ######//
+#include <OLOG.h>
 
 #include <dbglog.h>
 #ifndef NO_WINDOWS

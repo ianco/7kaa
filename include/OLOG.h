@@ -63,7 +63,8 @@ extern Log msg_log;
 	#define LOG_BEGIN		msg_log.mark_begin()
 	#define LOG_MSG(c)	msg_log.mark(c, __FILE__, __LINE__)
 	#define LOG_END		msg_log.mark_end()
-	#define LOG_DUMP		msg_log.dump()
+//	#define LOG_DUMP		msg_log.dump()
+	#define LOG_DUMP	
 #else
 	#define LOG_BEGIN
 	#define LOG_MSG(c)
