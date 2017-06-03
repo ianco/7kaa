@@ -326,6 +326,7 @@ endif
 7kaaTestApp_SOURCES = \
 	$(7kaa_base_SOURCES) \
 	OGAMESTATETest.cpp \
+	OCONFIGTest.cpp \
 	7kaaTestApp.cpp
 
 7kaa_SOURCES = $(7kaa_base_SOURCES) AM.cpp

@@ -1,20 +1,20 @@
 //#include "stdafx.h"
-#include "OGAMESTATETest.h"
+#include "OCONFIGTest.h"
 //#include "Money.h"
 
-//#include <OGAMESTATE.h>
+#include <OCONFIG.h>
 #include <OLOG.h>
 
 
 // Registers the fixture into the 'registry'
-CPPUNIT_TEST_SUITE_REGISTRATION( OGAMESTATETest );
+CPPUNIT_TEST_SUITE_REGISTRATION( OCONFIGTest );
 
 
 void 
-OGAMESTATETest::setUp()
+OCONFIGTest::setUp()
 {
 #if defined(DEBUG) && defined(ENABLE_LOG)
-	String logLine("OGAMESTATETest::setUp ");
+	String logLine("OCONFIGTest::setUp ");
 	LOG_MSG(logLine);
 	LOG_DUMP;
 #endif
@@ -22,10 +22,10 @@ OGAMESTATETest::setUp()
 
 
 void 
-OGAMESTATETest::tearDown()
+OCONFIGTest::tearDown()
 {
 #if defined(DEBUG) && defined(ENABLE_LOG)
-	String logLine("OGAMESTATETest::tearDown ");
+	String logLine("OCONFIGTest::tearDown ");
 	LOG_MSG(logLine);
 	LOG_DUMP;
 #endif
@@ -33,10 +33,10 @@ OGAMESTATETest::tearDown()
 
 
 void 
-OGAMESTATETest::testConstructor()
+OCONFIGTest::testConstructor()
 {
 #if defined(DEBUG) && defined(ENABLE_LOG)
-	String logLine("OGAMESTATETest::testConstructor ");
+	String logLine("OCONFIGTest::testConstructor ");
 	LOG_MSG(logLine);
 	LOG_DUMP;
 #endif
@@ -48,23 +48,24 @@ OGAMESTATETest::testConstructor()
 }
 
 void
-OGAMESTATETest::testEqual()
+OCONFIGTest::testEqual()
 {
 #if defined(DEBUG) && defined(ENABLE_LOG)
-	String logLine("OGAMESTATETest::testEqual ");
+	String logLine("OCONFIGTest::testEqual ");
 	LOG_MSG(logLine);
 	LOG_DUMP;
 #endif
   // Set up
 
   // Process & Check
+  CPPUNIT_ASSERT_EQUAL( 1, 1 );
 }
 
 void 
-OGAMESTATETest::testAdd()
+OCONFIGTest::testAdd()
 {
 #if defined(DEBUG) && defined(ENABLE_LOG)
-	String logLine("OGAMESTATETest::testAdd ");
+	String logLine("OCONFIGTest::testAdd ");
 	LOG_MSG(logLine);
 	LOG_DUMP;
 #endif
@@ -76,10 +77,10 @@ OGAMESTATETest::testAdd()
 }
 
 void 
-OGAMESTATETest::testAddThrow()
+OCONFIGTest::testAddThrow()
 {
 #if defined(DEBUG) && defined(ENABLE_LOG)
-	String logLine("OGAMESTATETest::testAddThrow ");
+	String logLine("OCONFIGTest::testAddThrow ");
 	LOG_MSG(logLine);
 	LOG_DUMP;
 #endif
