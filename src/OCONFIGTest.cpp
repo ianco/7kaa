@@ -2,8 +2,10 @@
 #include "OCONFIGTest.h"
 //#include "Money.h"
 
+//#include <OGAMESTATE.h>
 #include <OCONFIG.h>
 #include <OLOG.h>
+#include <OSYS.h>
 
 
 // Registers the fixture into the 'registry'
@@ -20,7 +22,6 @@ OCONFIGTest::setUp()
 #endif
 }
 
-
 void 
 OCONFIGTest::tearDown()
 {
@@ -31,60 +32,30 @@ OCONFIGTest::tearDown()
 #endif
 }
 
-
-void 
-OCONFIGTest::testConstructor()
-{
-#if defined(DEBUG) && defined(ENABLE_LOG)
-	String logLine("OCONFIGTest::testConstructor ");
-	LOG_MSG(logLine);
-	LOG_DUMP;
-#endif
-  // Set up
-
-  // Process
-
-  // Check
-}
-
 void
-OCONFIGTest::testEqual()
+OCONFIGTest::testLoad()
 {
 #if defined(DEBUG) && defined(ENABLE_LOG)
-	String logLine("OCONFIGTest::testEqual ");
+	String logLine("OCONFIGTest::testLoad ");
 	LOG_MSG(logLine);
 	LOG_DUMP;
 #endif
-  // Set up
+  	// Set up
+	char 	new_config_dat_flag=0;
+	sys.set_config_dir();
 
-  // Process & Check
-  CPPUNIT_ASSERT_EQUAL( 1, 1 );
+	//try to read from CONFIG.DAT, moved to AM.CPP
+
+	//if( !config.load("CONFIG.DAT") )
+	//{
+		new_config_dat_flag = 1;
+		config.init();
+	//	config.save("CONFIG.DAT");
+	//}
+
+  	// Process & Check
+	char expected_count = 2;
+  	CPPUNIT_ASSERT_EQUAL( config.ai_nation_count, expected_count );
 }
 
-void 
-OCONFIGTest::testAdd()
-{
-#if defined(DEBUG) && defined(ENABLE_LOG)
-	String logLine("OCONFIGTest::testAdd ");
-	LOG_MSG(logLine);
-	LOG_DUMP;
-#endif
-  // Set up
 
-  // Process
-
-  // Check
-}
-
-void 
-OCONFIGTest::testAddThrow()
-{
-#if defined(DEBUG) && defined(ENABLE_LOG)
-	String logLine("OCONFIGTest::testAddThrow ");
-	LOG_MSG(logLine);
-	LOG_DUMP;
-#endif
-  // Set up
-
-  // Process
-}
