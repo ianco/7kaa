@@ -30,6 +30,10 @@
 #include <OLOG.h>
 #include <dbglog.h>
 #include "gettext.h"
+#include "json.hpp"
+
+using json = nlohmann::json;
+
 
 DBGLOG_DEFAULT_CHANNEL(Config);
 
@@ -342,6 +346,35 @@ void Config::change_preference( Config &c )
 	explore_mask_method = c.explore_mask_method;
 	fog_mask_method = c.fog_mask_method;
 }
+
+
+//--------- Begin of function Config::change_from_json --------//
+void Config::change_from_json( std::string sjson ) {
+	json jc = json::parse(sjson);
+
+	ai_nation_count = jc["startup"]["ai_nation_count"].get<char>();
+}
+//--------- End of function Config::change_from_json --------//
+
+
+//--------- Begin of function Config::convert_to_json --------//
+std::string Config::convert_to_json() {
+	json jc;
+	jc["difficulty_rating"] = difficulty_rating;
+
+	jc["startup"]["ai_nation_count"] = ai_nation_count;			// no. of AI nations in the game
+	jc["startup"]["start_up_cash"] = start_up_cash;
+//	jc["startup"]["start_up_food"] = start_up_food;
+	jc["startup"]["ai_start_up_cash"] = ai_start_up_cash;
+//	jc["startup"]["ai_start_up_food"] = ai_start_up_food;
+	jc["startup"]["ai_aggressiveness"] = ai_aggressiveness;
+	jc["startup"]["start_up_independent_town"] = start_up_independent_town;
+	jc["startup"]["start_up_raw_site"] = start_up_raw_site;
+	jc["startup"]["difficulty_level"] = difficulty_level;
+
+	return jc.dump();
+}
+//--------- End of function Config::convert_to_json --------//
 
 
 //--------- Begin of function Config::enable_weather_visual --------//

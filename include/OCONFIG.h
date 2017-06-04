@@ -28,6 +28,8 @@
 #include <OFILE.h>
 #endif
 
+#include <string>
+
 //------------- Define constant -------------//
 
 enum { OPTION_NONE=0, OPTION_LOW, OPTION_MODERATE, OPTION_HIGH, OPTION_VERY_HIGH };
@@ -61,6 +63,9 @@ public:
 	void			change_game_setting( Config & );
 	void			change_preference( Config & );
 	void			change_difficulty(int);
+
+	void			change_from_json( std::string sjson );
+	std::string		convert_to_json();
 
 	int			single_player_difficulty();
 	int			multi_player_difficulty(int remotePlayers);

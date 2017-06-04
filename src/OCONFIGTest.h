@@ -9,6 +9,8 @@ class OCONFIGTest : public CppUnit::TestFixture
   CPPUNIT_TEST_SUITE( OCONFIGTest );
   CPPUNIT_TEST( testInit );
   CPPUNIT_TEST( testLoad );
+  CPPUNIT_TEST( testToJson );
+  CPPUNIT_TEST( testFromJson );
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -17,6 +19,8 @@ public:
 
   void testInit();
   void testLoad();
+  void testToJson();
+  void testFromJson();
 };
 
 #endif // OCONFIGTEST_H
