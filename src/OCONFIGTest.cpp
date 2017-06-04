@@ -33,6 +33,30 @@ OCONFIGTest::tearDown()
 }
 
 void
+OCONFIGTest::testInit()
+{
+#if defined(DEBUG) && defined(ENABLE_LOG)
+	String logLine("OCONFIGTest::testInit ");
+	LOG_MSG(logLine);
+	LOG_DUMP;
+#endif
+  	// Set up
+	char 	new_config_dat_flag=0;
+	sys.set_config_dir();
+
+	new_config_dat_flag = 1;
+	config.init();
+
+  	// Process & Check
+	char expected_count = 2;
+  	CPPUNIT_ASSERT_EQUAL( config.ai_nation_count, expected_count );
+
+	config.change_difficulty(OPTION_HIGH);
+	expected_count = 6;
+  	CPPUNIT_ASSERT_EQUAL( config.ai_nation_count, expected_count );
+}
+
+void
 OCONFIGTest::testLoad()
 {
 #if defined(DEBUG) && defined(ENABLE_LOG)
@@ -44,17 +68,12 @@ OCONFIGTest::testLoad()
 	char 	new_config_dat_flag=0;
 	sys.set_config_dir();
 
-	//try to read from CONFIG.DAT, moved to AM.CPP
-
-	//if( !config.load("CONFIG.DAT") )
-	//{
-		new_config_dat_flag = 1;
-		config.init();
-	//	config.save("CONFIG.DAT");
-	//}
+	if( !config.load("CONFIG.DAT") ) {
+		CPPUNIT_FAIL("Unable to read configuration file");
+	}
 
   	// Process & Check
-	char expected_count = 2;
+	char expected_count = 1;
   	CPPUNIT_ASSERT_EQUAL( config.ai_nation_count, expected_count );
 }
 

@@ -7,6 +7,7 @@
 class OCONFIGTest : public CppUnit::TestFixture
 {
   CPPUNIT_TEST_SUITE( OCONFIGTest );
+  CPPUNIT_TEST( testInit );
   CPPUNIT_TEST( testLoad );
   CPPUNIT_TEST_SUITE_END();
 
@@ -14,6 +15,7 @@ public:
   void setUp();
   void tearDown();
 
+  void testInit();
   void testLoad();
 };
 
