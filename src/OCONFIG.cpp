@@ -352,7 +352,17 @@ void Config::change_preference( Config &c )
 void Config::change_from_json( std::string sjson ) {
 	json jc = json::parse(sjson);
 
+	difficulty_rating = jc["difficulty_rating"].get<short>();
+
 	ai_nation_count = jc["startup"]["ai_nation_count"].get<char>();
+	start_up_cash = jc["startup"]["start_up_cash"].get<short>();
+//	start_up_food = jc["startup"]["start_up_food"].get<short>();
+	ai_start_up_cash = jc["startup"]["ai_start_up_cash"].get<short>();
+//	ai_start_up_food = jc["startup"]["ai_start_up_food"].get<short>();
+	ai_aggressiveness = jc["startup"]["ai_aggressiveness"].get<char>();
+	start_up_independent_town = jc["startup"]["start_up_independent_town"].get<short>();
+	start_up_raw_site = jc["startup"]["start_up_raw_site"].get<short>();
+	difficulty_level = jc["startup"]["difficulty_level"].get<char>();
 }
 //--------- End of function Config::change_from_json --------//
 
@@ -360,9 +370,10 @@ void Config::change_from_json( std::string sjson ) {
 //--------- Begin of function Config::convert_to_json --------//
 std::string Config::convert_to_json() {
 	json jc;
+
 	jc["difficulty_rating"] = difficulty_rating;
 
-	jc["startup"]["ai_nation_count"] = ai_nation_count;			// no. of AI nations in the game
+	jc["startup"]["ai_nation_count"] = ai_nation_count;
 	jc["startup"]["start_up_cash"] = start_up_cash;
 //	jc["startup"]["start_up_food"] = start_up_food;
 	jc["startup"]["ai_start_up_cash"] = ai_start_up_cash;
