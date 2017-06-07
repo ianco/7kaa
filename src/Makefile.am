@@ -333,6 +333,8 @@ endif
 
 7kaaTestApp_CXXFLAGS = $(CXXFLAGS) $(CPPUNIT_CFLAGS) -fPIC
 
-7kaaTestApp_LDADD = $(7kaa_LDADD) $(CPPUNIT_LIBS)
+7kaaTestApp_LDADD = $(7kaa_LDADD) $(CPPUNIT_LIBS) -LLIBDIR -lrestclient-cpp
+
+#7kaaTestApp_LDFLAGS = -RLIBDIR
 
 EXTRA_DIST = 7k.ico ico.rc

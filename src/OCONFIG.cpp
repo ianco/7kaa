@@ -61,7 +61,7 @@ static char  table_random_start_up[5] = { 0, 0, 0, 1, 1 };
 void Config::init()
 {
 #if defined(DEBUG) && defined(ENABLE_LOG)
-	LOG_MSG("congig::init()");
+	LOG_MSG("config::init()");
 	LOG_DUMP;
 #endif
 	default_game_setting();
