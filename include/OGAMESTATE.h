@@ -193,7 +193,8 @@ unsigned long unit_assign_profile_time = 0L;
 #pragma pack(1)
 class GameState 
 {
-
+	void		load_from_json( std::string sjson );
+	std::string	convert_to_json();
 };
 
 //-----------------------------------------//

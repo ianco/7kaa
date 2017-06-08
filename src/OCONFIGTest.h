@@ -2,7 +2,6 @@
 #define OCONFIGTEST_H
 
 #include <cppunit/extensions/HelperMacros.h>
-//#include "Money.h"
 
 class OCONFIGTest : public CppUnit::TestFixture
 {

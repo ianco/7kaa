@@ -99,16 +99,37 @@
 
 int main(int argc, char* argv[])
 {
+#if defined(DEBUG) && defined(ENABLE_LOG)
+	LOG_MSG("7kaaTest::startup 7kaa ...");
+	LOG_DUMP;
+#endif
+
   // Get the top level suite from the registry
   CppUnit::Test *suite = CppUnit::TestFactoryRegistry::getRegistry().makeTest();
 
+  // do some 7kaa initialization
+#if defined(DEBUG) && defined(ENABLE_LOG)
+	LOG_MSG("7kaaTest::set config dir ...");
+	LOG_DUMP;
+#endif
+  sys.set_config_dir();
+
   // Adds the test to the list of test to run
+#if defined(DEBUG) && defined(ENABLE_LOG)
+	LOG_MSG("7kaaTest::build test suite ...");
+	LOG_DUMP;
+#endif
   CppUnit::TextUi::TestRunner runner;
   runner.addTest( suite );
 
   // Change the default outputter to a compiler error format outputter
   runner.setOutputter( new CppUnit::CompilerOutputter( &runner.result(),
                                                        std::cerr ) );
+#if defined(DEBUG) && defined(ENABLE_LOG)
+	LOG_MSG("7kaaTest::run tests ...");
+	LOG_DUMP;
+#endif
+
   // Run the tests.
   bool wasSucessful = runner.run();
 
