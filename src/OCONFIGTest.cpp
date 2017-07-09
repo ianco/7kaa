@@ -6,11 +6,8 @@
 #include <OCONFIG.h>
 #include <OLOG.h>
 #include <OSYS.h>
-#include "json.hpp"
+#include <OGJSON.h>
 #include "restclient-cpp/restclient.h"
-
-
-using json = nlohmann::json;
 
 
 // Registers the fixture into the 'registry'

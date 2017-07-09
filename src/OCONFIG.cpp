@@ -30,9 +30,6 @@
 #include <OLOG.h>
 #include <dbglog.h>
 #include "gettext.h"
-//#include "json.hpp"
-
-//using json = nlohmann::json;
 
 
 DBGLOG_DEFAULT_CHANNEL(Config);
@@ -347,47 +344,6 @@ void Config::change_preference( Config &c )
 	fog_mask_method = c.fog_mask_method;
 }
 
-/*
-//--------- Begin of function Config::change_from_json --------//
-void Config::change_from_json( std::string sjson ) {
-	json jc = json::parse(sjson);
-
-	difficulty_rating = jc["difficulty_rating"].get<short>();
-
-	ai_nation_count = jc["startup"]["ai_nation_count"].get<char>();
-	start_up_cash = jc["startup"]["start_up_cash"].get<short>();
-//	start_up_food = jc["startup"]["start_up_food"].get<short>();
-	ai_start_up_cash = jc["startup"]["ai_start_up_cash"].get<short>();
-//	ai_start_up_food = jc["startup"]["ai_start_up_food"].get<short>();
-	ai_aggressiveness = jc["startup"]["ai_aggressiveness"].get<char>();
-	start_up_independent_town = jc["startup"]["start_up_independent_town"].get<short>();
-	start_up_raw_site = jc["startup"]["start_up_raw_site"].get<short>();
-	difficulty_level = jc["startup"]["difficulty_level"].get<char>();
-}
-//--------- End of function Config::change_from_json --------//
-
-
-//--------- Begin of function Config::convert_to_json --------//
-std::string Config::convert_to_json() {
-	json jc;
-
-	jc["difficulty_rating"] = difficulty_rating;
-
-	jc["startup"]["ai_nation_count"] = ai_nation_count;
-	jc["startup"]["start_up_cash"] = start_up_cash;
-//	jc["startup"]["start_up_food"] = start_up_food;
-	jc["startup"]["ai_start_up_cash"] = ai_start_up_cash;
-//	jc["startup"]["ai_start_up_food"] = ai_start_up_food;
-	jc["startup"]["ai_aggressiveness"] = ai_aggressiveness;
-	jc["startup"]["start_up_independent_town"] = start_up_independent_town;
-	jc["startup"]["start_up_raw_site"] = start_up_raw_site;
-	jc["startup"]["difficulty_level"] = difficulty_level;
-
-	return jc.dump();
-}
-//--------- End of function Config::convert_to_json --------//
-*/
-
 //--------- Begin of function Config::enable_weather_visual --------//
 void Config::enable_weather_visual()
 {
@@ -614,32 +570,3 @@ void Config::change_difficulty(int difficulty)
 }
 //------- End of function Config::change_difficulty --------//
 
-void to_json(json& j, const Config& c) {
-	j = json{
-		{"difficulty_rating", c.difficulty_rating},
-		{"startup", {
-			{"ai_nation_count", c.ai_nation_count},
-			{"start_up_cash", c.start_up_cash},
-		//	{"start_up_food", c.start_up_food},
-			{"ai_start_up_cash", c.ai_start_up_cash},
-		//	{"ai_start_up_food", c.ai_start_up_food},
-			{"ai_aggressiveness", c.ai_aggressiveness},
-			{"start_up_independent_town", c.start_up_independent_town},
-			{"start_up_raw_site", c.start_up_raw_site},
-			{"difficulty_level", c.difficulty_level}
-		}}
-	};
-}
-
-void from_json(const json& j, Config& c) {
-	c.difficulty_rating = j["difficulty_rating"].get<short>();
-	c.ai_nation_count = j["startup"]["ai_nation_count"].get<char>();
-	c.start_up_cash = j["startup"]["start_up_cash"].get<short>();
-//	c.start_up_food = j["startup"]["start_up_food"].get<short>();
-	c.ai_start_up_cash = j["startup"]["ai_start_up_cash"].get<short>();
-//	c.ai_start_up_food = j["startup"]["ai_start_up_food"].get<short>();
-	c.ai_aggressiveness = j["startup"]["ai_aggressiveness"].get<char>();
-	c.start_up_independent_town = j["startup"]["start_up_independent_town"].get<short>();
-	c.start_up_raw_site = j["startup"]["start_up_raw_site"].get<short>();
-	c.difficulty_level = j["startup"]["difficulty_level"].get<char>();
-}

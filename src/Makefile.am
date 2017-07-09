@@ -110,6 +110,7 @@ bin_PROGRAMS = 7kaa
 	OGFILE3.cpp \
 	OGFILEA.cpp \
 	OGF_V1.cpp \
+	OGJSON.cpp \
 	OGODRES.cpp \
 	OGRPSEL.cpp \
 	OHELP.cpp \
