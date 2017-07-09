@@ -30,6 +30,10 @@
 
 #include <string>
 
+#include "json.hpp"
+
+using json = nlohmann::json;
+
 //------------- Define constant -------------//
 
 enum { OPTION_NONE=0, OPTION_LOW, OPTION_MODERATE, OPTION_HIGH, OPTION_VERY_HIGH };
@@ -64,8 +68,8 @@ public:
 	void			change_preference( Config & );
 	void			change_difficulty(int);
 
-	void			change_from_json( std::string sjson );
-	std::string		convert_to_json();
+	//void			change_from_json( std::string sjson );
+	//std::string		convert_to_json();
 
 	int			single_player_difficulty();
 	int			multi_player_difficulty(int remotePlayers);
@@ -238,6 +242,10 @@ public:
 	char			fog_mask_method;			// 1 for fast masking, 2 for slow remapping
 };
 #pragma pack()
+
+void to_json(json& j, const Config& c);
+
+void from_json(const json& j, Config& c);
 
 //------------------------------------------//
 

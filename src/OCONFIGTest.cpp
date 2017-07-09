@@ -98,13 +98,13 @@ OCONFIGTest::testToJson()
 	config.init();
 
   	// Process & Check
-	std::string s = config.convert_to_json();
+	json jc = config;
+	std::string s = jc.dump();
 #if defined(DEBUG) && defined(ENABLE_LOG)
 	String logLine2(s.c_str());
 	LOG_MSG(logLine2);
 	LOG_DUMP;
 #endif
-	json jc = json::parse(s);
 	char expected_count = 2;
   	CPPUNIT_ASSERT_EQUAL( jc["startup"]["ai_nation_count"].get<char>(), expected_count );
 
@@ -127,19 +127,18 @@ OCONFIGTest::testFromJson()
 
 	new_config_dat_flag = 1;
 	config.init();
-	std::string s = config.convert_to_json();
-	json jc = json::parse(s);
+	json jc = config;
 	jc["startup"]["ai_nation_count"] = 1;
-	config.change_from_json(jc.dump());
+	config = jc;
 
   	// Process & Check
-	s = config.convert_to_json();
+	jc = config;
+	std::string s = jc.dump();
 #if defined(DEBUG) && defined(ENABLE_LOG)
 	String logLine2(s.c_str());
 	LOG_MSG(logLine2);
 	LOG_DUMP;
 #endif
-	jc = json::parse(s);
 	char expected_count = 1;
   	CPPUNIT_ASSERT_EQUAL( jc["startup"]["ai_nation_count"].get<char>(), expected_count );
 
@@ -162,8 +161,7 @@ OCONFIGTest::testJsonToWebService()
 
 	new_config_dat_flag = 1;
 	config.init();
-	std::string s = config.convert_to_json();
-	json jc = json::parse(s);
+	json jc = config;
 	jc["startup"]["ai_nation_count"] = 7;
 #if defined(DEBUG) && defined(ENABLE_LOG)
 	String logLine4(jc.dump().c_str());
@@ -209,7 +207,8 @@ OCONFIGTest::testJsonFromWebService()
 
 	new_config_dat_flag = 1;
 	config.init();
-	std::string s = config.convert_to_json();
+	json jc = config;
+	std::string s = jc.dump();
 	RestClient::Response r = RestClient::get("http://localhost:8080/config");
 #if defined(DEBUG) && defined(ENABLE_LOG)
 	String logLine3(r.body.c_str());

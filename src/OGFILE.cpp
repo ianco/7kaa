@@ -40,6 +40,7 @@
 #include <OSYS.h>
 #include <OAUDIO.h>
 #include <OMUSIC.h>
+#include <OLOG.h>
 #include <dbglog.h>
 #include "gettext.h"
 
@@ -55,6 +56,13 @@ DBGLOG_DEFAULT_CHANNEL(GameFile);
 //
 int GameFile::save_game(const char* fileName)
 {
+#if defined(DEBUG) && defined(ENABLE_LOG)
+	String logLine("ogfile::save_game ");
+	if (fileName)
+		logLine += fileName;
+	LOG_MSG(logLine);
+	LOG_DUMP;
+#endif
 	char full_path[MAX_PATH+1];
 	File   file;
 	String errStr;
@@ -129,6 +137,14 @@ int GameFile::save_game(const char* fileName)
 //
 int GameFile::load_game(const char *base_path, char* fileName)
 {
+#if defined(DEBUG) && defined(ENABLE_LOG)
+	String logLine("ogfile::load_game ");
+	logLine += base_path;
+	logLine += "/";
+	logLine += fileName;
+	LOG_MSG(logLine);
+	LOG_DUMP;
+#endif
 	char full_path[MAX_PATH+1];
 	File file;
 	int  rc=0;
