@@ -80,10 +80,18 @@ void Log::mark(char *msg, char *file, int line)
 	log_file = file;
 	log_line = line;
 
-	String t(log_text);
-	t += "\r\n";
+	//String t(log_text);
+	//t += "\r\n";
 	//strcpy( text_buffer[0].reserve(t.len())-1, t );		// minus 1 to remove the '\0' at the end 
-	std::cout << "_:" << t;
+	std::cout << "_:" << msg << "\r\n";
+}
+// -------- end of function Log::mark ----------//
+
+
+// -------- begin of function Log::mark ----------//
+void Log::mark(std::string msg, char *file, int line)
+{
+	std::cout << "_:" << msg << "\r\n";
 }
 // -------- end of function Log::mark ----------//
 

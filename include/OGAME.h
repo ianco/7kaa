@@ -100,7 +100,8 @@ public:
 	Game();
 
 	int			init(int loadGameCall=0);
-	void			deinit(int loadGameCall=0);
+	int 		init_internal(int loadGameCall);
+	void		deinit(int loadGameCall=0);
 
 	void			main_menu();
    void			in_game_menu();

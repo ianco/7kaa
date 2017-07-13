@@ -199,9 +199,12 @@ public:
 	void		save_game();
 	void		load_game();
 
+	int 		init_objects();
+	int 		init_directx_internal();
+
 private:
 	int		init_directx();
-	int 		init_objects();
+//	int 		init_objects();
 
 	void		main_loop(int);
 	void		detect();

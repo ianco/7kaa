@@ -268,6 +268,12 @@ int Sys::init_directx()
    vga.set_full_screen_mode(1);
 #endif
 
+   return init_directx_internal();
+}
+//-------- End of function Sys::init_directx --------//
+
+int Sys::init_directx_internal()
+{
    //---------- Initialize Audio ----------//
 
    DEBUG_LOG("Attempt audio.init()");
@@ -278,8 +284,6 @@ int Sys::init_directx()
 
    return TRUE;
 }
-//-------- End of function Sys::init_directx --------//
-
 
 //-------- Begin of function Sys::deinit_directx --------//
 //

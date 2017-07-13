@@ -31,6 +31,8 @@
 
 #define DEBUG_LOG_GLOBAL 0
 #include <OLOG.h>
+#include <string>
+
 // 1 to force enable debug log of that module, even though DEBUG_LOG_GLOBAL is 0
 // -1 to force disable debug log of that module, even though DEBUG_LOG_GLOBAL is 1
 // 0 to follow DEBUG_LOG_GLOBAL
@@ -50,6 +52,7 @@ public:
 	void mark_begin();
 	void mark_end();
 	void mark(char *msg, char *file, int line);
+	void mark(std::string msg, char *file, int line);
 	void mark(int n, char *file, int line);
 	void dump();
 

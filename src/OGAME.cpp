@@ -113,13 +113,29 @@ int Game::init(int loadGameCall)
    if( init_flag )
 		deinit();
 
-	int originalRandomSeed = misc.get_random_seed();
-
 	music.stop();
 
 	// ----- set waiting cursor -------- //
 	int oldCursor = mouse_cursor.get_icon();
 	mouse_cursor.set_icon(CURSOR_WAITING);
+
+	int iret = init_internal(loadGameCall);
+
+	// ----- restore from waiting cursor -------- //
+
+	mouse_cursor.restore_icon(oldCursor);
+
+	game_has_ended = 0;
+
+	init_flag=1;
+
+	return iret;
+}
+//--------- End of function Game::init ---------//
+
+int Game::init_internal(int loadGameCall)
+{
+	int originalRandomSeed = misc.get_random_seed();
 
 	//------- init game data class ---------//
 
@@ -216,17 +232,9 @@ int Game::init(int loadGameCall)
 
 	err_when( originalRandomSeed != misc.get_random_seed() );
 
-	// ----- restore from waiting cursor -------- //
-
-	mouse_cursor.restore_icon(oldCursor);
-
-	game_has_ended = 0;
-
-	init_flag=1;
-
 	return TRUE;
 }
-//--------- End of function Game::init ---------//
+//--------- End of function Game::init_internal ---------//
 
 
 //-------- Begin of function Game::deinit --------//
