@@ -2,6 +2,7 @@ SUBDIRS = enet imgfun openal
 if USE_CURL
 SUBDIRS += curl
 endif
+SUBDIRS += core 
 
 TESTS = 7kaaTestApp
 check_PROGRAMS = $(TESTS)
@@ -34,7 +35,6 @@ bin_PROGRAMS = 7kaa
 	OAI_UNIT.cpp \
 	OANLINE.cpp \
 	OBATTLE.cpp \
-	OBLOB.cpp \
 	OBOX.cpp \
 	OBULLET.cpp \
 	OBULLETA.cpp \
@@ -47,14 +47,8 @@ bin_PROGRAMS = 7kaa
 	OCOLTBL.cpp \
 	OCONFIG.cpp \
 	OCRC_STO.cpp \
-	ODATE.cpp \
-	ODB.cpp \
-	ODIR.cpp \
-	ODYNARR.cpp \
 	ODYNARRB.cpp \
 	OEFFECT.cpp \
-	OERRCTRL.cpp \
-	OERROR.cpp \
 	OEXPMASK.cpp \
 	OFILE.cpp \
 	OFILETXT.cpp \
@@ -125,7 +119,6 @@ bin_PROGRAMS = 7kaa
 	OLZW.cpp \
 	OMATRIX.cpp \
 	OMEM.cpp \
-	OMISC.cpp \
 	OMONSRES.cpp \
 	OMOUSE.cpp \
 	OMOUSECR.cpp \
@@ -195,7 +188,6 @@ bin_PROGRAMS = 7kaa
 	OSPY.cpp \
 	OSPY2.cpp \
 	OSPYA.cpp \
-	OSTR.cpp \
 	OSYS.cpp \
 	OSYS2.cpp \
 	OSYS3.cpp \
@@ -274,16 +266,6 @@ bin_PROGRAMS = 7kaa
 	OW_ROCK.cpp \
 	OW_SOUND.cpp \
 	OW_WALL.cpp \
-	dbglog.cpp \
-	file_input_stream.cpp \
-	file_output_stream.cpp \
-	file_reader.cpp \
-	file_util.cpp \
-	file_writer.cpp \
-	input_stream.cpp \
-	mem_input_stream.cpp \
-	misc_uuid.cpp \
-	output_stream.cpp \
 	player_desc.cpp \
 	surface_sdl.cpp \
 	vga_sdl.cpp \
@@ -299,9 +281,7 @@ if AUDIO_OPENAL
 7kaa_LDADD += ./openal/libaudio_openal.a
 endif
 
-
 7kaa_LDADD += ./enet/libmultiplayer.a
-
 
 if USE_ASM
 7kaa_LDADD += ./imgfun/x86/libimgfun_x86.a
@@ -323,6 +303,8 @@ SUFFIXES = .rc
 	windres -I "$(top_srcdir)/include" -i $< $@
 ico.o: $(top_srcdir)/include/version.h 7k.ico
 endif
+
+7kaa_LDADD += ./core/lib7kaaCore.a
 
 7kaaTestApp_SOURCES = \
 	$(7kaa_base_SOURCES) \

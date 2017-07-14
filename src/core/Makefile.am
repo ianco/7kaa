@@ -1,0 +1,22 @@
+#CXXFLAGS += @LIBCURL_CPPFLAGS@
+noinst_LIBRARIES = lib7kaaCore.a
+lib7kaaCore_a_SOURCES = \
+	OBLOB.cpp \
+	ODATE.cpp \
+	ODB.cpp \
+	ODIR.cpp \
+	ODYNARR.cpp \
+	OERRCTRL.cpp \
+	OERROR.cpp \
+	OMISC.cpp \
+	OSTR.cpp \
+	dbglog.cpp \
+	file_input_stream.cpp \
+	file_output_stream.cpp \
+	file_reader.cpp \
+	file_util.cpp \
+	file_writer.cpp \
+	input_stream.cpp \
+	mem_input_stream.cpp \
+	misc_uuid.cpp \
+	output_stream.cpp 
