@@ -34,7 +34,6 @@ bin_PROGRAMS = 7kaa
 	OAI_TRAD.cpp \
 	OAI_UNIT.cpp \
 	OANLINE.cpp \
-	OBATTLE.cpp \
 	OBOX.cpp \
 	OBUTT3D.cpp \
 	OBUTTCUS.cpp \
@@ -43,7 +42,6 @@ bin_PROGRAMS = 7kaa
 	OB_HOMIN.cpp \
 	OB_PROJ.cpp \
 	OCOLTBL.cpp \
-	OCONFIG.cpp \
 	OCRC_STO.cpp \
 	OEXPMASK.cpp \
 	OFLAME.cpp \
@@ -67,19 +65,8 @@ bin_PROGRAMS = 7kaa
 	OF_RESE2.cpp \
 	OF_WAR.cpp \
 	OF_WAR2.cpp \
-	OGAMCRED.cpp \
-	OGAME.cpp \
-	OGAMEMP.cpp \
-	OGAMENCY.cpp \
-	OGAMEND.cpp \
-	OGAMESET.cpp \
 	OGAMESTATE.cpp \
-	OGAMHALL.cpp \
-	OGAMMAIN.cpp \
 	OGAMMENU.cpp \
-	OGAMSCE2.cpp \
-	OGAMSCEN.cpp \
-	OGAMSING.cpp \
 	OGENHILL.cpp \
 	OGENMAP.cpp \
 	OGETA.cpp \
@@ -91,7 +78,6 @@ bin_PROGRAMS = 7kaa
 	OGJSON.cpp \
 	OGRPSEL.cpp \
 	OHELP.cpp \
-	OINFO.cpp \
 	OINGMENU.cpp \
 	OLIGHTN.cpp \
 	OLIGHTN2.cpp \
@@ -107,7 +93,6 @@ bin_PROGRAMS = 7kaa
 	OOPTMENU.cpp \
 	OPLANT.cpp \
 	OPLASMA.cpp \
-	OPOWER.cpp \
 	ORAIN1.cpp \
 	ORAIN2.cpp \
 	ORAIN3.cpp \
@@ -168,10 +153,6 @@ bin_PROGRAMS = 7kaa
 	OVIDEO.cpp \
 	OVOLUME.cpp \
 	OVQUEUE.cpp \
-	OWEATHER.cpp \
-	OWORLD.cpp \
-	OWORLD_M.cpp \
-	OWORLD_Z.cpp \
 	OW_FIRE.cpp \
 	OW_PLANT.cpp \
 	OW_ROCK.cpp \
