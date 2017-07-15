@@ -1,3 +1,4 @@
+CXXFLAGS += $(SDL_CFLAGS) -DDEBUG -DENABLE_LOG
 noinst_LIBRARIES = libimgfun_generic.a
 libimgfun_generic_a_SOURCES = \
 	CRC.cpp \

@@ -307,6 +307,7 @@ AC_CONFIG_FILES([
   src/imgfun/x86/Makefile
   src/openal/Makefile
   src/core/Makefile
+  src/res/Makefile
   po/Makefile.in
 ])
 

@@ -2,7 +2,7 @@ SUBDIRS = enet imgfun openal
 if USE_CURL
 SUBDIRS += curl
 endif
-SUBDIRS += core 
+SUBDIRS += core res
 
 TESTS = 7kaaTestApp
 check_PROGRAMS = $(TESTS)
@@ -58,7 +58,6 @@ bin_PROGRAMS = 7kaa
 	OFIRMIF.cpp \
 	OFIRMIF2.cpp \
 	OFIRMIF3.cpp \
-	OFIRMRES.cpp \
 	OFLAME.cpp \
 	OFONT.cpp \
 	OF_BASE.cpp \
@@ -102,11 +101,8 @@ bin_PROGRAMS = 7kaa
 	OGFILEA.cpp \
 	OGF_V1.cpp \
 	OGJSON.cpp \
-	OGODRES.cpp \
 	OGRPSEL.cpp \
 	OHELP.cpp \
-	OHILLRES.cpp \
-	OIMGRES.cpp \
 	OINFO.cpp \
 	OINGMENU.cpp \
 	OLIGHTN.cpp \
@@ -116,7 +112,6 @@ bin_PROGRAMS = 7kaa
 	OLZW.cpp \
 	OMATRIX.cpp \
 	OMEM.cpp \
-	OMONSRES.cpp \
 	OMOUSE.cpp \
 	OMOUSECR.cpp \
 	OMP_CRC.cpp \
@@ -133,11 +128,9 @@ bin_PROGRAMS = 7kaa
 	OPLANT.cpp \
 	OPLASMA.cpp \
 	OPOWER.cpp \
-	ORACERES.cpp \
 	ORAIN1.cpp \
 	ORAIN2.cpp \
 	ORAIN3.cpp \
-	ORAWRES.cpp \
 	OREBEL.cpp \
 	OREGION.cpp \
 	OREGIONS.cpp \
@@ -145,11 +138,7 @@ bin_PROGRAMS = 7kaa
 	OREMOTE2.cpp \
 	OREMOTEM.cpp \
 	OREMOTEQ.cpp \
-	ORES.cpp \
-	ORESDB.cpp \
-	ORESX.cpp \
 	OROCK.cpp \
-	OROCKRES.cpp \
 	OR_AI.cpp \
 	OR_ECO.cpp \
 	OR_MIL.cpp \
@@ -162,8 +151,6 @@ bin_PROGRAMS = 7kaa
 	OR_TRADE.cpp \
 	OSCROLL.cpp \
 	OSE.cpp \
-	OSERES.cpp \
-	OSFRMRES.cpp \
 	OSITE.cpp \
 	OSITEDRW.cpp \
 	OSKILL.cpp \
@@ -171,7 +158,6 @@ bin_PROGRAMS = 7kaa
 	OSNOW1.cpp \
 	OSNOW2.cpp \
 	OSNOWG.cpp \
-	OSNOWRES.cpp \
 	OSPATH.cpp \
 	OSPATHBT.cpp \
 	OSPREDBG.cpp \
@@ -181,7 +167,6 @@ bin_PROGRAMS = 7kaa
 	OSPRITE.cpp \
 	OSPRITE2.cpp \
 	OSPRITEA.cpp \
-	OSPRTRES.cpp \
 	OSPY.cpp \
 	OSPY2.cpp \
 	OSPYA.cpp \
@@ -192,9 +177,7 @@ bin_PROGRAMS = 7kaa
 	OTALKFRE.cpp \
 	OTALKGER.cpp \
 	OTALKMSG.cpp \
-	OTALKRES.cpp \
 	OTALKSPA.cpp \
-	OTECHRES.cpp \
 	OTERRAIN.cpp \
 	OTORNADO.cpp \
 	OTOWN.cpp \
@@ -204,7 +187,6 @@ bin_PROGRAMS = 7kaa
 	OTOWNDRW.cpp \
 	OTOWNIF.cpp \
 	OTOWNIND.cpp \
-	OTOWNRES.cpp \
 	OTUTOR.cpp \
 	OTUTOR2.cpp \
 	OTownNetwork.cpp \
@@ -228,7 +210,6 @@ bin_PROGRAMS = 7kaa
 	OUNITIF.cpp \
 	OUNITIND.cpp \
 	OUNITM.cpp \
-	OUNITRES.cpp \
 	OUNITS.cpp \
 	OU_CARA.cpp \
 	OU_CARA2.cpp \
@@ -252,7 +233,6 @@ bin_PROGRAMS = 7kaa
 	OVIDEO.cpp \
 	OVOLUME.cpp \
 	OVQUEUE.cpp \
-	OWALLRES.cpp \
 	OWARPT.cpp \
 	OWEATHER.cpp \
 	OWORLD.cpp \
@@ -273,6 +253,8 @@ CXXFLAGS += $(SDL_CFLAGS) -DDEBUG -DENABLE_LOG
 
 7kaa_LDADD =
 
+7kaa_LDADD += ./core/lib7kaaCore.a
+7kaa_LDADD += ./res/lib7kaaRes.a
 
 if AUDIO_OPENAL
 7kaa_LDADD += ./openal/libaudio_openal.a
@@ -300,8 +282,6 @@ SUFFIXES = .rc
 	windres -I "$(top_srcdir)/include" -i $< $@
 ico.o: $(top_srcdir)/include/version.h 7k.ico
 endif
-
-7kaa_LDADD += ./core/lib7kaaCore.a
 
 7kaaTestApp_SOURCES = \
 	$(7kaa_base_SOURCES) \

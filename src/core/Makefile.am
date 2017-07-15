@@ -1,4 +1,4 @@
-#CXXFLAGS += @LIBCURL_CPPFLAGS@
+CXXFLAGS += $(SDL_CFLAGS) -DDEBUG -DENABLE_LOG
 noinst_LIBRARIES = lib7kaaCore.a
 lib7kaaCore_a_SOURCES = \
 	OBLOB.cpp \
@@ -20,6 +20,5 @@ lib7kaaCore_a_SOURCES = \
 	file_util.cpp \
 	file_writer.cpp \
 	input_stream.cpp \
-	mem_input_stream.cpp \
 	misc_uuid.cpp \
 	output_stream.cpp 
