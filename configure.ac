@@ -308,6 +308,7 @@ AC_CONFIG_FILES([
   src/openal/Makefile
   src/core/Makefile
   src/res/Makefile
+  src/gamedata/Makefile
   po/Makefile.in
 ])
 

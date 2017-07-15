@@ -2,7 +2,7 @@ SUBDIRS = enet imgfun openal
 if USE_CURL
 SUBDIRS += curl
 endif
-SUBDIRS += core res
+SUBDIRS += core res gamedata
 
 TESTS = 7kaaTestApp
 check_PROGRAMS = $(TESTS)
@@ -36,8 +36,6 @@ bin_PROGRAMS = 7kaa
 	OANLINE.cpp \
 	OBATTLE.cpp \
 	OBOX.cpp \
-	OBULLET.cpp \
-	OBULLETA.cpp \
 	OBUTT3D.cpp \
 	OBUTTCUS.cpp \
 	OBUTTON.cpp \
@@ -47,17 +45,7 @@ bin_PROGRAMS = 7kaa
 	OCOLTBL.cpp \
 	OCONFIG.cpp \
 	OCRC_STO.cpp \
-	ODYNARRB.cpp \
 	OEXPMASK.cpp \
-	OFIRM.cpp \
-	OFIRM2.cpp \
-	OFIRMA.cpp \
-	OFIRMAI.cpp \
-	OFIRMDIE.cpp \
-	OFIRMDRW.cpp \
-	OFIRMIF.cpp \
-	OFIRMIF2.cpp \
-	OFIRMIF3.cpp \
 	OFLAME.cpp \
 	OFONT.cpp \
 	OF_BASE.cpp \
@@ -116,14 +104,6 @@ bin_PROGRAMS = 7kaa
 	OMOUSECR.cpp \
 	OMP_CRC.cpp \
 	OMUSIC.cpp \
-	ONATIONA.cpp \
-	ONATIONB.cpp \
-	ONEWS.cpp \
-	ONEWS2.cpp \
-	ONEWSENG.cpp \
-	ONEWSFRE.cpp \
-	ONEWSGER.cpp \
-	ONEWSSPA.cpp \
 	OOPTMENU.cpp \
 	OPLANT.cpp \
 	OPLASMA.cpp \
@@ -131,14 +111,10 @@ bin_PROGRAMS = 7kaa
 	ORAIN1.cpp \
 	ORAIN2.cpp \
 	ORAIN3.cpp \
-	OREBEL.cpp \
-	OREGION.cpp \
-	OREGIONS.cpp \
 	OREMOTE.cpp \
 	OREMOTE2.cpp \
 	OREMOTEM.cpp \
 	OREMOTEQ.cpp \
-	OROCK.cpp \
 	OR_AI.cpp \
 	OR_ECO.cpp \
 	OR_MIL.cpp \
@@ -151,25 +127,14 @@ bin_PROGRAMS = 7kaa
 	OR_TRADE.cpp \
 	OSCROLL.cpp \
 	OSE.cpp \
-	OSITE.cpp \
-	OSITEDRW.cpp \
 	OSKILL.cpp \
 	OSLIDCUS.cpp \
-	OSNOW1.cpp \
-	OSNOW2.cpp \
-	OSNOWG.cpp \
 	OSPATH.cpp \
 	OSPATHBT.cpp \
 	OSPREDBG.cpp \
 	OSPREOFF.cpp \
 	OSPRESMO.cpp \
 	OSPREUSE.cpp \
-	OSPRITE.cpp \
-	OSPRITE2.cpp \
-	OSPRITEA.cpp \
-	OSPY.cpp \
-	OSPY2.cpp \
-	OSPYA.cpp \
 	OSYS.cpp \
 	OSYS2.cpp \
 	OSYS3.cpp \
@@ -179,38 +144,8 @@ bin_PROGRAMS = 7kaa
 	OTALKMSG.cpp \
 	OTALKSPA.cpp \
 	OTERRAIN.cpp \
-	OTORNADO.cpp \
-	OTOWN.cpp \
-	OTOWNA.cpp \
-	OTOWNAI.cpp \
-	OTOWNBLD.cpp \
-	OTOWNDRW.cpp \
-	OTOWNIF.cpp \
-	OTOWNIND.cpp \
 	OTUTOR.cpp \
 	OTUTOR2.cpp \
-	OTownNetwork.cpp \
-	OUNIT.cpp \
-	OUNIT2.cpp \
-	OUNITA.cpp \
-	OUNITAAC.cpp \
-	OUNITAAT.cpp \
-	OUNITAC.cpp \
-	OUNITAI.cpp \
-	OUNITAM.cpp \
-	OUNITAMT.cpp \
-	OUNITAT.cpp \
-	OUNITAT2.cpp \
-	OUNITAT3.cpp \
-	OUNITATB.cpp \
-	OUNITD.cpp \
-	OUNITDRW.cpp \
-	OUNITHB.cpp \
-	OUNITI.cpp \
-	OUNITIF.cpp \
-	OUNITIND.cpp \
-	OUNITM.cpp \
-	OUNITS.cpp \
 	OU_CARA.cpp \
 	OU_CARA2.cpp \
 	OU_CARAS.cpp \
@@ -233,7 +168,6 @@ bin_PROGRAMS = 7kaa
 	OVIDEO.cpp \
 	OVOLUME.cpp \
 	OVQUEUE.cpp \
-	OWARPT.cpp \
 	OWEATHER.cpp \
 	OWORLD.cpp \
 	OWORLD_M.cpp \
@@ -253,6 +187,7 @@ CXXFLAGS += $(SDL_CFLAGS) -DDEBUG -DENABLE_LOG
 
 7kaa_LDADD =
 
+7kaa_LDADD += ./gamedata/lib7kaaGameData.a
 7kaa_LDADD += ./core/lib7kaaCore.a
 7kaa_LDADD += ./res/lib7kaaRes.a
 
