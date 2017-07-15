@@ -6,8 +6,11 @@ lib7kaaCore_a_SOURCES = \
 	ODB.cpp \
 	ODIR.cpp \
 	ODYNARR.cpp \
+	OEFFECT.cpp \
 	OERRCTRL.cpp \
 	OERROR.cpp \
+	OFILE.cpp \
+	OFILETXT.cpp \
 	OMISC.cpp \
 	OSTR.cpp \
 	dbglog.cpp \

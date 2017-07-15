@@ -48,10 +48,7 @@ bin_PROGRAMS = 7kaa
 	OCONFIG.cpp \
 	OCRC_STO.cpp \
 	ODYNARRB.cpp \
-	OEFFECT.cpp \
 	OEXPMASK.cpp \
-	OFILE.cpp \
-	OFILETXT.cpp \
 	OFIRM.cpp \
 	OFIRM2.cpp \
 	OFIRMA.cpp \
