@@ -1,15 +1,34 @@
 CXXFLAGS += $(SDL_CFLAGS) -DDEBUG -DENABLE_LOG
 noinst_LIBRARIES = lib7kaaGameData.a
 lib7kaaGameData_a_SOURCES = \
+	OAI_MAIN.cpp \
 	OBATTLE.cpp \
 	OBULLET.cpp \
 	OBULLETA.cpp \
 	OCONFIG.cpp \
 	ODYNARRB.cpp \
+	OF_BASE.cpp \
+	OF_CAMP.cpp \
+	OF_FACT.cpp \
+	OF_HARB.cpp \
+	OF_INN.cpp \
+	OF_MARK.cpp \
+	OF_MINE.cpp \
+	OF_MONS.cpp \
+	OF_RESE.cpp \
+	OF_WAR.cpp \
+	OF_BASE2.cpp \
+	OF_CAMP2.cpp \
+	OF_FACT2.cpp \
+	OF_HARB2.cpp \
+	OF_INN2.cpp \
+	OF_MARK2.cpp \
+	OF_MINE2.cpp \
+	OF_RESE2.cpp \
+	OF_WAR2.cpp \
 	OFIRM.cpp \
 	OFIRM2.cpp \
 	OFIRMA.cpp \
-	OFIRMAI.cpp \
 	OFIRMDIE.cpp \
 	OFIRMDRW.cpp \
 	OFIRMIF.cpp \
@@ -27,6 +46,7 @@ lib7kaaGameData_a_SOURCES = \
 	OGAMSCEN.cpp \
 	OGAMSING.cpp \
 	OINFO.cpp \
+	ONATION.cpp \
 	ONATIONA.cpp \
 	ONATIONB.cpp \
 	ONEWS.cpp \
@@ -54,19 +74,31 @@ lib7kaaGameData_a_SOURCES = \
 	OTORNADO.cpp \
 	OTOWN.cpp \
 	OTOWNA.cpp \
-	OTOWNAI.cpp \
 	OTOWNBLD.cpp \
 	OTOWNDRW.cpp \
 	OTOWNIF.cpp \
 	OTOWNIND.cpp \
 	OTownNetwork.cpp \
+	OU_CARA.cpp \
+	OU_CARAS.cpp \
+	OU_CARAT.cpp \
+	OU_CART.cpp \
+	OU_GOD.cpp \
+	OU_MARI.cpp \
+	OU_MARIF.cpp \
+	OU_MARIS.cpp \
+	OU_MARIT.cpp \
+	OU_MONS.cpp \
+	OU_VEHI.cpp \
+	OU_CARA2.cpp \
+	OU_GOD2.cpp \
+	OU_MARI2.cpp \
 	OUNIT.cpp \
 	OUNIT2.cpp \
 	OUNITA.cpp \
 	OUNITAAC.cpp \
 	OUNITAAT.cpp \
 	OUNITAC.cpp \
-	OUNITAI.cpp \
 	OUNITAM.cpp \
 	OUNITAMT.cpp \
 	OUNITAT.cpp \
@@ -81,11 +113,42 @@ lib7kaaGameData_a_SOURCES = \
 	OUNITIND.cpp \
 	OUNITM.cpp \
 	OUNITS.cpp \
+	OW_FIRE.cpp \
+	OW_PLANT.cpp \
+	OW_ROCK.cpp \
+	OW_SOUND.cpp \
+	OW_WALL.cpp \
 	OWARPT.cpp \
 	OWEATHER.cpp \
 	OWORLD.cpp \
 	OWORLD_M.cpp \
-	OWORLD_Z.cpp
+	OWORLD_Z.cpp \
+	OAI_ACT.cpp \
+	OAI_ACT2.cpp \
+	OAI_ATTK.cpp \
+	OAI_BUIL.cpp \
+	OAI_CAP2.cpp \
+	OAI_CAPT.cpp \
+	OAI_DEFE.cpp \
+	OAI_DIPL.cpp \
+	OAI_ECO.cpp \
+	OAI_GRAN.cpp \
+	OAI_INFO.cpp \
+	OAI_MAR2.cpp \
+	OAI_MAR3.cpp \
+	OAI_MARI.cpp \
+	OAI_MILI.cpp \
+	OAI_MONS.cpp \
+	OAI_QUER.cpp \
+	OAI_SEEK.cpp \
+	OAI_SPY.cpp \
+	OAI_TALK.cpp \
+	OAI_TOWN.cpp \
+	OAI_TRAD.cpp \
+	OAI_UNIT.cpp \
+	OFIRMAI.cpp \
+	OTOWNAI.cpp \
+	OUNITAI.cpp
 
 lib7kaaGameData_a_LIBADD = 
 

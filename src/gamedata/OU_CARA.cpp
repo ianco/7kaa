@@ -55,6 +55,17 @@ static char				goods_num[MAX_STOP_FOR_CARAVAN];
 
 static char				dummyCaravanEnableFlag[MAX_STOP_FOR_CARAVAN][MAX_GOODS_SELECT_BUTTON];
 static char				dummyCaravanGoodsNum[MAX_STOP_FOR_CARAVAN];
+
+
+//------- Begin of function UnitCaravan::init_derived --------//
+
+void UnitCaravan::init_derived()
+{
+	last_load_goods_date = info.game_date;
+}
+//------- End of function UnitCaravan::init_derived --------//
+
+
 //------------- define static function ------------//
 static void update_caravan_stop_and_goods_to_dummy(UnitCaravan *caravanPtr)
 {

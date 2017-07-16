@@ -29,19 +29,6 @@
 #include <OUNIT.h>
 #include <OF_CAMP.h>
 
-//--------- Begin of function FirmCamp::init_derived ---------//
-
-void FirmCamp::init_derived()
-{
-	patrol_unit_count = 0;
-	coming_unit_count = 0;
-
-	ai_capture_town_recno = 0;
-	ai_recruiting_soldier = 1;
-}
-//----------- End of function FirmCamp::init_derived -----------//
-
-
 //--------- Begin of function FirmCamp::process_ai ---------//
 
 void FirmCamp::process_ai()

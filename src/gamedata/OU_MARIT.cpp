@@ -42,6 +42,16 @@ static short	linked_market_array[MAX_LINKED_FIRM_FIRM];
 static char		empty_slot_position_array[MAX_LINKED_FIRM_FIRM];
 static char		firm_selected_array[MAX_LINKED_FIRM_FIRM];
 
+
+//------- Begin of function UnitMarine::init_derived --------//
+
+void UnitMarine::init_derived()
+{
+	last_load_goods_date = info.game_date;
+}
+//------- End of function UnitMarine::init_derived --------//
+
+
 //--------- Begin of function UnitMarine::del_stop ---------//
 void UnitMarine::del_stop(int stopId, char remoteAction)
 {

@@ -2,37 +2,13 @@ SUBDIRS = enet imgfun openal
 if USE_CURL
 SUBDIRS += curl
 endif
-SUBDIRS += core res gamedata
+SUBDIRS += core res gamedata ai
 
 TESTS = 7kaaTestApp
 check_PROGRAMS = $(TESTS)
 
 bin_PROGRAMS = 7kaa
 7kaa_base_SOURCES = \
-	OAI_ACT.cpp \
-	OAI_ACT2.cpp \
-	OAI_ATTK.cpp \
-	OAI_BUIL.cpp \
-	OAI_CAP2.cpp \
-	OAI_CAPT.cpp \
-	OAI_DEFE.cpp \
-	OAI_DIPL.cpp \
-	OAI_ECO.cpp \
-	OAI_GRAN.cpp \
-	OAI_INFO.cpp \
-	OAI_MAIN.cpp \
-	OAI_MAR2.cpp \
-	OAI_MAR3.cpp \
-	OAI_MARI.cpp \
-	OAI_MILI.cpp \
-	OAI_MONS.cpp \
-	OAI_QUER.cpp \
-	OAI_SEEK.cpp \
-	OAI_SPY.cpp \
-	OAI_TALK.cpp \
-	OAI_TOWN.cpp \
-	OAI_TRAD.cpp \
-	OAI_UNIT.cpp \
 	OANLINE.cpp \
 	OBOX.cpp \
 	OBUTT3D.cpp \
@@ -46,25 +22,6 @@ bin_PROGRAMS = 7kaa
 	OEXPMASK.cpp \
 	OFLAME.cpp \
 	OFONT.cpp \
-	OF_BASE.cpp \
-	OF_BASE2.cpp \
-	OF_CAMP.cpp \
-	OF_CAMP2.cpp \
-	OF_FACT.cpp \
-	OF_FACT2.cpp \
-	OF_HARB.cpp \
-	OF_HARB2.cpp \
-	OF_INN.cpp \
-	OF_INN2.cpp \
-	OF_MARK.cpp \
-	OF_MARK2.cpp \
-	OF_MINE.cpp \
-	OF_MINE2.cpp \
-	OF_MONS.cpp \
-	OF_RESE.cpp \
-	OF_RESE2.cpp \
-	OF_WAR.cpp \
-	OF_WAR2.cpp \
 	OGAMESTATE.cpp \
 	OGAMMENU.cpp \
 	OGENHILL.cpp \
@@ -131,20 +88,6 @@ bin_PROGRAMS = 7kaa
 	OTERRAIN.cpp \
 	OTUTOR.cpp \
 	OTUTOR2.cpp \
-	OU_CARA.cpp \
-	OU_CARA2.cpp \
-	OU_CARAS.cpp \
-	OU_CARAT.cpp \
-	OU_CART.cpp \
-	OU_GOD.cpp \
-	OU_GOD2.cpp \
-	OU_MARI.cpp \
-	OU_MARI2.cpp \
-	OU_MARIF.cpp \
-	OU_MARIS.cpp \
-	OU_MARIT.cpp \
-	OU_MONS.cpp \
-	OU_VEHI.cpp \
 	OVBROWIF.cpp \
 	OVBROWSE.cpp \
 	OVGABUF.cpp \
@@ -153,11 +96,6 @@ bin_PROGRAMS = 7kaa
 	OVIDEO.cpp \
 	OVOLUME.cpp \
 	OVQUEUE.cpp \
-	OW_FIRE.cpp \
-	OW_PLANT.cpp \
-	OW_ROCK.cpp \
-	OW_SOUND.cpp \
-	OW_WALL.cpp \
 	player_desc.cpp \
 	surface_sdl.cpp \
 	vga_sdl.cpp \
@@ -168,6 +106,7 @@ CXXFLAGS += $(SDL_CFLAGS) -DDEBUG -DENABLE_LOG
 
 7kaa_LDADD =
 
+#7kaa_LDADD += ./ai/lib7kaaAI.a
 7kaa_LDADD += ./gamedata/lib7kaaGameData.a
 7kaa_LDADD += ./core/lib7kaaCore.a
 7kaa_LDADD += ./res/lib7kaaRes.a

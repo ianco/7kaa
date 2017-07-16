@@ -27,15 +27,6 @@
 #include <OU_CARA.h>
 
 
-//------- Begin of function UnitCaravan::init_derived --------//
-
-void UnitCaravan::init_derived()
-{
-	last_load_goods_date = info.game_date;
-}
-//------- End of function UnitCaravan::init_derived --------//
-
-
 //------- Begin of function UnitCaravan::process_ai --------//
 //
 void UnitCaravan::process_ai()

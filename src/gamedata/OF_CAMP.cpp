@@ -110,6 +110,19 @@ void FirmCamp::deinit()
 //----------- End of function FirmCamp::deinit -----------//
 
 
+//--------- Begin of function FirmCamp::init_derived ---------//
+
+void FirmCamp::init_derived()
+{
+	patrol_unit_count = 0;
+	coming_unit_count = 0;
+
+	ai_capture_town_recno = 0;
+	ai_recruiting_soldier = 1;
+}
+//----------- End of function FirmCamp::init_derived -----------//
+
+
 //--------- Begin of function FirmCamp::reset_unit_home_camp ---------//
 //
 void FirmCamp::reset_unit_home_camp(int firmRecno)

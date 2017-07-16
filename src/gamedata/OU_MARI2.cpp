@@ -27,15 +27,6 @@
 #include <OU_MARI.h>
 
 
-//------- Begin of function UnitMarine::init_derived --------//
-
-void UnitMarine::init_derived()
-{
-	last_load_goods_date = info.game_date;
-}
-//------- End of function UnitMarine::init_derived --------//
-
-
 //------- Begin of function UnitMarine::process_ai --------//
 //
 void UnitMarine::process_ai()
