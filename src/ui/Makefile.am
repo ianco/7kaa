@@ -3,6 +3,9 @@ noinst_LIBRARIES = lib7kaaUI.a
 lib7kaaUI_a_SOURCES = \
 	OGAMMENU.cpp \
 	OGETA.cpp \
+	OFIRMIF.cpp \
+	OFIRMIF2.cpp \
+	OFIRMIF3.cpp \
 	OHELP.cpp \
 	OINGMENU.cpp \
 	OMOUSE.cpp \
@@ -27,6 +30,7 @@ lib7kaaUI_a_SOURCES = \
 	OTALKGER.cpp \
 	OTALKMSG.cpp \
 	OTALKSPA.cpp \
+	OTOWNIF.cpp \
 	OTUTOR.cpp \
 	OTUTOR2.cpp \
 	OVBROWIF.cpp \

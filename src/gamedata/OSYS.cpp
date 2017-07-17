@@ -44,7 +44,7 @@
 #include <OGAMESET.h>
 #include <OGFILE.h>
 #include <OINFO.h>
-#include <OVBROWSE.h>
+//#include <OVBROWSE.h>
 #include <OIMGRES.h>
 #include <OMOUSE.h>
 #include <OMOUSE2.h>

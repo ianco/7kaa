@@ -40,7 +40,7 @@
 #include <WebService.h>
 #endif
 #include <OERRCTRL.h>
-#include <OGFILE.h>
+//#include <OGFILE.h>
 #include <OCONFIG.h>
 #include <OIMGRES.h>
 #include <OGET.h>

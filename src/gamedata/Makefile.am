@@ -36,9 +36,6 @@ lib7kaaGameData_a_SOURCES = \
 	OFIRMA.cpp \
 	OFIRMDIE.cpp \
 	OFIRMDRW.cpp \
-	OFIRMIF.cpp \
-	OFIRMIF2.cpp \
-	OFIRMIF3.cpp \
 	OFLAME.cpp \
 	OGAMCRED.cpp \
 	OGAME.cpp \
@@ -99,7 +96,6 @@ lib7kaaGameData_a_SOURCES = \
 	OTOWNA.cpp \
 	OTOWNBLD.cpp \
 	OTOWNDRW.cpp \
-	OTOWNIF.cpp \
 	OTOWNIND.cpp \
 	OTownNetwork.cpp \
 	OU_CARA.cpp \
