@@ -18,6 +18,7 @@ lib7kaaRes_a_SOURCES = \
 	OSPRTRES.cpp \
 	OTALKRES.cpp \
 	OTECHRES.cpp \
+	OTERRAIN.cpp \
 	OTOWNRES.cpp \
 	OUNITRES.cpp \
 	OWALLRES.cpp 

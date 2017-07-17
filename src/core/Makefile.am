@@ -13,6 +13,7 @@ lib7kaaCore_a_SOURCES = \
 	OFILETXT.cpp \
 	OMISC.cpp \
 	OSTR.cpp \
+	OVQUEUE.cpp \
 	dbglog.cpp \
 	file_input_stream.cpp \
 	file_output_stream.cpp \

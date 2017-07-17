@@ -2,11 +2,16 @@ CXXFLAGS += $(SDL_CFLAGS) -DDEBUG -DENABLE_LOG
 noinst_LIBRARIES = lib7kaaGameData.a
 lib7kaaGameData_a_SOURCES = \
 	OAI_MAIN.cpp \
+	OB_FLAME.cpp \
+	OB_HOMIN.cpp \
+	OB_PROJ.cpp \
 	OBATTLE.cpp \
 	OBULLET.cpp \
 	OBULLETA.cpp \
 	OCONFIG.cpp \
+	OCRC_STO.cpp \
 	ODYNARRB.cpp \
+	OEXPMASK.cpp \
 	OF_BASE.cpp \
 	OF_CAMP.cpp \
 	OF_FACT.cpp \
@@ -34,17 +39,21 @@ lib7kaaGameData_a_SOURCES = \
 	OFIRMIF.cpp \
 	OFIRMIF2.cpp \
 	OFIRMIF3.cpp \
+	OFLAME.cpp \
 	OGAMCRED.cpp \
 	OGAME.cpp \
 	OGAMEMP.cpp \
 	OGAMENCY.cpp \
 	OGAMEND.cpp \
 	OGAMESET.cpp \
+	OGAMESTATE.cpp \
 	OGAMHALL.cpp \
 	OGAMMAIN.cpp \
 	OGAMSCE2.cpp \
 	OGAMSCEN.cpp \
 	OGAMSING.cpp \
+	OGENHILL.cpp \
+	OGENMAP.cpp \
 	OINFO.cpp \
 	ONATION.cpp \
 	ONATIONA.cpp \

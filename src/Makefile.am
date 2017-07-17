@@ -2,30 +2,14 @@ SUBDIRS = enet imgfun openal
 if USE_CURL
 SUBDIRS += curl
 endif
-SUBDIRS += core res gamedata ai
+SUBDIRS += core res gamedata ai graf
 
 TESTS = 7kaaTestApp
 check_PROGRAMS = $(TESTS)
 
 bin_PROGRAMS = 7kaa
 7kaa_base_SOURCES = \
-	OANLINE.cpp \
-	OBOX.cpp \
-	OBUTT3D.cpp \
-	OBUTTCUS.cpp \
-	OBUTTON.cpp \
-	OB_FLAME.cpp \
-	OB_HOMIN.cpp \
-	OB_PROJ.cpp \
-	OCOLTBL.cpp \
-	OCRC_STO.cpp \
-	OEXPMASK.cpp \
-	OFLAME.cpp \
-	OFONT.cpp \
-	OGAMESTATE.cpp \
 	OGAMMENU.cpp \
-	OGENHILL.cpp \
-	OGENMAP.cpp \
 	OGETA.cpp \
 	OGFILE.cpp \
 	OGFILE2.cpp \
@@ -85,17 +69,10 @@ bin_PROGRAMS = 7kaa
 	OTALKGER.cpp \
 	OTALKMSG.cpp \
 	OTALKSPA.cpp \
-	OTERRAIN.cpp \
 	OTUTOR.cpp \
 	OTUTOR2.cpp \
 	OVBROWIF.cpp \
 	OVBROWSE.cpp \
-	OVGABUF.cpp \
-	OVGABUF2.cpp \
-	OVGALOCK.cpp \
-	OVIDEO.cpp \
-	OVOLUME.cpp \
-	OVQUEUE.cpp \
 	player_desc.cpp \
 	surface_sdl.cpp \
 	vga_sdl.cpp \
@@ -109,6 +86,7 @@ CXXFLAGS += $(SDL_CFLAGS) -DDEBUG -DENABLE_LOG
 #7kaa_LDADD += ./ai/lib7kaaAI.a
 7kaa_LDADD += ./gamedata/lib7kaaGameData.a
 7kaa_LDADD += ./core/lib7kaaCore.a
+7kaa_LDADD += ./graf/lib7kaaGraf.a
 7kaa_LDADD += ./res/lib7kaaRes.a
 
 if AUDIO_OPENAL

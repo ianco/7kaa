@@ -310,6 +310,7 @@ AC_CONFIG_FILES([
   src/res/Makefile
   src/gamedata/Makefile
   src/ai/Makefile
+  src/graf/Makefile
   po/Makefile.in
 ])
 
