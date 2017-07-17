@@ -8,13 +8,7 @@ TESTS = 7kaaTestApp
 check_PROGRAMS = $(TESTS)
 
 bin_PROGRAMS = 7kaa
-7kaa_base_SOURCES = \
-	OGFILE.cpp \
-	OGFILE2.cpp \
-	OGFILE3.cpp \
-	OGFILEA.cpp \
-	OGF_V1.cpp \
-	OGJSON.cpp 
+7kaa_base_SOURCES = 
 
 CXXFLAGS += $(SDL_CFLAGS) -DDEBUG -DENABLE_LOG
 
@@ -22,11 +16,11 @@ CXXFLAGS += $(SDL_CFLAGS) -DDEBUG -DENABLE_LOG
 
 #7kaa_LDADD += ./ai/lib7kaaAI.a
 7kaa_LDADD += ./gamedata/lib7kaaGameData.a
-7kaa_LDADD += ./core/lib7kaaCore.a
 7kaa_LDADD += ./graf/lib7kaaGraf.a
 7kaa_LDADD += ./res/lib7kaaRes.a
 7kaa_LDADD += ./ui/lib7kaaUI.a
 7kaa_LDADD += ./rmsg/lib7kaaRmsg.a
+7kaa_LDADD += ./core/lib7kaaCore.a
 
 if AUDIO_OPENAL
 7kaa_LDADD += ./openal/libaudio_openal.a
@@ -55,8 +49,7 @@ SUFFIXES = .rc
 ico.o: $(top_srcdir)/include/version.h 7k.ico
 endif
 
-7kaaTestApp_SOURCES = \
-	$(7kaa_base_SOURCES) \
+7kaaTestApp_SOURCES = $(7kaa_base_SOURCES) \
 	OGAMESTATETest.cpp \
 	OCONFIGTest.cpp \
 	OGJSONTest.cpp \

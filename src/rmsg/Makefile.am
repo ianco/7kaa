@@ -1,6 +1,12 @@
 CXXFLAGS += $(SDL_CFLAGS) -DDEBUG -DENABLE_LOG
 noinst_LIBRARIES = lib7kaaRmsg.a
 lib7kaaRmsg_a_SOURCES = \
+	OGFILE.cpp \
+	OGFILE2.cpp \
+	OGFILE3.cpp \
+	OGFILEA.cpp \
+	OGF_V1.cpp \
+	OGJSON.cpp \
 	OREMOTE.cpp \
 	OREMOTE2.cpp \
 	OREMOTEM.cpp \
