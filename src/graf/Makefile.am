@@ -8,11 +8,20 @@ lib7kaaGraf_a_SOURCES = \
 	OBUTTON.cpp \
 	OCOLTBL.cpp \
 	OFONT.cpp \
+	OLIGHTN.cpp \
+	OLIGHTN2.cpp \
+	ORAIN1.cpp \
+	ORAIN2.cpp \
+	ORAIN3.cpp \
 	OVGABUF.cpp \
 	OVGABUF2.cpp \
 	OVGALOCK.cpp \
 	OVIDEO.cpp \
-	OVOLUME.cpp 
+	OVOLUME.cpp \
+	surface_sdl.cpp \
+	vga_sdl.cpp \
+	vgautil.cpp \
+	vgautil2.cpp
 
 lib7kaaGraf_a_LIBADD = 
 

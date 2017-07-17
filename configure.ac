@@ -311,6 +311,8 @@ AC_CONFIG_FILES([
   src/gamedata/Makefile
   src/ai/Makefile
   src/graf/Makefile
+  src/rmsg/Makefile
+  src/ui/Makefile
   po/Makefile.in
 ])
 

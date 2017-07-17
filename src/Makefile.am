@@ -2,82 +2,19 @@ SUBDIRS = enet imgfun openal
 if USE_CURL
 SUBDIRS += curl
 endif
-SUBDIRS += core res gamedata ai graf
+SUBDIRS += core res gamedata ai graf rmsg ui
 
 TESTS = 7kaaTestApp
 check_PROGRAMS = $(TESTS)
 
 bin_PROGRAMS = 7kaa
 7kaa_base_SOURCES = \
-	OGAMMENU.cpp \
-	OGETA.cpp \
 	OGFILE.cpp \
 	OGFILE2.cpp \
 	OGFILE3.cpp \
 	OGFILEA.cpp \
 	OGF_V1.cpp \
-	OGJSON.cpp \
-	OGRPSEL.cpp \
-	OHELP.cpp \
-	OINGMENU.cpp \
-	OLIGHTN.cpp \
-	OLIGHTN2.cpp \
-	OLOG.cpp \
-	OLONGLOG.cpp \
-	OLZW.cpp \
-	OMATRIX.cpp \
-	OMEM.cpp \
-	OMOUSE.cpp \
-	OMOUSECR.cpp \
-	OMP_CRC.cpp \
-	OMUSIC.cpp \
-	OOPTMENU.cpp \
-	OPLANT.cpp \
-	OPLASMA.cpp \
-	ORAIN1.cpp \
-	ORAIN2.cpp \
-	ORAIN3.cpp \
-	OREMOTE.cpp \
-	OREMOTE2.cpp \
-	OREMOTEM.cpp \
-	OREMOTEQ.cpp \
-	OR_AI.cpp \
-	OR_ECO.cpp \
-	OR_MIL.cpp \
-	OR_NAT.cpp \
-	OR_NEWS.cpp \
-	OR_RANK.cpp \
-	OR_SPY.cpp \
-	OR_TECH.cpp \
-	OR_TOWN.cpp \
-	OR_TRADE.cpp \
-	OSCROLL.cpp \
-	OSE.cpp \
-	OSKILL.cpp \
-	OSLIDCUS.cpp \
-	OSPATH.cpp \
-	OSPATHBT.cpp \
-	OSPREDBG.cpp \
-	OSPREOFF.cpp \
-	OSPRESMO.cpp \
-	OSPREUSE.cpp \
-	OSYS.cpp \
-	OSYS2.cpp \
-	OSYS3.cpp \
-	OTALKENG.cpp \
-	OTALKFRE.cpp \
-	OTALKGER.cpp \
-	OTALKMSG.cpp \
-	OTALKSPA.cpp \
-	OTUTOR.cpp \
-	OTUTOR2.cpp \
-	OVBROWIF.cpp \
-	OVBROWSE.cpp \
-	player_desc.cpp \
-	surface_sdl.cpp \
-	vga_sdl.cpp \
-	vgautil.cpp \
-	vgautil2.cpp
+	OGJSON.cpp 
 
 CXXFLAGS += $(SDL_CFLAGS) -DDEBUG -DENABLE_LOG
 
@@ -88,6 +25,8 @@ CXXFLAGS += $(SDL_CFLAGS) -DDEBUG -DENABLE_LOG
 7kaa_LDADD += ./core/lib7kaaCore.a
 7kaa_LDADD += ./graf/lib7kaaGraf.a
 7kaa_LDADD += ./res/lib7kaaRes.a
+7kaa_LDADD += ./ui/lib7kaaUI.a
+7kaa_LDADD += ./rmsg/lib7kaaRmsg.a
 
 if AUDIO_OPENAL
 7kaa_LDADD += ./openal/libaudio_openal.a

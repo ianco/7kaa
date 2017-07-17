@@ -11,6 +11,10 @@ lib7kaaCore_a_SOURCES = \
 	OERROR.cpp \
 	OFILE.cpp \
 	OFILETXT.cpp \
+	OLOG.cpp \
+	OLONGLOG.cpp \
+	OLZW.cpp \
+	OMEM.cpp \
 	OMISC.cpp \
 	OSTR.cpp \
 	OVQUEUE.cpp \

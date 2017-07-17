@@ -6,6 +6,7 @@ lib7kaaRes_a_SOURCES = \
 	OHILLRES.cpp \
 	OIMGRES.cpp \
 	OMONSRES.cpp \
+	OPLANT.cpp \
 	ORACERES.cpp \
 	ORAWRES.cpp \
 	ORES.cpp \

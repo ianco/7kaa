@@ -54,7 +54,10 @@ lib7kaaGameData_a_SOURCES = \
 	OGAMSING.cpp \
 	OGENHILL.cpp \
 	OGENMAP.cpp \
+	OGRPSEL.cpp \
 	OINFO.cpp \
+	OMATRIX.cpp \
+	OMP_CRC.cpp \
 	ONATION.cpp \
 	ONATIONA.cpp \
 	ONATIONB.cpp \
@@ -64,6 +67,7 @@ lib7kaaGameData_a_SOURCES = \
 	ONEWSFRE.cpp \
 	ONEWSGER.cpp \
 	ONEWSSPA.cpp \
+	OPLASMA.cpp \
 	OPOWER.cpp \
 	OREBEL.cpp \
 	OREGION.cpp \
@@ -71,15 +75,25 @@ lib7kaaGameData_a_SOURCES = \
 	OROCK.cpp \
 	OSITE.cpp \
 	OSITEDRW.cpp \
+	OSKILL.cpp \
 	OSNOW1.cpp \
 	OSNOW2.cpp \
 	OSNOWG.cpp \
+	OSPATH.cpp \
+	OSPATHBT.cpp \
+	OSPREDBG.cpp \
+	OSPREOFF.cpp \
+	OSPRESMO.cpp \
+	OSPREUSE.cpp \
 	OSPRITE.cpp \
 	OSPRITE2.cpp \
 	OSPRITEA.cpp \
 	OSPY.cpp \
 	OSPY2.cpp \
 	OSPYA.cpp \
+	OSYS.cpp \
+	OSYS2.cpp \
+	OSYS3.cpp \
 	OTORNADO.cpp \
 	OTOWN.cpp \
 	OTOWNA.cpp \
