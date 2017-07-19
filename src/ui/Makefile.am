@@ -6,6 +6,7 @@ lib7kaaUI_a_SOURCES = \
 	OFIRMIF.cpp \
 	OFIRMIF2.cpp \
 	OFIRMIF3.cpp \
+	OGAMHALL.cpp \
 	OHELP.cpp \
 	OINGMENU.cpp \
 	OMOUSE.cpp \

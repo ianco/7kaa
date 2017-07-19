@@ -42,9 +42,7 @@ lib7kaaGameData_a_SOURCES = \
 	OGAMEMP.cpp \
 	OGAMENCY.cpp \
 	OGAMEND.cpp \
-	OGAMESET.cpp \
 	OGAMESTATE.cpp \
-	OGAMHALL.cpp \
 	OGAMMAIN.cpp \
 	OGAMSCE2.cpp \
 	OGAMSCEN.cpp \
