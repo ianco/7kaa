@@ -8,7 +8,8 @@ TESTS = 7kaaTestApp
 check_PROGRAMS = $(TESTS)
 
 bin_PROGRAMS = 7kaa
-7kaa_base_SOURCES = 
+7kaa_base_SOURCES = \
+	OERROR.cpp 
 
 CXXFLAGS += $(SDL_CFLAGS) -DDEBUG -DENABLE_LOG
 

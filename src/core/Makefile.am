@@ -8,7 +8,6 @@ lib7kaaCore_a_SOURCES = \
 	ODYNARR.cpp \
 	OEFFECT.cpp \
 	OERRCTRL.cpp \
-	OERROR.cpp \
 	OFILE.cpp \
 	OFILETXT.cpp \
 	OLOG.cpp \
