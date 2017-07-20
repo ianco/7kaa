@@ -26,6 +26,7 @@
 #include <OHELP.h>
 #include <OFONT.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OMOUSE.h>
 #include <OVGA.h>
 #include <vga_util.h>
@@ -468,7 +469,7 @@ void Button::wait_press(int timeOut)
 		vga.flip();
 		mouse.get_event();
 
-		if( sys.signal_exit_flag == 1 )
+		if( sys_info.signal_exit_flag == 1 )
 		{
 			break;
 		}

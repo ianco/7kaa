@@ -28,7 +28,7 @@
 #include <OFIRMRES.h>
 #include <OIMGRES.h>
 #include <OPOWER.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OGAMEINFO.h>
 #include <ONATION.h>
 #include <OUNIT.h>
@@ -226,7 +226,7 @@ void Unit::draw_selected()
 
 	//----------- set other vars -----------//
 
-	char* dataPtr = sys.common_data_buf;
+	char* dataPtr = sys_info.common_data_buf;
 	int   curBarWidth = maxHitBarWidth * max_hit_points / hitBarMax;
 	int   pointX = (curBarWidth-1) * (int) hit_points / max_hit_points;	// the separating point between the area with hit point and the area without
 
@@ -268,7 +268,7 @@ void Unit::draw_selected()
 
 	//--------- display the bar now ---------//
 
-	world.zoom_matrix->put_bitmap_clip(dispX1, dispY1, sys.common_data_buf);
+	world.zoom_matrix->put_bitmap_clip(dispX1, dispY1, sys_info.common_data_buf);
 
 	//----- display skill/rank icon (only for own units) -----//
 

@@ -26,6 +26,7 @@
 #include <OVGA.h>
 #include <vga_util.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OMOUSE.h>
 #include <OMOUSECR.h>
 #include <OPOWER.h>
@@ -140,7 +141,7 @@ void GameMenu::in_game_menu()
 		if( config.music_flag )
 		{
 			if( !music.is_playing() )
-				music.play(music.random_bgm_track(oldSongId), sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
+				music.play(music.random_bgm_track(oldSongId), sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
 		}
 		else
 		{
@@ -261,7 +262,7 @@ static int detect_game_option()
 					shortPtr[0] = nation_array.player_recno;
 					shortPtr[1] = 0;		// not retire
 				}
-				sys.signal_exit_flag = 2;
+				sys_info.signal_exit_flag = 2;
 			}
 			break;
 
@@ -276,7 +277,7 @@ static int detect_game_option()
 					shortPtr[0] = nation_array.player_recno;
 					shortPtr[1] = 1;		// retire
 				}
-				sys.signal_exit_flag = 1;
+				sys_info.signal_exit_flag = 1;
 			}
 			break;
 	}
@@ -502,7 +503,7 @@ int GameMenu::in_game_option_menu()
 		if( config.music_flag )
 		{
 			if( !music.is_playing() )
-				music.play(music.random_bgm_track(oldSongId), sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
+				music.play(music.random_bgm_track(oldSongId), sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
 		}
 		else
 		{
@@ -553,7 +554,7 @@ int GameMenu::in_game_option_menu()
 				if( config.music_flag )
 				{
 					music.play( raceButton[i].custom_para.value + 1,
-						sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
+						sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
 				}
 				else
 				{

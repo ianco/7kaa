@@ -36,6 +36,7 @@
 #include <OPOWER.h>
 #include <OSPY.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OGAMEINFO.h>
 #include <ONATION.h>
 #include <OWORLD.h>
@@ -249,7 +250,7 @@ void Unit::disp_main_menu(int refreshFlag)
 	}
 
 	#ifdef DEBUG
-		if( sys.debug_session || sys.testing_session )
+		if( sys_info.debug_session || sys_info.testing_session )
 			disp_debug_info(this, INFO_Y2-68, refreshFlag);
 	#endif
 }
@@ -546,7 +547,7 @@ void Unit::disp_button(int dispY1)
 
 	//---- display button for changing nation color scheme ----//
 
-	if( sys.debug_session )
+	if( sys_info.debug_session )
 		button_change_color.paint_text( INFO_X1, INFO_Y2-20, "Change Nation Color" );
 }
 //----------- End of function Unit::disp_button -----------//

@@ -26,6 +26,7 @@
 #include <OVGA.h>
 #include <vga_util.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OHELP.h>
 #include <OSPY.h>
 #include <OSTR.h>
@@ -452,7 +453,7 @@ void Town::disp_main_menu(int refreshFlag)
 
 	//-------- display debug info ----------//
 
-	if( sys.debug_session || sys.testing_session )
+	if( sys_info.debug_session || sys_info.testing_session )
 		disp_debug_resistance(refreshFlag);
 }
 //----------- End of function Town::disp_main_menu -----------//
@@ -501,7 +502,7 @@ void Town::detect_main_menu()
 	{
 		browse_race_recno = browse_race.recno();
 		// ##### begin patch Gilbert 21/1 #######//
-		if( sys.debug_session || sys.testing_session )
+		if( sys_info.debug_session || sys_info.testing_session )
 			disp_debug_resistance(INFO_UPDATE);
 		// ##### end patch Gilbert 21/1 #######//
 	}
@@ -682,7 +683,7 @@ void Town::disp_train_info(int refreshFlag)
 	else
 		totalDays = TOTAL_TRAIN_DAYS;
 
-	vga_front.indicator( 0, x+RACE_ICON_WIDTH+6, y, float(sys.frame_count-start_train_frame_no),
+	vga_front.indicator( 0, x+RACE_ICON_WIDTH+6, y, float(sys_info.frame_count-start_train_frame_no),
 		float(totalDays * FRAMES_PER_DAY), VGA_GRAY );
 
 	button_cancel_training.paint(MSG_X2-27, MSG_Y1+2, "V_X-U", "V_X-D");
@@ -1717,7 +1718,7 @@ int Town::recruit(int trainSkillId, int raceId, char remoteAction)
 		err_when( train_unit_recno );		// if there is already a unit under training
 
 		train_unit_recno = unitRecno;
-		start_train_frame_no = sys.frame_count;	// as an offset for displaying the progress bar correctly
+		start_train_frame_no = sys_info.frame_count;	// as an offset for displaying the progress bar correctly
 
 		unitPtr->deinit_sprite();
 		unitPtr->unit_mode = UNIT_MODE_UNDER_TRAINING;
@@ -1825,7 +1826,7 @@ void Town::process_train()
 	else
 		totalDays = TOTAL_TRAIN_DAYS;
 
-	if( (int)(sys.frame_count-start_train_frame_no) / FRAMES_PER_DAY >= totalDays )
+	if( (int)(sys_info.frame_count-start_train_frame_no) / FRAMES_PER_DAY >= totalDays )
 	{
 		finish_train(unitPtr);
 	}

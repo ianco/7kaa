@@ -21,7 +21,7 @@
 // Filename    : WebService.cpp
 // Description : A curl implementation to access web services
 
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <WebService.h>
 
 static size_t WriteMemoryCallback(char *contents, size_t size, size_t nmemb, std::string *buffer)
@@ -50,7 +50,7 @@ void WebService::init()
 	if( !curl )
 		return;
 
-	std::string cookie_file = sys.dir_config;
+	std::string cookie_file = sys_info.dir_config;
 	cookie_file += "cookies.txt";
 	curl_easy_setopt(curl, CURLOPT_COOKIEJAR, cookie_file.c_str());
 	curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);

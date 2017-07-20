@@ -26,7 +26,7 @@
 #include <OWORLD.h>
 #include <OINFO.h>
 #include <OCONFIG.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OTOWN.h>
 #include <OF_MARK.h>
 #include <OF_MONS.h>
@@ -182,7 +182,7 @@ void TownArray::process()
 		err_when(town_array.is_deleted(i));
 		err_when( townPtr->town_recno==0 );
 
-		if( i%FRAMES_PER_DAY == int(sys.frame_count%FRAMES_PER_DAY) )	// only process each firm once per day
+		if( i%FRAMES_PER_DAY == int(sys_info.frame_count%FRAMES_PER_DAY) )	// only process each firm once per day
 		{
 			err_when( townPtr->town_recno==0 );
 
@@ -231,12 +231,12 @@ void TownArray::process()
 
 	//------ distribute demand -------//
 
-	if( sys.day_frame_count==0 && info.game_date%15==0 )			// distribute demand every 15 days
+	if( sys_info.day_frame_count==0 && info.game_date%15==0 )			// distribute demand every 15 days
 		distribute_demand();
 
 	//------ create new independent town -----//
 
-	if( info.game_date%30==0 && sys.frame_count%FRAMES_PER_DAY==0 )
+	if( info.game_date%30==0 && sys_info.frame_count%FRAMES_PER_DAY==0 )
 		think_new_independent_town();
 }
 //----------- End of function TownArray::process ---------//
@@ -359,7 +359,7 @@ void TownArray::think_new_independent_town()
 
 	townPtr->auto_set_layout();
 
-//	if( sys.debug_session )
+//	if( sys_info.debug_session )
 //		box.msg( "A new independent town has emerged." );
 }
 //------ End of function TownArray::think_new_independent_town -----//
@@ -556,7 +556,7 @@ void TownArray::draw_dot()
 
 		nationColor = info.game_date - townPtr->last_being_attacked_date > 2 ?
 			nationColorArray[townPtr->nation_recno] :
-			excitedColorArray[townPtr->nation_recno][sys.frame_count % excitedColorCount];
+			excitedColorArray[townPtr->nation_recno][sys_info.frame_count % excitedColorCount];
 
 		townLayout = town_res.get_layout(townPtr->layout_id);
 

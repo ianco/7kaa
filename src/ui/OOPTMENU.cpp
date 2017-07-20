@@ -36,6 +36,7 @@
 #include <OAUDIO.h>
 #include <OMUSIC.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OOPTMENU.h>
 
 
@@ -334,7 +335,7 @@ int OptionMenu::detect()
 			if( config.music_flag )
 			{
 				music.play( race_button[i].custom_para.value + 1,
-					sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
+					sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
 			}
 			else
 			{

@@ -43,6 +43,7 @@
 #include <OGAMEINFO.h>
 #include <OWORLD.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <ORAWRES.h>
 #include <OTALKRES.h>
 #include <OWEATHER.h>
@@ -75,7 +76,7 @@ void Sys::detect()
 {
 	//--- only detect at the even frames when in report mode ---//
 
-	if( view_mode != MODE_NORMAL &&
+	if( sys_info.view_mode != MODE_NORMAL &&
 		// ###### begin Gilbert 5/11 ######//
 		 !report_disp_frame_no )
 		// ###### end Gilbert 5/11 ######//
@@ -122,8 +123,8 @@ void Sys::process()
 {
 	//------- update frame count and is_sync_frame --------//
 
-	frame_count++;
-	is_sync_frame = frame_count%3==0;	// check if sychronization should take place at this frame (for handling one sync per n frames)
+	sys_info.frame_count++;
+	sys_info.is_sync_frame = sys_info.frame_count%3==0;	// check if sychronization should take place at this frame (for handling one sync per n frames)
 
 	//--------- process objects -----------//
 
@@ -194,7 +195,7 @@ void Sys::process()
 
 	//------ check if it's time for the next day ------//
 
-	if( ++day_frame_count > FRAMES_PER_DAY )
+	if( ++sys_info.day_frame_count > FRAMES_PER_DAY )
 	{
 		LOG_MSG("begin info.next_day()");
 		info.next_day();
@@ -242,7 +243,7 @@ void Sys::process()
 		LOG_MSG("end region_array.next_day()");
 		LOG_MSG(misc.get_random_seed());
 
-		day_frame_count = 0;
+		sys_info.day_frame_count = 0;
 	}
 
 	//### begin alex 12/9 ###//
@@ -444,7 +445,7 @@ void Sys::detect_button()
 		{
 			int newMode = viewModeArray[i];
 
-			if( view_mode == newMode )       	// when click on the same mode again, go to the normal mode
+			if( sys_info.view_mode == newMode )       	// when click on the same mode again, go to the normal mode
 				set_view_mode(MODE_NORMAL);
 			else
 				set_view_mode(newMode);
@@ -465,7 +466,7 @@ void Sys::detect_button()
 //
 void Sys::set_view_mode(int viewMode, int viewingNationRecno, int viewingSpyRecno)
 {
-	if( view_mode == viewMode )
+	if( sys_info.view_mode == viewMode )
 		return;
 
 	//---- if the player's kingdom has been destroyed ----//
@@ -519,7 +520,7 @@ void Sys::set_view_mode(int viewMode, int viewingNationRecno, int viewingSpyRecn
 		info.viewing_spy_recno = viewingSpyRecno;
 	}
 
-	view_mode = viewMode;
+	sys_info.view_mode = viewMode;
 	disp_view_mode();
 
 	disp_view();
@@ -531,13 +532,13 @@ void Sys::set_view_mode(int viewMode, int viewingNationRecno, int viewingSpyRecn
 
 void Sys::disp_frame()
 {
-	if( sys.signal_exit_flag )
+	if( sys_info.signal_exit_flag )
 		return;
 
 	if( option_menu.is_active() )
 	{
 		// ##### begin Gilbert 3/11 ######//
-		option_menu.disp(need_redraw_flag);
+		option_menu.disp(sys_info.need_redraw_flag);
 		// ##### end Gilbert 3/11 ######//
 		blt_virtual_buf();
 	}
@@ -545,7 +546,7 @@ void Sys::disp_frame()
 	{
 		// -------- re-draw the whole screen if needed, such as after task switching ---------//
 
-		if( need_redraw_flag )
+		if( sys_info.need_redraw_flag )
 		{
 			info.disp_panel();
 			world.paint();
@@ -588,7 +589,7 @@ void Sys::disp_frame()
 
 	anim_line.inc_phase();		// originally in Sys::process()
 
-	need_redraw_flag = 0;
+	sys_info.need_redraw_flag = 0;
 }
 //-------- End of function Sys::disp_frame --------//
 
@@ -606,7 +607,7 @@ void Sys::disp_view()
 
 	//---- if in report mode, convert the view to gray scale ----//
 
-	if( view_mode!=MODE_NORMAL )
+	if( sys_info.view_mode!=MODE_NORMAL )
 	{
 		// ###### begin Gilbert 5/11 ########//
 		// report_disp_frame_no = frame_count;		// the frame no which this report is first displayed
@@ -617,7 +618,7 @@ void Sys::disp_view()
 		vga.use_back();
 		Vga::opaque_flag = config.opaque_report;
 
-		switch( view_mode )
+		switch( sys_info.view_mode )
 		{
 			case MODE_TRADE:
 				info.disp_trade(INFO_REPAINT);
@@ -677,7 +678,7 @@ void Sys::disp_view()
 //
 void Sys::update_view()
 {
-	if( view_mode==MODE_NORMAL )
+	if( sys_info.view_mode==MODE_NORMAL )
 	{
 		disp_zoom();
 		// ####### begin Gilbert 5/11 #######//
@@ -742,7 +743,7 @@ void Sys::update_view()
 			vga.use_back();
 			Vga::opaque_flag = config.opaque_report;
 
-			switch( view_mode )
+			switch( sys_info.view_mode )
 			{
 				case MODE_TRADE:
 					info.disp_trade(INFO_UPDATE);
@@ -816,7 +817,7 @@ void Sys::detect_view()
 
 	vga.use_back();
 
-	switch( view_mode )
+	switch( sys_info.view_mode )
 	{
 		case MODE_TRADE:
 			info.detect_trade();
@@ -863,7 +864,7 @@ void Sys::detect_view()
 
 	//------ detect tutorial controls -------//
 
-	if( view_mode==MODE_NORMAL && game_info.game_mode==GAME_TUTORIAL )		// tutorial text is only displayed in non-report mode
+	if( sys_info.view_mode==MODE_NORMAL && game_info.game_mode==GAME_TUTORIAL )		// tutorial text is only displayed in non-report mode
 	{
 		if( tutor.detect() )
 			return;
@@ -893,7 +894,7 @@ void Sys::detect_view()
 	if( world.detect() )
 		return;
 
-	if( view_mode == MODE_NORMAL )
+	if( sys_info.view_mode == MODE_NORMAL )
 	{
 		if( world.detect_firm_town() )
 			return;
@@ -944,10 +945,10 @@ void Sys::disp_map()
 {
 	//------ draw and display the map -------//
 
-	if( map_need_redraw )		// requested by other modules to redraw the pre-drawn map background
+	if( sys_info.map_need_redraw )		// requested by other modules to redraw the pre-drawn map background
 	{
 		world.map_matrix->draw();
-		map_need_redraw = 0;
+		sys_info.map_need_redraw = 0;
 	}
 
 	world.map_matrix->disp();
@@ -986,12 +987,12 @@ void Sys::disp_zoom()
 
 	//--------- draw map area ---------//
 
-	if( zoom_need_redraw )		// requested by other modules to redraw the pre-drawn zoom background
+	if( sys_info.zoom_need_redraw )		// requested by other modules to redraw the pre-drawn zoom background
 	{
 		long backupSeed = misc.get_random_seed();
 		
 		world.zoom_matrix->draw();
-		zoom_need_redraw = 0;
+		sys_info.zoom_need_redraw = 0;
 	}
 
 	//-------- disp zoom area --------//
@@ -1019,9 +1020,9 @@ void Sys::disp_zoom()
 
 	//----- next frame, increase the frame counter -----//
 
-	sys.frames_in_this_second++;		// no. of frames displayed in this second
+	sys_info.frames_in_this_second++;		// no. of frames displayed in this second
 
-	if( view_mode==MODE_NORMAL )
+	if( sys_info.view_mode==MODE_NORMAL )
 		disp_frames_per_second();
 }
 //-------- End of function Sys::disp_zoom --------//
@@ -1031,7 +1032,7 @@ void Sys::disp_zoom()
 //
 void Sys::blt_virtual_buf()
 {
-	if( !sys.debug_session )
+	if( !sys_info.debug_session )
 		return;
 
 	//--- in a debug sesion, vga_front is not the true front buffer, now copy it to the true one ---//
@@ -1056,7 +1057,7 @@ void Sys::blt_virtual_buf()
 //
 void Sys::disp_frames_per_second()
 {
-	if( !config.show_ai_info && !sys.disp_fps_flag )// only display this in a debug session
+	if( !config.show_ai_info && !sys_info.disp_fps_flag )// only display this in a debug session
 		return;
 
 	if( game_info.game_mode == GAME_TUTORIAL )		// don't display in tutorial mode as it overlaps with the tutorial text
@@ -1068,23 +1069,23 @@ void Sys::disp_frames_per_second()
 
 	//----------- first time calling -------------//
 
-	if( last_second_time==0 )
+	if( sys_info.last_second_time==0 )
 	{
-		last_second_time  = curTime;
-		frames_in_this_second = 0;		// no. of frames displayed in this second
+		sys_info.last_second_time  = curTime;
+		sys_info.frames_in_this_second = 0;		// no. of frames displayed in this second
 		return;
 	}
 
 	//------ when passes to the next second -----//
 
-	if( curTime >= last_second_time+1000 )  // 1 second = 1000 millisecond
+	if( curTime >= sys_info.last_second_time+1000 )  // 1 second = 1000 millisecond
 	{
-		frames_per_second = frames_in_this_second;
+		sys_info.frames_per_second = sys_info.frames_in_this_second;
 
 		//------ update var and reset counter -----//
 
-		last_second_time += 1000;
-		frames_in_this_second = 0;
+		sys_info.last_second_time += 1000;
+		sys_info.frames_in_this_second = 0;
 	}
 
 	//---------- display frame count -----------//
@@ -1092,9 +1093,9 @@ void Sys::disp_frames_per_second()
 	String str;
 
 	str  = "Frames per second: ";
-	str += frames_per_second;
+	str += sys_info.frames_per_second;
 
-	if( frames_per_second < config.frame_speed-1 ) // -1 for rounding
+	if( sys_info.frames_per_second < config.frame_speed-1 ) // -1 for rounding
 	{
 		str += " (expecting ";
 		str += config.frame_speed;
@@ -1132,12 +1133,12 @@ void Sys::disp_view_mode(int observeMode)
 	image_button.put_front( 0,0, scrollName);
 
 	// highlight of the mode after
-	if( view_mode >= MIN_MODE_TO_DISPLAY && view_mode <= MAX_MODE_TO_DISPLAY )
+	if( sys_info.view_mode >= MIN_MODE_TO_DISPLAY && sys_info.view_mode <= MAX_MODE_TO_DISPLAY )
 	{
 		// find the size of that scroll
-		scrollName[7] = '0' + view_mode;
-		image_button.put_front( highLightX[view_mode-MIN_MODE_TO_DISPLAY], 
-			highLightY[view_mode-MIN_MODE_TO_DISPLAY], scrollName);
+		scrollName[7] = '0' + sys_info.view_mode;
+		image_button.put_front( highLightX[sys_info.view_mode-MIN_MODE_TO_DISPLAY], 
+			highLightY[sys_info.view_mode-MIN_MODE_TO_DISPLAY], scrollName);
 	}
 
 	// darken buttons of view mode 1-7 if nation_array.player_recno == 0
@@ -1145,7 +1146,7 @@ void Sys::disp_view_mode(int observeMode)
 	{
 		for( int j = 1; j <= 7; ++j )
 		{
-			//if( j == view_mode)
+			//if( j == sys_info.view_mode)
 			//	continue;
 
 			vga_front.adjust_brightness(

@@ -26,6 +26,7 @@
 #include <OPOWER.h>
 #include <ONATION.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OGAMEINFO.h>
 #include <OTOWN.h>
 #include <OINFO.h>
@@ -375,7 +376,7 @@ int FirmArray::process()
 		}
 		else
 		{
-			if( i%FRAMES_PER_DAY == int(sys.frame_count%FRAMES_PER_DAY) )	// only process each firm once per day
+			if( i%FRAMES_PER_DAY == int(sys_info.frame_count%FRAMES_PER_DAY) )	// only process each firm once per day
 			{
 				//### begin alex 22/9 ###//
 				#ifdef DEBUG
@@ -555,7 +556,7 @@ void FirmArray::draw_dot()
 
 		nationColor = info.game_date - firmPtr->last_attacked_date > 2 ?
 			nationColorArray[firmPtr->nation_recno] :
-			excitedColorArray[firmPtr->nation_recno][sys.frame_count % excitedColorCount];
+			excitedColorArray[firmPtr->nation_recno][sys_info.frame_count % excitedColorCount];
 
 		char shadowColor = (char) VGA_GRAY;
 

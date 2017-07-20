@@ -30,6 +30,7 @@
 #include <ONATION.h>
 #include <OFIRM.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OPOWER.h>
 #include <OGAMEINFO.h>
 #include <OWORLD.h>
@@ -432,7 +433,7 @@ int MapMatrix::detect_area()
 		world.zoom_matrix->top_x_loc = cur_x_loc;
 		world.zoom_matrix->top_y_loc = cur_y_loc;
 
-		sys.zoom_need_redraw = 1;
+		sys_info.zoom_need_redraw = 1;
 	}
 
 	return rc;

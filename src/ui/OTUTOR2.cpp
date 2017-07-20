@@ -23,7 +23,7 @@
 
 
 #include <OSYS.h>
-//#include <OGAME.h>
+#include <OSYSINFO.h>
 #include <OMOUSE.h>
 #include <OMOUSECR.h>
 #include <OVGABUF.h>
@@ -403,7 +403,7 @@ int Tutor::select_tutor(int actionMode)
 			}
 			// ##### end Gilbert 31/10 ########//
 		}
-		else if( cancelButton.detect(KEY_ESC) || mouse.any_click(RIGHT_BUTTON) > 0 || sys.signal_exit_flag == 1 )		// also when ESC key is pressed or right button, or when the user wants to exit
+		else if( cancelButton.detect(KEY_ESC) || mouse.any_click(RIGHT_BUTTON) > 0 || sys_info.signal_exit_flag == 1 )		// also when ESC key is pressed or right button, or when the user wants to exit
 		{
 			// cancel button or escape key
 			refreshFlag = TUOPTION_ALL;

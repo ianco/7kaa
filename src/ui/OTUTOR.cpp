@@ -24,6 +24,7 @@
 #include <OVGA.h>
 #include <vga_util.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OAUDIO.h>
 #include <OBATTLE.h>
 #include <OFONT.h>
@@ -512,7 +513,7 @@ void Tutor::disp()
 
 void Tutor::play_speech()
 {
-	if( !sys.dir_tutorial[0] )
+	if( !sys_info.dir_tutorial[0] )
 		return;
 
 	if( cur_speech_wav_id )
@@ -522,7 +523,7 @@ void Tutor::play_speech()
 
 	String str;
 
-	str  = sys.dir_tutorial;
+	str  = sys_info.dir_tutorial;
 	str += tutor[cur_tutor_id]->code;
 	str += "\\TUT";
 

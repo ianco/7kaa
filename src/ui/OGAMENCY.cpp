@@ -26,6 +26,7 @@
 #include <OVGA.h>
 #include <vga_util.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OMOUSE.h>
 #include <OMOUSECR.h>
 #include <OVGALOCK.h>
@@ -186,7 +187,7 @@ void GameMenu::view_encyclopedia()
 		mouse.get_event();
 		sys.blt_virtual_buf();
 
-		if( sys.signal_exit_flag == 1 )
+		if( sys_info.signal_exit_flag == 1 )
 		{
 			break;
 		}

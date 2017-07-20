@@ -24,6 +24,7 @@
 #include <OVGA.h>
 #include <vga_util.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OMOUSE.h>
 #include <OFONT.h>
 #include <OIMGRES.h>
@@ -98,7 +99,7 @@ static int	select_option();
 //
 void GameMenu::single_player_game(int noAI)
 {
-	sys.is_mp_game = 0;
+	sys_info.is_mp_game = 0;
 
 	if( !select_option() )
 		return;
@@ -497,10 +498,10 @@ static int select_option()
 
 	while(1)
 	{
-		if( sys.need_redraw_flag )
+		if( sys_info.need_redraw_flag )
 		{
 			refreshFlag = SGOPTION_ALL;
-			sys.need_redraw_flag = 0;
+			sys_info.need_redraw_flag = 0;
 		}
 
 		vga_front.lock_buf();
@@ -509,7 +510,7 @@ static int select_option()
 		vga.flip();
 		mouse.get_event();
 
-		if( sys.signal_exit_flag == 1 )
+		if( sys_info.signal_exit_flag == 1 )
 		{
 				retFlag = 0;
 				break;
@@ -689,7 +690,7 @@ static int select_option()
 		if( config.music_flag )
 		{
 			if( !music.is_playing(1) )
-				music.play(1, sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
+				music.play(1, sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
 		}
 		else
 			music.stop();

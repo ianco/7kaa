@@ -28,7 +28,7 @@
 #include <OHELP.h>
 #include <OMOUSE.h>
 #include <OSTR.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OFONT.h>
 #include <OBUTTON.h>
 #include <OBUTT3D.h>
@@ -925,7 +925,7 @@ void FirmHarbor::build_ship(int unitId, char)
 	nationPtr->add_expense( EXPENSE_SHIP, unit_res[unitId]->build_cost);
 
 	build_unit_id  = unitId;
-	start_build_frame_no = sys.frame_count;
+	start_build_frame_no = sys_info.frame_count;
 }
 
 //----------- End of function FirmHarbor::build_ship -----------//
@@ -1015,7 +1015,7 @@ void FirmHarbor::disp_build_info(int refreshFlag)
 	}
 
 	vga_front.indicator( 0, x+UNIT_SMALL_ICON_WIDTH+6, y,
-		(float)(sys.frame_count-start_build_frame_no),
+		(float)(sys_info.frame_count-start_build_frame_no),
 		(float)unit_res[build_unit_id]->build_days * FRAMES_PER_DAY, VGA_GRAY );
 
 	button_cancel_build.paint(MSG_X2-27, MSG_Y1+2, "V_X-U", "V_X-D");
@@ -1032,7 +1032,7 @@ void FirmHarbor::process_build()
 
 	err_when( !build_unit_id );
 
-	if( (int)(sys.frame_count-start_build_frame_no) / FRAMES_PER_DAY >= totalBuildDays )
+	if( (int)(sys_info.frame_count-start_build_frame_no) / FRAMES_PER_DAY >= totalBuildDays )
 	{
 		int unitRecno = unit_array.add_unit( build_unit_id, nation_recno );
 

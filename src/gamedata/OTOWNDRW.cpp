@@ -22,7 +22,7 @@
 //Description : Town drawing routines
 
 #include <OVGA.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OFONT.h>
 #include <OMOUSE.h>
 #include <OBUTTON.h>
@@ -111,7 +111,7 @@ void Town::draw_flag(int absBaseX, int absBaseY)
 {
 	char flagName[] = "FLAG-1";
 
-	flagName[5] = '1' + (char) ((sys.frame_count+town_recno)%8) / 2;
+	flagName[5] = '1' + (char) ((sys_info.frame_count+town_recno)%8) / 2;
 
 	char* colorRemapTable = game_info.get_color_remap_table(nation_recno, 0);
 

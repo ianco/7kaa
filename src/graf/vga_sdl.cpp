@@ -25,6 +25,7 @@
 #include <OVGA.h>
 #include <OMOUSE.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <surface.h>
 #include <dbglog.h>
 
@@ -202,7 +203,7 @@ int VgaSDL::init()
    // Create the front and back buffers
    init_back(&vga_front);
    vga_front.is_front = 1; // set it to 1, overriding the setting in init_back()
-   if (sys.debug_session) {
+   if (sys_info.debug_session) {
       init_back(&vga_true_front);
    }
    init_back(&vga_back);
@@ -265,7 +266,7 @@ void VgaSDL::deinit()
    SDL_SetRelativeMouseMode(SDL_FALSE);
 
    vga_back.deinit();
-   if (sys.debug_session)
+   if (sys_info.debug_session)
       vga_true_front.deinit();
    vga_front.deinit();
 
@@ -463,8 +464,8 @@ void VgaSDL::handle_messages()
 		  //case SDL_WINDOWEVENT_ENTER: // Do not respond to mouse focus
 		  case SDL_WINDOWEVENT_FOCUS_GAINED:
 		  case SDL_WINDOWEVENT_RESTORED:
-			 sys.need_redraw_flag = 1;
-			 if (!sys.is_mp_game)
+			 sys_info.need_redraw_flag = 1;
+			 if (!sys_info.is_mp_game)
 				sys.unpause();
 
 			 // update ctrl/shift/alt key state
@@ -475,7 +476,7 @@ void VgaSDL::handle_messages()
 		  //case SDL_WINDOWEVENT_LEAVE: // Do not respond to mouse focus
 		  case SDL_WINDOWEVENT_FOCUS_LOST:
 		  case SDL_WINDOWEVENT_MINIMIZED:
-			 if (!sys.is_mp_game)
+			 if (!sys_info.is_mp_game)
 				sys.pause();
 			 // turn the system cursor back on to get around a fullscreen
 			 // mouse grabbed problem on windows
@@ -483,13 +484,13 @@ void VgaSDL::handle_messages()
 			 break;
 			 
 		  case SDL_WINDOWEVENT_EXPOSED:
-			  sys.need_redraw_flag = 1;
+			  sys_info.need_redraw_flag = 1;
 			  break;
 		  }
 		  break;
 
 	  case SDL_QUIT:
-         sys.signal_exit_flag = 1;
+         sys_info.signal_exit_flag = 1;
          break;
 
 	  default:
@@ -556,7 +557,7 @@ void VgaSDL::set_full_screen_mode(int mode)
    }
 
    refresh_palette();
-   sys.need_redraw_flag = 1;
+   sys_info.need_redraw_flag = 1;
    set_window_grab(flags == SDL_WINDOW_FULLSCREEN_DESKTOP);
 }
 //-------- End of function VgaSDL::set_full_screen_mode ----------//

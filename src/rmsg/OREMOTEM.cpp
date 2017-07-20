@@ -25,6 +25,7 @@
 #include <OFONT.h>
 #include <ONEWS.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <ONATION.h>
 #include <OUNIT.h>
 #include <OGAMEINFO.h>
@@ -458,7 +459,7 @@ void RemoteMsg::tell_random_seed()
 			if( (remote.sync_test_level & 1) && (remote.sync_test_level >= 0) )
 			{
 				remote.sync_test_level = ~remote.sync_test_level;	// signal error encountered
-				if( sys.debug_session )
+				if( sys_info.debug_session )
 					err.run( "Multiplayer Random Seed Sync Error." );
 				else
 					box.msg( "Multiplayer Random Seed Sync Error." );
@@ -2870,7 +2871,7 @@ void	RemoteMsg::compare_remote_object()
 		&& crc_store.compare_remote(id, data_buf) )
 	{
 		remote.sync_test_level = ~remote.sync_test_level;	// signal error encountered
-		if( sys.debug_session )
+		if( sys_info.debug_session )
 			err.run( "Multiplayer Random Seed Sync Error." );
 		else
 			box.msg( "Multiplayer Random Seed Sync Error." );

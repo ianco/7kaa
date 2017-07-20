@@ -21,7 +21,7 @@
 //Filename    : OWORLD.CPP
 //Description : Object World
 
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OGAMEINFO.h>
 #include <OVGA.h>
 #include <OFONT.h>
@@ -202,7 +202,7 @@ void World::process()
 
 	//---------- process ambient sound ---------//
 
-	if( sys.frame_count%10 == 0 )    // process once per ten frames
+	if( sys_info.frame_count%10 == 0 )    // process once per ten frames
 		process_ambient_sound();
 
 	// --------- update scan fire x y ----------//
@@ -357,7 +357,7 @@ int World::detect_scroll()
 
    if( rc )
    {
-      sys.zoom_need_redraw = 1;        // ask the zoom window to refresh next time
+      sys_info.zoom_need_redraw = 1;        // ask the zoom window to refresh next time
       next_scroll_time     = misc.get_time() + 500/(config.scroll_speed+1);
    }
 
@@ -391,7 +391,7 @@ void World::go_loc(int xLoc, int yLoc, int selectFlag)
 	zoom_matrix->top_x_loc = map_matrix->cur_x_loc;
 	zoom_matrix->top_y_loc = map_matrix->cur_y_loc;
 
-	sys.zoom_need_redraw = 1;
+	sys_info.zoom_need_redraw = 1;
 
 	//---- if should select the object on the location ----//
 
@@ -1520,7 +1520,7 @@ void World::set_power(int xLoc1, int yLoc1, int xLoc2, int yLoc2, int nationRecn
 			if(locPtr->power_nation_recno==0)
 			{
 				locPtr->power_nation_recno = nationRecno;
-				sys.map_need_redraw = 1;						// request redrawing the map next time
+				sys_info.map_need_redraw = 1;						// request redrawing the map next time
 			}
 		}
 	}
@@ -1574,14 +1574,14 @@ void World::restore_power(int xLoc1, int yLoc1, int xLoc2, int yLoc2, int townRe
 			if( locPtr->power_nation_recno==nationRecno )
 			{
 				locPtr->power_nation_recno = 0;
-				sys.map_need_redraw = 1;						// request redrawing the map next time
+				sys_info.map_need_redraw = 1;						// request redrawing the map next time
 			}
 		}
 	}
 
 	//--- if some power areas are freed up, see if neighbor towns/firms should take up these power areas ----//
 
-	if( sys.map_need_redraw )	// when calls set_all_power(), the nation_recno of the calling firm must be reset
+	if( sys_info.map_need_redraw )	// when calls set_all_power(), the nation_recno of the calling firm must be reset
 		set_all_power();
 
 	//------- restore the nation recno of the calling town/firm -------//

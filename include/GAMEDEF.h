@@ -72,15 +72,15 @@ extern const int GAME_VERSION;
 #define DIR_RES         DEFAULT_DIR_RES
 #define DIR_SPRITE      DEFAULT_DIR_SPRITE
 #define DIR_SOUND       DEFAULT_DIR_SOUND
-#define DIR_IMAGE       sys.dir_image
-#define DIR_ENCYC       sys.dir_encyc
-#define DIR_ENCYC2	sys.dir_encyc2
-#define DIR_MUSIC       sys.dir_music
-#define DIR_MOVIE       sys.dir_movie
-#define DIR_TUTORIAL		sys.dir_tutorial
-#define DIR_SCENARIO		sys.dir_scenario
-// see MAX_SCENARIO_PATH in sys
-#define DIR_SCENARIO_PATH(p)	sys.dir_scenario_path[p]
+#define DIR_IMAGE       sys_info.dir_image
+#define DIR_ENCYC       sys_info.dir_encyc
+#define DIR_ENCYC2	sys_info.dir_encyc2
+#define DIR_MUSIC       sys_info.dir_music
+#define DIR_MOVIE       sys_info.dir_movie
+#define DIR_TUTORIAL		sys_info.dir_tutorial
+#define DIR_SCENARIO		sys_info.dir_scenario
+// see MAX_SCENARIO_PATH in sys_info
+#define DIR_SCENARIO_PATH(p)	sys_info.dir_scenario_path[p]
 
 //--------- Define direction types -----------//
 

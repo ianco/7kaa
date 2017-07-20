@@ -67,6 +67,7 @@
 #include <OSPREUSE.h>
 #include <OSPY.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OTALKRES.h>
 #include <OTECHRES.h>
 #include <OTERRAIN.h>
@@ -291,7 +292,7 @@ int main(int argc, char **argv)
 	{
 		mouse_cursor.set_icon(CURSOR_NORMAL);
 		sys.set_speed(demoSpeed);
-		sys.disp_fps_flag = 1;
+		sys_info.disp_fps_flag = 1;
 		config.help_mode = NO_HELP;
 		game_info.game_mode = GAME_DEMO;
 		game_ctl.init();

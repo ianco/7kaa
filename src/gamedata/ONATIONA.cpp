@@ -28,6 +28,7 @@
 #include <OUNIT.h>
 #include <OINFO.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <ORACERES.h>
 #include <OSPY.h>
 #include <ONATIONA.h>
@@ -284,7 +285,7 @@ void NationArray::del_nation(int recNo)
 		player_ptr   = NULL;
 		player_recno = 0;
 
-		if( !sys.signal_exit_flag )
+		if( !sys_info.signal_exit_flag )
 			sys.set_view_mode(MODE_NORMAL);		// set the view mode to normal mode to prevent possible problems
 	}
 
@@ -311,7 +312,7 @@ void NationArray::process()
 
 		//--------- process nation --------//
 
-		if( i%FRAMES_PER_DAY == int(sys.frame_count%FRAMES_PER_DAY) )	// only process each firm once per day
+		if( i%FRAMES_PER_DAY == int(sys_info.frame_count%FRAMES_PER_DAY) )	// only process each firm once per day
 		{
 			//### begin alex 22/9 ###//
 			#ifdef DEBUG
@@ -356,7 +357,7 @@ void NationArray::process()
 		}
 	}
 
-	if( sys.frame_count%FRAMES_PER_DAY==0 )
+	if( sys_info.frame_count%FRAMES_PER_DAY==0 )
 		nation_peace_days++;
 }
 //----------- End of function NationArray::process ---------//

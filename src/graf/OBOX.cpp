@@ -28,6 +28,7 @@
 
 #include <KEY.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OVGA.h>
 #include <OMOUSE.h>
 #include <OFONT.h>
@@ -179,7 +180,7 @@ void Box::ok_button(int timeOut)
 
    button.paint_text( box_x1+(box_x2-box_x1+1)/2-10, box_y2-BOX_BUTTON_MARGIN, _("Ok") );
 	
-	if( sys.debug_session )
+	if( sys_info.debug_session )
 		sys.blt_virtual_buf();
 
    button.wait_press(timeOut);
@@ -215,7 +216,7 @@ int Box::ask_button(const char* buttonDes1, const char* buttonDes2, int rightCli
    buttonOk.paint();      // paint button
    buttonCancel.paint();
 
-	if( sys.debug_session )
+	if( sys_info.debug_session )
 		sys.blt_virtual_buf();
 
    //..........................................//
@@ -226,7 +227,7 @@ int Box::ask_button(const char* buttonDes1, const char* buttonDes2, int rightCli
 		vga.flip();
 		mouse.get_event();
 
-		if( sys.debug_session )
+		if( sys_info.debug_session )
 			sys.blt_virtual_buf();
 
       if( buttonOk.detect(buttonOk.str_buf[0], KEY_RETURN) )
@@ -267,7 +268,7 @@ void Box::ask_button(Button& buttonOk, Button& buttonCancel, char* strOk, char* 
    buttonOk.paint();      // paint button
    buttonCancel.paint();
 
-	if( sys.debug_session )
+	if( sys_info.debug_session )
 		sys.blt_virtual_buf();
 }
 //--------- End of function Box::ask_button ---------//

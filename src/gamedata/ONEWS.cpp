@@ -27,6 +27,7 @@
 #include <OGAMEINFO.h>
 #include <OCONFIG.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OMOUSE.h>
 #include <OFONT.h>
 #include <ODATE.h>
@@ -121,7 +122,7 @@ void NewsArray::disp()
 
 	int rc=0;
 
-	switch( sys.view_mode )
+	switch( sys_info.view_mode )
 	{
 		case MODE_NORMAL:
 			rc = 1;
@@ -147,8 +148,8 @@ int NewsArray::detect()
 {
 	//-- only display news in normal view and diplomatic option screen ---//
 
-	if( sys.view_mode == MODE_NORMAL ||
-		 (sys.view_mode == MODE_NATION &&
+	if( sys_info.view_mode == MODE_NORMAL ||
+		 (sys_info.view_mode == MODE_NATION &&
 		 (info.nation_report_mode==NATION_REPORT_TALK ||
 		  info.nation_report_mode==NATION_REPORT_CHAT) ) )
 	{
@@ -166,8 +167,8 @@ int NewsArray::view_first_diplomatic()
 {
 	//-- only display news in normal view and diplomatic option screen ---//
 
-	if( sys.view_mode == MODE_NORMAL ||
-		 (sys.view_mode == MODE_NATION &&
+	if( sys_info.view_mode == MODE_NORMAL ||
+		 (sys_info.view_mode == MODE_NATION &&
 		 (info.nation_report_mode==NATION_REPORT_TALK ||
 		  info.nation_report_mode==NATION_REPORT_CHAT) ) )
 	{

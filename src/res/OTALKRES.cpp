@@ -23,6 +23,7 @@
 
 #include <OMOUSE.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OVGA.h>
 #include <OINFO.h>
 #include <OFONT.h>
@@ -1344,7 +1345,7 @@ void TalkRes::player_reply(int talkMsgRecno)
 
 	info.init_player_reply( talkMsg->from_nation_recno );
 
-	save_view_mode = sys.view_mode;
+	save_view_mode = sys_info.view_mode;
 
 	sys.set_view_mode(MODE_NATION);
 }

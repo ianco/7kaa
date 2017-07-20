@@ -22,7 +22,7 @@
 //Description : Object Sprite
 
 #include <ALL.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OVGA.h>
 #include <OREMOTE.h>
 #include <OUNIT.h>
@@ -456,7 +456,7 @@ int Sprite::process_die()
 {
 	//--------- next frame ---------//
 
-	if( sys.frame_count%3 == 0 )
+	if( sys_info.frame_count%3 == 0 )
 	{
 		se_res.sound(cur_x_loc(), cur_y_loc(), cur_frame, 'S',sprite_id,"DIE");
 		if( ++cur_frame > sprite_info->die.frame_count )

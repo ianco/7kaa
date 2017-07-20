@@ -26,6 +26,7 @@
 #include <vga_util.h>
 #include <OIMGRES.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OMOUSE.h>
 #include <OMOUSECR.h>
 #include <OFONT.h>
@@ -79,8 +80,8 @@ void GameMenu::main_menu()
 		1, 1, 1, 1, 1, 1,
 	};
 
-	// test sys.game_version, skip single player
-	main_option_flag[0] = (sys.game_version == VERSION_MULTIPLAYER_ONLY) ? 0 : 1;
+	// test sys_info.game_version, skip single player
+	main_option_flag[0] = (sys_info.game_version == VERSION_MULTIPLAYER_ONLY) ? 0 : 1;
 //	main_option_flag[0] = 1;
 
 	// ###### begin Gilbert 25/9 #######//
@@ -91,7 +92,7 @@ void GameMenu::main_menu()
 	// ###### end Gilbert 25/9 #######//
 
 	// skip encyclopedia if not found
-	main_option_flag[2] = *sys.dir_encyc ? 1 : 0;
+	main_option_flag[2] = *sys_info.dir_encyc ? 1 : 0;
 
 	//------------- display menu options -------------//
 
@@ -166,7 +167,7 @@ void GameMenu::main_menu()
 		if( config.music_flag )
 		{
 			if( !music.is_playing(1) )
-				music.play(1, sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
+				music.play(1, sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
 		}
 		else
 		{
@@ -229,7 +230,7 @@ void GameMenu::main_menu()
 		optionInfo = main_option_array;
 
 		// Reset exit-to-main-menu flag
-		if (sys.signal_exit_flag == 2) sys.signal_exit_flag = 0;
+		if (sys_info.signal_exit_flag == 2) sys_info.signal_exit_flag = 0;
 
 		for( i=0 ; i<MAIN_OPTION_COUNT ; i++, optionInfo++ )
 		{
@@ -261,7 +262,7 @@ void GameMenu::main_menu()
 
 		//-------------------------------------//
 
-		if( sys.signal_exit_flag == 1 || i == MAIN_OPTION_COUNT-1 )			// quit the system now
+		if( sys_info.signal_exit_flag == 1 || i == MAIN_OPTION_COUNT-1 )			// quit the system now
 			break;
 	}
 
@@ -344,7 +345,7 @@ void GameMenu::run_main_menu_option(int optionId)
 	// ####### begin Gilbert 7/11 #########//
 	if( optionId==6 )
 	{
-		sys.signal_exit_flag = 1;
+		sys_info.signal_exit_flag = 1;
 	}
 	// ####### end Gilbert 7/11 #########//
 }
@@ -446,7 +447,7 @@ void GameMenu::single_player_menu()
 		vga.flip();
 		mouse.get_event();
 
-		if( sys.signal_exit_flag == 1 )
+		if( sys_info.signal_exit_flag == 1 )
 		{
 			break;
 		}
@@ -515,7 +516,7 @@ void GameMenu::single_player_menu()
 		if( config.music_flag )
 		{
 			if( !music.is_playing(1) )
-				music.play(1, sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
+				music.play(1, sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
 		}
 		else
 			music.stop();
@@ -617,10 +618,10 @@ void GameMenu::single_player_menu()
 							game_ctl.deinit();
 						}
 						{
-							char signalExitFlagBackup = sys.signal_exit_flag;
-							sys.signal_exit_flag = 2;
+							char signalExitFlagBackup = sys_info.signal_exit_flag;
+							sys_info.signal_exit_flag = 2;
 							game_ctl.deinit();   // game.deinit() is needed if game_file_array.menu fails
-							sys.signal_exit_flag = signalExitFlagBackup;
+							sys_info.signal_exit_flag = signalExitFlagBackup;
 						}
 						break;
 
@@ -702,7 +703,7 @@ void GameMenu::multi_player_menu(int lobbied, char *game_host)
 		vga.flip();
 		mouse.get_event();
 
-		if( sys.signal_exit_flag == 1 )
+		if( sys_info.signal_exit_flag == 1 )
 		{
 			break;
 		}
@@ -760,7 +761,7 @@ void GameMenu::multi_player_menu(int lobbied, char *game_host)
 		if( config.music_flag )
 		{
 			if( !music.is_playing(1) )
-				music.play(1, sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
+				music.play(1, sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
 		}
 		else
 			music.stop();
@@ -859,10 +860,10 @@ void GameMenu::multi_player_menu(int lobbied, char *game_host)
 								// ####### begin Gilbert 13/2 #######//
 							}
 							{
-								char signalExitFlagBackup = sys.signal_exit_flag;
-								sys.signal_exit_flag = 2;
+								char signalExitFlagBackup = sys_info.signal_exit_flag;
+								sys_info.signal_exit_flag = 2;
 								game_ctl.deinit();		// game.deinit() is needed if game_file_array.menu fails
-								sys.signal_exit_flag = signalExitFlagBackup;
+								sys_info.signal_exit_flag = signalExitFlagBackup;
 							}
 						// ##### end Gilbert 26/8 ######//
 						}

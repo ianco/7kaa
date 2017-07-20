@@ -24,6 +24,7 @@
 #include <math.h>
 #include <OVGA.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OFONT.h>
 #include <OMOUSE.h>
 #include <OPOWER.h>
@@ -342,7 +343,7 @@ void ZoomMatrix::draw()
 				//---------- draw terrain bitmap -----------//
 
 				vga_back.put_bitmap_32x32( x, y, terrain_res[locPtr->terrain_id]->bitmap_ptr );
-				char *overlayBitmap = terrain_res[locPtr->terrain_id]->get_bitmap(sys.frame_count /4);
+				char *overlayBitmap = terrain_res[locPtr->terrain_id]->get_bitmap(sys_info.frame_count /4);
 				if( overlayBitmap)
 					vga_back.put_bitmap_trans_decompress( x, y, overlayBitmap);
 

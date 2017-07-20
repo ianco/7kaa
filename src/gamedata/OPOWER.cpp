@@ -27,7 +27,7 @@
 #include <OFIRM.h>
 #include <OTOWN.h>
 #include <OSITE.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <ONATION.h>
 #include <OBOX.h>
 #include <OIMGRES.h>
@@ -150,14 +150,14 @@ void Power::init()
 //
 void Power::mouse_handler()
 {
-	if( sys.view_mode != MODE_NORMAL )
+	if( sys_info.view_mode != MODE_NORMAL )
 	{
 		mouse_cursor.set_icon(CURSOR_NORMAL);
 		return;
 	}
 
 	if( !enable_flag || win_opened || Box::opened_flag ||
-		 sys.signal_exit_flag  )		// a window or box is opened upon the current interface
+		 sys_info.signal_exit_flag  )		// a window or box is opened upon the current interface
 	{
 		return;
 	}
@@ -1450,7 +1450,7 @@ void Power::reset_selection()
 char* Power::get_link_icon(char linkStatus, int sameNation)
 {
 	char  goodLinkName[9] = "LINK_EE1";
-	goodLinkName[7] = '1'+ (char) (sys.frame_count/2%3);
+	goodLinkName[7] = '1'+ (char) (sys_info.frame_count/2%3);
 
 	switch( linkStatus )
 	{

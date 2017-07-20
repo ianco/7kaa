@@ -23,6 +23,7 @@
 
 #include <version.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OMOUSE.h>
 #include <OMOUSECR.h>
 #include <OBOX.h>
@@ -502,7 +503,7 @@ static void ingame_disconnect_handler(DWORD playerId)
 void GameMenu::multi_player_game(int lobbied, char *game_host)
 // ###### end Gilbert 13/2 #######//
 {
-	sys.is_mp_game = 1;
+	sys_info.is_mp_game = 1;
 	sub_game_mode = 0;
 	#ifdef DEBUG
 		mp_build_flags |= 0x00000001;
@@ -754,7 +755,7 @@ void GameMenu::multi_player_game(int lobbied, char *game_host)
 	game_ctl.init();
 	remote.handle_vga_lock = 0;	// disable lock handling
 
-	sys.signal_exit_flag = 0; // Richard 24-12-2013: If player tried to exit just as the game loaded, cancel the exit request
+	sys_info.signal_exit_flag = 0; // Richard 24-12-2013: If player tried to exit just as the game loaded, cancel the exit request
 
 	battle.run(nationPara, mpPlayerCount);
 
@@ -774,7 +775,7 @@ void GameMenu::multi_player_game(int lobbied, char *game_host)
 // avoid creating local variable in this function
 void GameMenu::load_mp_game(char *fileName, int lobbied, char *game_host)
 {
-	sys.is_mp_game = 1;
+	sys_info.is_mp_game = 1;
 	sub_game_mode = 1;
 	#ifdef DEBUG
 		mp_build_flags |= 0x00000001;
@@ -1014,13 +1015,13 @@ void GameMenu::load_mp_game(char *fileName, int lobbied, char *game_host)
 //	sys.blt_virtual_buf();
 
 	remote.init_start_mp();
-	remote.init_send_queue(sys.frame_count, nation_array.player_recno);   // initialize the send queue for later sending
-	remote.init_receive_queue(sys.frame_count);
+	remote.init_send_queue(sys_info.frame_count, nation_array.player_recno);   // initialize the send queue for later sending
+	remote.init_receive_queue(sys_info.frame_count);
 
 //	init();
 	remote.handle_vga_lock = 0;	// disable lock handling
 
-	sys.signal_exit_flag = 0; // Richard 24-12-2013: If player tried to exit just as the game loaded, cancel the exit request
+	sys_info.signal_exit_flag = 0; // Richard 24-12-2013: If player tried to exit just as the game loaded, cancel the exit request
 
 	battle.run_loaded();		// 1-multiplayer game
 
@@ -1090,10 +1091,10 @@ int GameMenu::mp_select_service()
 
 	while(1)
 	{
-		if( sys.need_redraw_flag )
+		if( sys_info.need_redraw_flag )
 		{
 			refreshFlag = SVOPTION_ALL;
-			sys.need_redraw_flag = 0;
+			sys_info.need_redraw_flag = 0;
 		}
 
 		vga_front.lock_buf();
@@ -1102,7 +1103,7 @@ int GameMenu::mp_select_service()
 		vga.flip();
 		mouse.get_event();
 
-		if (sys.signal_exit_flag == 1)
+		if (sys_info.signal_exit_flag == 1)
 		{
 			choice = 0;
 			break;
@@ -1151,7 +1152,7 @@ int GameMenu::mp_select_service()
 		if( config.music_flag )
 		{
 			if( !music.is_playing() )
-				music.play(1, sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
+				music.play(1, sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
 		}
 		else
 			music.stop();
@@ -1289,10 +1290,10 @@ int GameMenu::mp_select_mode(char *defSaveFileName, int service_mode)
 
 	while(1)
 	{
-		if( sys.need_redraw_flag )
+		if( sys_info.need_redraw_flag )
 		{
 			refreshFlag = SMOPTION_ALL;
-			sys.need_redraw_flag = 0;
+			sys_info.need_redraw_flag = 0;
 		}
 
 		vga_front.lock_buf();
@@ -1301,7 +1302,7 @@ int GameMenu::mp_select_mode(char *defSaveFileName, int service_mode)
 		vga.flip();
 		mouse.get_event();
 
-		if( sys.signal_exit_flag == 1 )
+		if( sys_info.signal_exit_flag == 1 )
 		{
 			rc = 0;
 			break;
@@ -1361,7 +1362,7 @@ int GameMenu::mp_select_mode(char *defSaveFileName, int service_mode)
 		if( config.music_flag )
 		{
 			if( !music.is_playing() )
-				music.play(1, sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
+				music.play(1, sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
 		}
 		else
 			music.stop();
@@ -1573,7 +1574,7 @@ int GameMenu::input_box(const char *tell_string, char *buf, int len, char hide_i
 		vga.flip();
 		mouse.get_event();
 
-		if( sys.signal_exit_flag == 1 )
+		if( sys_info.signal_exit_flag == 1 )
 		{
 			break;
 		}
@@ -1594,7 +1595,7 @@ int GameMenu::input_box(const char *tell_string, char *buf, int len, char hide_i
 		sys.blt_virtual_buf();
 
 		if (config.music_flag && !music.is_playing())
-			music.play(1, sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0);
+			music.play(1, sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0);
 		else if (!config.music_flag && music.is_playing())
 			music.stop();
 
@@ -1708,7 +1709,7 @@ int GameMenu::input_name_pass(const char *txt[], char *name, int name_len, char 
 		vga.flip();
 		mouse.get_event();
 
-		if( sys.signal_exit_flag == 1 )
+		if( sys_info.signal_exit_flag == 1 )
 		{
 			break;
 		}
@@ -1729,7 +1730,7 @@ int GameMenu::input_name_pass(const char *txt[], char *name, int name_len, char 
 		sys.blt_virtual_buf();
 
 		if (config.music_flag && !music.is_playing())
-			music.play(1, sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0);
+			music.play(1, sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0);
 		else if (!config.music_flag && music.is_playing())
 			music.stop();
 
@@ -1811,10 +1812,10 @@ int GameMenu::mp_select_session()
 		int s;
 		int b;
 
-		if( sys.need_redraw_flag )
+		if( sys_info.need_redraw_flag )
 		{
 			refreshFlag = SSOPTION_ALL;
-			sys.need_redraw_flag = 0;
+			sys_info.need_redraw_flag = 0;
 		}
 
 		vga_front.lock_buf();
@@ -1823,7 +1824,7 @@ int GameMenu::mp_select_session()
 		vga.flip();
 		mouse.get_event();
 
-		if( sys.signal_exit_flag == 1 )
+		if( sys_info.signal_exit_flag == 1 )
 		{
 			choice = 0;
 			break;
@@ -1862,7 +1863,7 @@ int GameMenu::mp_select_session()
 				int poll;
 				poll = mp_obj.poll_sessions();
 				if( poll != pollStatus )
-					sys.need_redraw_flag = 1;
+					sys_info.need_redraw_flag = 1;
 				pollStatus = poll;
 
 				// Limit poll after we established polling interaction
@@ -1971,7 +1972,7 @@ int GameMenu::mp_select_session()
 		if( config.music_flag )
 		{
 			if( !music.is_playing() )
-				music.play(1, sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
+				music.play(1, sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
 		}
 		else
 			music.stop();
@@ -2121,7 +2122,7 @@ int GameMenu::mp_join_session(int session_id)
 		sys.blt_virtual_buf();		// blt the virtual front buffer to the screen
 
 		if (config.music_flag && !music.is_playing())
-			music.play(1, sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0);
+			music.play(1, sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0);
 		else if (!config.music_flag && music.is_playing())
 			music.stop();
 
@@ -2214,7 +2215,7 @@ void GameMenu::mp_close_session()
 		sys.blt_virtual_buf();		// blt the virtual front buffer to the screen
 
 		if (config.music_flag && !music.is_playing())
-			music.play(1, sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0);
+			music.play(1, sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0);
 		else if (!config.music_flag && music.is_playing())
 			music.stop();
 
@@ -2260,7 +2261,7 @@ int GameMenu::mp_get_leader_board()
 		vga.flip();
 		mouse.get_event();
 		
-		if( sys.signal_exit_flag == 1 )
+		if( sys_info.signal_exit_flag == 1 )
 		{
 			break;
 		}
@@ -2275,7 +2276,7 @@ int GameMenu::mp_get_leader_board()
 		sys.blt_virtual_buf();		// blt the virtual front buffer to the screen
 
 		if (config.music_flag && !music.is_playing())
-			music.play(1, sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0);
+			music.play(1, sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0);
 		else if (!config.music_flag && music.is_playing())
 			music.stop();
 
@@ -2758,11 +2759,11 @@ int GameMenu::mp_select_option(NewNationPara *nationPara, int *mpPlayerCount)
 	while(1)
 	{
 		// ####### begin Gilbert 23/10 #######//
-		if( sys.need_redraw_flag && !info_box.visible )
+		if( sys_info.need_redraw_flag && !info_box.visible )
 		{
 			refreshFlag = SGOPTION_ALL;
 			mRefreshFlag = MGOPTION_ALL;
-			sys.need_redraw_flag = 0;
+			sys_info.need_redraw_flag = 0;
 		}
 
 		vga_front.lock_buf();
@@ -2772,7 +2773,7 @@ int GameMenu::mp_select_option(NewNationPara *nationPara, int *mpPlayerCount)
 		vga.flip();
 		mouse.get_event();
 
-		// Note: sys.signal_exit_flag is detected at the same point as the cancel/abort button
+		// Note: sys_info.signal_exit_flag is detected at the same point as the cancel/abort button
 
 		// -------- display ----------//
 		// ##### begin Gilbert 25/10 #####//
@@ -2995,7 +2996,7 @@ int GameMenu::mp_select_option(NewNationPara *nationPara, int *mpPlayerCount)
 		if( config.music_flag )
 		{
 			if( !music.is_playing() )
-				music.play(1, sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
+				music.play(1, sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
 		}
 		else
 			music.stop();
@@ -3928,7 +3929,7 @@ int GameMenu::mp_select_option(NewNationPara *nationPara, int *mpPlayerCount)
 				break;
 			}
 		}
-		else if( returnButton.detect() || (sys.signal_exit_flag == 1) ) // Richard 24-12-2013: signal_exit_flag works as cancel at this stage
+		else if( returnButton.detect() || (sys_info.signal_exit_flag == 1) ) // Richard 24-12-2013: signal_exit_flag works as cancel at this stage
 		{
 			if( remote.is_host )
 			{
@@ -4324,7 +4325,7 @@ int GameMenu::mp_select_load_option(char *fileName)
 
 		MpStructLoadGameNewPlayer msgNewPlayer(
 			~nation_array,
-			sys.frame_count,
+			sys_info.frame_count,
 			misc.get_random_seed(),
 			config.player_name,
 			current_session->password
@@ -4659,11 +4660,11 @@ int GameMenu::mp_select_load_option(char *fileName)
 	while(1)
 	{
 		// ####### begin Gilbert 23/10 #######//
-		if( sys.need_redraw_flag && !info_box.visible )
+		if( sys_info.need_redraw_flag && !info_box.visible )
 		{
 			refreshFlag = SGOPTION_ALL;
 			mRefreshFlag = MGOPTION_ALL;
-			sys.need_redraw_flag = 0;
+			sys_info.need_redraw_flag = 0;
 		}
 
 		vga_front.lock_buf();
@@ -4673,7 +4674,7 @@ int GameMenu::mp_select_load_option(char *fileName)
 		vga.flip();
 		mouse.get_event();
 
-		// Note: sys.signal_exit_flag is detected at the same point as the cancel/abort button
+		// Note: sys_info.signal_exit_flag is detected at the same point as the cancel/abort button
 
 		// -------- display ----------//
 		if( refreshFlag || mRefreshFlag )
@@ -4894,7 +4895,7 @@ int GameMenu::mp_select_load_option(char *fileName)
 		if( config.music_flag )
 		{
 			if( !music.is_playing() )
-				music.play(1, sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
+				music.play(1, sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
 		}
 		else
 			music.stop();
@@ -5028,7 +5029,7 @@ int GameMenu::mp_select_load_option(char *fileName)
 							nation_array[newPlayerMsg->nation_recno]->color_scheme_id != newPlayerMsg->color_scheme_id ||
 							nation_array[newPlayerMsg->nation_recno]->race_id != newPlayerMsg->race_id ||
 							colorAssigned[newPlayerMsg->color_scheme_id-1] ||
-							newPlayerMsg->frame_count != sys.frame_count ||
+							newPlayerMsg->frame_count != sys_info.frame_count ||
 							newPlayerMsg->random_seed != misc.get_random_seed()
 						)
 						{
@@ -5334,7 +5335,7 @@ int GameMenu::mp_select_load_option(char *fileName)
 				}
 			}
 		}
-		else if( returnButton.detect() || (sys.signal_exit_flag == 1) ) // Richard 24-12-2013: signal_exit_flag works as cancel at this stage
+		else if( returnButton.detect() || (sys_info.signal_exit_flag == 1) ) // Richard 24-12-2013: signal_exit_flag works as cancel at this stage
 		{
 			if( remote.is_host )
 			{

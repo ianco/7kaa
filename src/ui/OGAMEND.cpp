@@ -29,7 +29,7 @@
 #include <OBOX.h>
 #include <OCONFIG.h>
 #include <OSTR.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OFONT.h>
 #include <OMOUSE.h>
 #include <OIMGRES.h>
@@ -80,7 +80,7 @@ void GameMenu::game_end(int winNationRecno, int playerDestroyed, int surrenderTo
 
 	if( game_info.game_mode == GAME_DEMO )
 	{
-		sys.signal_exit_flag = 2;
+		sys_info.signal_exit_flag = 2;
 		return;
 	}
 
@@ -101,7 +101,7 @@ void GameMenu::game_end(int winNationRecno, int playerDestroyed, int surrenderTo
 
 	//------ set the quit siginal -------//
 
-	sys.signal_exit_flag = 2;		// set it first to disable Power::mouse.handler()
+	sys_info.signal_exit_flag = 2;		// set it first to disable Power::mouse.handler()
 	mouse_cursor.set_frame(0);
 	// ####### begin Gilbert 29/10 #######//
 	mouse_cursor.set_icon(CURSOR_NORMAL);
@@ -133,12 +133,12 @@ void GameMenu::game_end(int winNationRecno, int playerDestroyed, int surrenderTo
 
 		vga_util.disp_image_file(fileName);
 
-		music.play(songId, sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0);
+		music.play(songId, sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0);
 		mouse.wait_press(60);		// 60 seconds to time out
 	}
 	else
 	{
-		music.play(songId, sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0);
+		music.play(songId, sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0);
 	}
 
 	//------- display the statistic -------//
@@ -211,7 +211,7 @@ void GameMenu::game_end(int winNationRecno, int playerDestroyed, int surrenderTo
 		char powerWinFlag = power.win_opened;
 		power.win_opened = 1;
 		if( box.ask( _("Do you want to continue to stay in the game?"), _("Yes"), _("No") ) )
-			sys.signal_exit_flag = 0;
+			sys_info.signal_exit_flag = 0;
 		power.win_opened = powerWinFlag;
 		// ###### end Gilbert 29/10 ######//
 	}
@@ -220,7 +220,7 @@ void GameMenu::game_end(int winNationRecno, int playerDestroyed, int surrenderTo
 
 	//-------- if it quits now ----------//
 
-	if( sys.signal_exit_flag )
+	if( sys_info.signal_exit_flag )
 	{
 		info.free_game_scr();
 

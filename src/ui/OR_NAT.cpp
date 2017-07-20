@@ -35,6 +35,7 @@
 #include <OVBROWIF.h>
 #include <OBUTTON.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <ONATION.h>
 #include <OTALKRES.h>
 #include <OINFO.h>
@@ -266,7 +267,7 @@ void Info::init_player_reply(int talkToNationRecno)
 
 	//----- if currently it's in nation report mode -----//
 
-	if( sys.view_mode == MODE_NATION )
+	if( sys_info.view_mode == MODE_NATION )
 		browse_nation.refresh(browse_nation_recno);
 }
 //----------- End of function Info::init_player_reply -----------//
@@ -356,12 +357,12 @@ static void disp_button()
 		if( i==NATION_REPORT_DEBUG )
 		{
 			if( remote.is_enable() ||
-				 ( !sys.debug_session && !sys.testing_session ) )
+				 ( !sys_info.debug_session && !sys_info.testing_session ) )
 			{
 				continue;
 			}
 		}
-		else if( !sys.debug_session && i==NATION_REPORT_CHAT )
+		else if( !sys_info.debug_session && i==NATION_REPORT_CHAT )
 		{
 			if( !remote.is_enable() )
 				continue;
@@ -393,12 +394,12 @@ static int detect_button()
 		if( i==NATION_REPORT_DEBUG )
 		{
 			if( remote.is_enable() ||
-				 ( !sys.debug_session && !sys.testing_session ) )
+				 ( !sys_info.debug_session && !sys_info.testing_session ) )
 			{
 				continue;
 			}
 		}
-		else if( !sys.debug_session && i==NATION_REPORT_CHAT )
+		else if( !sys_info.debug_session && i==NATION_REPORT_CHAT )
 		{
 			if( !remote.is_enable() )
 				continue;
@@ -906,7 +907,7 @@ static void disp_nation_chat(int refreshFlag)
 
 	//----- if the selected nation is the viewing nation ----//
 
-	if( !(sys.debug_session || nation_array[nationRecno]->nation_type == NATION_REMOTE &&
+	if( !(sys_info.debug_session || nation_array[nationRecno]->nation_type == NATION_REMOTE &&
 		 info.viewing_nation_recno == nation_array.player_recno ) )
 	{
 		return;
@@ -962,7 +963,7 @@ static void detect_nation_chat()
 
 	//----- if the selected nation is the viewing nation ----//
 
-	if( sys.debug_session || nation_array[nationRecno]->nation_type == NATION_REMOTE &&
+	if( sys_info.debug_session || nation_array[nationRecno]->nation_type == NATION_REMOTE &&
 		 info.viewing_nation_recno == nation_array.player_recno )
 	{
 		// ###### begin Gilbert 15/10 #######//

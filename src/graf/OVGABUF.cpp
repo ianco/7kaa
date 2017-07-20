@@ -25,7 +25,7 @@
 #include <ALL.h>
 #include <OMOUSE.h>
 #include <IMGFUN.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OWORLD.h>
 #include <OVGA.h>
 #include <OVGABUF.h>
@@ -204,7 +204,7 @@ void VgaBuf::put_bitmap_remap(int x,int y,char* bitmapPtr,char *colorTable)
 
 //---------- Begin of function VgaBuf::save_area_common_buf ----------//
 //
-// Save screen area to sys.common_data_buf.
+// Save screen area to sys_info.common_data_buf.
 //
 void VgaBuf::save_area_common_buf(int x1, int y1, int x2, int y2)
 {
@@ -215,7 +215,7 @@ void VgaBuf::save_area_common_buf(int x1, int y1, int x2, int y2)
 	err_if( saveSize > COMMON_DATA_BUF_SIZE )
 		err_now( "VgaBuf::save_area_common_buf()" );
 
-	short* shortPtr = (short*) sys.common_data_buf;
+	short* shortPtr = (short*) sys_info.common_data_buf;
 
 	*shortPtr++ = x1;
 	*shortPtr++ = y1;
@@ -242,7 +242,7 @@ void VgaBuf::save_area_common_buf(int x1, int y1, int x2, int y2)
 //
 void VgaBuf::rest_area_common_buf()
 {
-	short* shortPtr = (short*) sys.common_data_buf;
+	short* shortPtr = (short*) sys_info.common_data_buf;
 
 	int x1 = *shortPtr++;
 	int y1 = *shortPtr++;
@@ -397,12 +397,12 @@ void VgaBuf::put_large_bitmap(int x1, int y1, File* filePtr)
 
 	if( pictSize <= COMMON_DATA_BUF_SIZE )
 	{
-		filePtr->file_read( sys.common_data_buf, pictSize );
+		filePtr->file_read( sys_info.common_data_buf, pictSize );
 
 		if( is_front )
 			mouse.hide_area( x1,y1,x2,y2 );  // if the mouse cursor is in that area, hide it
 
-		put_bitmap2( x1, y1, pictWidth, pictHeight, sys.common_data_buf );
+		put_bitmap2( x1, y1, pictWidth, pictHeight, sys_info.common_data_buf );
 
 		if( is_front )
 			mouse.show_area();
@@ -417,12 +417,12 @@ void VgaBuf::put_large_bitmap(int x1, int y1, File* filePtr)
 
 		while( y1<=y2 )
 		{
-			filePtr->file_read( sys.common_data_buf, (unsigned)pictWidth * (ty-y1+1) );
+			filePtr->file_read( sys_info.common_data_buf, (unsigned)pictWidth * (ty-y1+1) );
 
 			if( is_front )
 				mouse.hide_area( x1,y1,x2,ty );  // if the mouse cursor is in that area, hide it
 
-			put_bitmap2( x1, y1, pictWidth, ty-y1+1, sys.common_data_buf );
+			put_bitmap2( x1, y1, pictWidth, ty-y1+1, sys_info.common_data_buf );
 
 			if( is_front )
 				mouse.show_area();

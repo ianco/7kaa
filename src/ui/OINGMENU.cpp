@@ -24,6 +24,7 @@
 #include <OVGA.h>
 #include <OVGABUF.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OIMGRES.h>
 #include <OMOUSE.h>
 #include <OMOUSECR.h>
@@ -259,7 +260,7 @@ int InGameMenu::detect()
                shortPtr[0] = nation_array.player_recno;
                shortPtr[1] = 0;     // not retire
             }
-            sys.signal_exit_flag = 2;
+            sys_info.signal_exit_flag = 2;
          }
          break;
       }
@@ -275,7 +276,7 @@ int InGameMenu::detect()
                shortPtr[0] = nation_array.player_recno;
                shortPtr[1] = 1;     // retire
             }
-            sys.signal_exit_flag = 1;
+            sys_info.signal_exit_flag = 1;
          }
          break;
    }

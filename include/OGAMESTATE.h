@@ -49,6 +49,7 @@ MultiPlayer       mp_obj;
 WebService        ws;
 #endif
 Sys               sys;
+SysInfo           sys_info;
 SeekPath          seek_path;
 SeekPathReuse     seek_path_reuse;
 Flame             flame[FLAME_GROW_STEP];

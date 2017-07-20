@@ -24,7 +24,7 @@
 #include <GAMEDEF.h>
 #include <OAUDIO.h>
 #include <OMUSIC.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OCONFIG.h>
 
 // -------- define constant --------//
@@ -289,7 +289,7 @@ void Music::yield()
 	if( config.music_flag )
 	{
 		if( !is_playing() )
-			play(random_bgm_track(oldSongId), sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
+			play(random_bgm_track(oldSongId), sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
 	}
 	else
 	{

@@ -31,6 +31,7 @@
 #endif
 
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OBOX.h>
 #include <OVGA.h>
 #include <ALL.h>
@@ -262,7 +263,7 @@ void Error::run( const char *format, ... )
 		box.msg( strBuf, 0 );
 
 	// Richard 17-1-2014: Set exit flag to signal termination (for atexit cleanup)
-	sys.signal_exit_flag = 1;
+	sys_info.signal_exit_flag = 1;
 
 	sys.deinit_directx();
 

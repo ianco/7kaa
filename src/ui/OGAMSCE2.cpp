@@ -23,6 +23,7 @@
 
 
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OGAMEMENU.h>
 #include <OGAMEINFO.h>
 #include <OMOUSE.h>
@@ -217,7 +218,7 @@ int GameMenu::select_scenario(int scenCount, ScenInfo* scenInfoArray)
 
 		mouse.get_event();
 
-		if( sys.signal_exit_flag == 1 )
+		if( sys_info.signal_exit_flag == 1 )
 		{
 			retFlag = 0;
 			break;

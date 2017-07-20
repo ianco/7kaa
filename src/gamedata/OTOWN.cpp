@@ -25,7 +25,7 @@
 #include <ALL.h>
 #include <OVGA.h>
 #include <OWORLD.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OIMGRES.h>
 #include <ONEWS.h>
 #include <OCONFIG.h>
@@ -269,7 +269,7 @@ void Town::set_world_matrix()
 	//---- if the newly built firm is visual in the zoom window, redraw the zoom buffer ----//
 
 	if( is_in_zoom_win() )
-		sys.zoom_need_redraw = 1;  // set the flag on so it will be redrawn in the next frame
+		sys_info.zoom_need_redraw = 1;  // set the flag on so it will be redrawn in the next frame
 }
 //-------- End of function Town::set_world_matrix --------//
 
@@ -345,7 +345,7 @@ void Town::restore_world_matrix()
 	//---- if the newly built firm is visual in the zoom window, redraw the zoom buffer ----//
 
 	if( is_in_zoom_win() )
-		sys.zoom_need_redraw = 1;
+		sys_info.zoom_need_redraw = 1;
 }
 //----------- End of function Town::restore_world_matrix --------//
 

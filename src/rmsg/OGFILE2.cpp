@@ -45,6 +45,7 @@
 #include <OSNOWG.h>
 #include <OSPY.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OTALKRES.h>
 #include <OTECHRES.h>
 #include <OTORNADO.h>
@@ -318,7 +319,7 @@ int GameFile::write_file_2(File* filePtr)
 
 	write_book_mark( BOOK_MARK+103 );
 
-	if( !sys.write_file(filePtr) )
+	if( !sys_info.write_file(filePtr) )
 		return 0;
 
 	write_book_mark( BOOK_MARK+104 );
@@ -546,7 +547,7 @@ int GameFile::read_file_2(File* filePtr)
 	if( !read_book_mark( BOOK_MARK+103 ) )
 		return 0;
 
-	if( !sys.read_file(filePtr) )
+	if( !sys_info.read_file(filePtr) )
 		return 0;
 
 	if( !read_book_mark( BOOK_MARK+104 ) )
@@ -1328,9 +1329,9 @@ int Power::read_file(File* filePtr)
 
 //***//
 
-//-------- Start of function Sys::write_file -------------//
+//-------- Start of function SysInfo::write_file -------------//
 //
-int Sys::write_file(File* filePtr)
+int SysInfo::write_file(File* filePtr)
 {
 	//---- write the current random seed first ----//
 
@@ -1345,12 +1346,12 @@ int Sys::write_file(File* filePtr)
 
 	return 1;
 }
-//--------- End of function Sys::write_file ---------------//
+//--------- End of function SysInfo::write_file ---------------//
 
 
-//-------- Start of function Sys::read_file -------------//
+//-------- Start of function SysInfo::read_file -------------//
 //
-int Sys::read_file(File* filePtr)
+int SysInfo::read_file(File* filePtr)
 {
 	//------- read the random seed --------//
 
@@ -1364,7 +1365,7 @@ int Sys::read_file(File* filePtr)
 
 	return 1;
 }
-//--------- End of function Sys::read_file ---------------//
+//--------- End of function SysInfo::read_file ---------------//
 
 //***//
 
@@ -1482,7 +1483,7 @@ int World::read_file(File* filePtr)
 	zoom_matrix->top_x_loc = map_matrix->cur_x_loc;
 	zoom_matrix->top_y_loc = map_matrix->cur_y_loc;
 
-	sys.zoom_need_redraw = 1;
+	sys_info.zoom_need_redraw = 1;
 
 	zoom_matrix->init_lightning = filePtr->file_get_long();
 	zoom_matrix->vibration = filePtr->file_get_long();

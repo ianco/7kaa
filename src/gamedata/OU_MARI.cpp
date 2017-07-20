@@ -21,7 +21,7 @@
 // Filename    : OU_MARI.CPP
 // Description : sea unit
 
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OTERRAIN.h>
 #include <OU_CARA.h>
 #include <OPOWER.h>
@@ -286,7 +286,7 @@ short UnitMarine::wave_height(int phase)
 {
 	err_when( phase < 0);
 	static short height[WAVE_CYCLE] = { 4,3,2,1,0,1,2,3 };
-	return height[((sys.frame_count /4) + phase) % WAVE_CYCLE];
+	return height[((sys_info.frame_count /4) + phase) % WAVE_CYCLE];
 }
 //------- End of function UnitMarine::wave_height -------//
 

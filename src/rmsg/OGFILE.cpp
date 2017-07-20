@@ -38,7 +38,7 @@
 #include <OTownNetwork.h>
 #include <OINFO.h>
 #include <OGFILE.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OAUDIO.h>
 #include <OMUSIC.h>
 #include <OLOG.h>
@@ -76,7 +76,7 @@ int GameFile::save_game(const char* fileName)
 
 	int rc = 1;
 
-	if (!misc.path_cat(full_path, sys.dir_config, file_name, MAX_PATH))
+	if (!misc.path_cat(full_path, sys_info.dir_config, file_name, MAX_PATH))
 	{
 		rc = 0;
 		errStr = _("Path too long to the saved game");
@@ -390,7 +390,7 @@ void GameFile::load_process()
 
 	//-- if the player is in the diplomatic message screen, rebuild the talk choice list --//
 
-	if( sys.view_mode==MODE_NATION && info.nation_report_mode==NATION_REPORT_TALK )
+	if( sys_info.view_mode==MODE_NATION && info.nation_report_mode==NATION_REPORT_TALK )
 		talk_res.set_talk_choices();
 
 	mouse_cursor.set_frame(0);		// to fix a frame bug with loading game

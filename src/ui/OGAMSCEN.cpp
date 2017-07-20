@@ -23,6 +23,7 @@
 
 #include <OSTR.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <ONEWS.h>
 #include <ODATE.h>
 #include <OGFILE.h>
@@ -226,7 +227,7 @@ static void init_scenario_var(ScenInfo* scenInfo)
 
 	//------- reset display mode --------//
 
-	sys.view_mode = MODE_NORMAL;
+	sys_info.view_mode = MODE_NORMAL;
 
 	world.map_matrix->map_mode   = MAP_MODE_TERRAIN;
 	world.map_matrix->power_mode = 0;

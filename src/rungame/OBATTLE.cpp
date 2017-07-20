@@ -185,11 +185,11 @@ void Battle::run(NewNationPara *mpGame, int mpPlayerCount)
 	//---- reset cheats ----//
 
 	config.fast_build = 0;
-	config.king_undie_flag = sys.testing_session && !mpGame;
+	config.king_undie_flag = sys_info.testing_session && !mpGame;
 	config.blacken_map = 1;
 	config.disable_ai_flag = 0;
 
-	if( sys.testing_session )
+	if( sys_info.testing_session )
 		config.show_unit_path = 3;
 
 	// ######## begin Gilbert 11/11 #######//
@@ -210,7 +210,7 @@ void Battle::run(NewNationPara *mpGame, int mpPlayerCount)
 
 #ifndef HEADLESS_SIM
 	int songId = (~nation_array)->race_id <= 7 ? (~nation_array)->race_id+1 : music.random_bgm_track();
-	music.play(songId, sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
+	music.play(songId, sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
 #endif
 
 	mouse_cursor.restore_icon(oldCursor);
@@ -640,7 +640,7 @@ void Battle::run_loaded()
 	}
 
 	int songId = kingRace <= 7 ? kingRace+1 : music.random_bgm_track();
-	music.play(songId, sys.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
+	music.play(songId, sys_info.cdrom_drive ? MUSIC_CD_THEN_WAV : 0 );
 
 	//--- give the control to the system main loop, start the game now ---//
 

@@ -23,7 +23,7 @@
 
 #include <string.h>
 #include <stdint.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <ODB.h>
 #include <ORESDB.h>
 
@@ -92,7 +92,7 @@ void ResourceDb::init_imported(const char* resName, int cacheWholeFile, int useC
 		use_common_buf = useCommonBuf;
 
       if( use_common_buf )
-         data_buf = sys.common_data_buf;
+         data_buf = sys_info.common_data_buf;
       else
          data_buf = NULL;
    }

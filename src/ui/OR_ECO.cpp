@@ -22,7 +22,7 @@
 //Description : Economy information screen
 
 #include <OVGA.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OFONT.h>
 #include <OIMGRES.h>
 #include <OVBROWIF.h>
@@ -77,7 +77,7 @@ void Info::disp_economy(int refreshFlag)
 	int incomeCount;		// only display the cheat income if it amount is > 0
 
 	if( nation_array[info.viewing_nation_recno]->income_365days(INCOME_CHEAT) > 0 &&
-		 (sys.testing_session || info.viewing_nation_recno == nation_array.player_recno) )		// only display cheat amount in debug mode or cheat amount of the player's kingdom, do not display cheat amount on AI kingdoms
+		 (sys_info.testing_session || info.viewing_nation_recno == nation_array.player_recno) )		// only display cheat amount in debug mode or cheat amount of the player's kingdom, do not display cheat amount on AI kingdoms
 	{
 		incomeCount = INCOME_TYPE_COUNT;
 	}

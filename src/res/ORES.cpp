@@ -24,7 +24,7 @@
 #include <string.h>
 
 #include <ALL.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <ORES.h>
 
 //------------ Format of RES file -------------//
@@ -98,7 +98,7 @@ void Resource::init(char* resName, int readAll, int useCommonBuf)
    else
    {
       if( use_common_buf )
-         data_buf = sys.common_data_buf;
+         data_buf = sys_info.common_data_buf;
    }
 
    init_flag = 1;
@@ -118,7 +118,7 @@ void Resource::deinit()
 			index_buf = NULL;
       }
 
-      if( data_buf && data_buf != sys.common_data_buf )
+      if( data_buf && data_buf != sys_info.common_data_buf )
       {
 			mem_del(data_buf);
 			data_buf=NULL;

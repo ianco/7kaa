@@ -30,6 +30,7 @@
 #include <KEY.h>
 #include <ODIR.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <ODATE.h>
 #include <OMOUSE.h>
 #include <OMOUSECR.h>
@@ -316,8 +317,8 @@ int GameFileArray::menu(int actionMode, int *recno)
 
 		mouse.get_event();
 
-		// When called ingame sys.signal_exit_flag is set to 2 by Sys::load_game
-		if( sys.signal_exit_flag == 1 )
+		// When called ingame sys_info.signal_exit_flag is set to 2 by Sys::load_game
+		if( sys_info.signal_exit_flag == 1 )
 		{
 			retFlag = 0;
 			break;
@@ -717,7 +718,7 @@ int GameFileArray::process_action(int saveNew)
 	{
 		GameFile* gameFile = game_file_array[browse_recno];
 
-		int rc = gameFile->load_game((const char*)sys.dir_config, NULL);
+		int rc = gameFile->load_game((const char*)sys_info.dir_config, NULL);
 		if( rc > 0 )
 			strcpy( last_file_name, gameFile->file_name );
 		return rc;
@@ -807,7 +808,7 @@ void GameFileArray::del_game()
 
 	//---------------------------------------------------//
 
-	if (!misc.path_cat(full_path, sys.dir_config, game_file_array[recNo]->file_name, MAX_PATH))
+	if (!misc.path_cat(full_path, sys_info.dir_config, game_file_array[recNo]->file_name, MAX_PATH))
 	{
 		ERR("Path to the saved game too long.\n");
 		return;
@@ -831,7 +832,7 @@ int GameFileArray::write_hall_of_fame()
 	int  rc;
 	File file;
 
-	if (!misc.path_cat(full_path, sys.dir_config, HALL_OF_FAME_FILE_NAME, MAX_PATH))
+	if (!misc.path_cat(full_path, sys_info.dir_config, HALL_OF_FAME_FILE_NAME, MAX_PATH))
 	{
 		ERR("Path to the hall of fame too long.\n");
 		return 0;
@@ -867,7 +868,7 @@ int GameFileArray::read_hall_of_fame()
 	int  rc;
 	File file;
 
-	if (!misc.path_cat(full_path, sys.dir_config, HALL_OF_FAME_FILE_NAME, MAX_PATH))
+	if (!misc.path_cat(full_path, sys_info.dir_config, HALL_OF_FAME_FILE_NAME, MAX_PATH))
 	{
 		ERR("Path to the hall of fame too long.\n");
 		return 0;
@@ -910,7 +911,7 @@ void GameFileArray::load_all_game_header(const char *extStr)
 	GameFile  gameFile;
 	File      file;
 
-	if (!misc.path_cat(full_path, sys.dir_config, extStr, MAX_PATH))
+	if (!misc.path_cat(full_path, sys_info.dir_config, extStr, MAX_PATH))
 	{
 		ERR("Path to the config directory too long.\n");
 		return;
@@ -923,7 +924,7 @@ void GameFileArray::load_all_game_header(const char *extStr)
 
 	for( i=1 ; i<=gameDir.size() ; i++ )
 	{
-		if (!misc.path_cat(full_path, sys.dir_config, gameDir[i]->name, MAX_PATH))
+		if (!misc.path_cat(full_path, sys_info.dir_config, gameDir[i]->name, MAX_PATH))
 		{
 			ERR("Path to the saved game too long.\n");
 			continue;

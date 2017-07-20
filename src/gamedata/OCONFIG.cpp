@@ -21,7 +21,7 @@
 //Filename    : OCONFIG.CPP
 //Description : Config Object
 
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OHELP.h>
 #include <ONATION.h>
 #include <OUNITRES.h>
@@ -146,10 +146,10 @@ void Config::default_game_setting()
 //--------- Begin of function Config::default_game_setting ---------//
 void Config::default_cheat_setting()
 {
-	show_ai_info = sys.debug_session;
-	fast_build = sys.debug_session;
+	show_ai_info = sys_info.debug_session;
+	fast_build = sys_info.debug_session;
 	disable_ai_flag = 0;
-	king_undie_flag = sys.testing_session;
+	king_undie_flag = sys_info.testing_session;
 }
 //--------- End of function Config::default_game_setting ---------//
 
@@ -407,7 +407,7 @@ int Config::save(const char *filename)
 	char full_path[MAX_PATH+1];
 	File configFile;
 
-	if(!misc.path_cat(full_path, sys.dir_config, filename, MAX_PATH))
+	if(!misc.path_cat(full_path, sys_info.dir_config, filename, MAX_PATH))
 	{
 		ERR("Path too long to the config file.\n");
 		return 0;
@@ -442,7 +442,7 @@ int Config::load(const char *filename)
 	char full_path[MAX_PATH+1];
 	File configFile;
 
-        if(!misc.path_cat(full_path, sys.dir_config, filename, MAX_PATH))
+        if(!misc.path_cat(full_path, sys_info.dir_config, filename, MAX_PATH))
         {
                 ERR("Path too long to the config file.\n");
                 return 0;

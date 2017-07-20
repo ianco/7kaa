@@ -23,6 +23,7 @@
 
 #include <ALL.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OSTR.h>
 #include <OVGA.h>
 #include <OMUSIC.h>
@@ -454,7 +455,7 @@ void Help::disp_help(int centerX, int centerY, const char* helpTitle, const char
 		font_san.put_paragraph( x1+X_MARGIN, y+4, x2-X_MARGIN, y2-Y_MARGIN, helpDetail, MSG_LINE_SPACE );
 	}
 
-	if( sys.debug_session )
+	if( sys_info.debug_session )
 		sys.blt_virtual_buf();
 
 	//--- in a single player game, pause the game when a help message is disp_helplayed ---//

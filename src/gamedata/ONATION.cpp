@@ -21,7 +21,7 @@
 //Filename    : ONATION.CPP
 //Description : Object Nation
 
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <ONATION.h>
 #include <OWORLD.h>
 #include <OGAMEINFO.h>
@@ -147,7 +147,7 @@ void Nation::deinit_all_ai_info()
 	//------- debug checking -------//
 
 #ifdef DEBUG
-	if( !sys.signal_exit_flag )
+	if( !sys_info.signal_exit_flag )
 	{
 		err_when( ai_town_count > 0 );
 		err_when( ai_base_town_count > 0 );

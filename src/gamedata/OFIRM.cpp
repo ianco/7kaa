@@ -31,7 +31,7 @@
 #include <OGAMEINFO.h>
 #include <OUNIT.h>
 #include <ONEWS.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OSPY.h>
 #include <OSITE.h>
 #include <OINFO.h>
@@ -313,7 +313,7 @@ void Firm::deinit()
 
 	//------ all workers and the overseer resign ------//
 
-	if( !sys.signal_exit_flag )
+	if( !sys_info.signal_exit_flag )
 	{
 		// ##### begin Gilbert 28/10 ########//
 		if( !under_construction )
@@ -1189,7 +1189,7 @@ void Firm::set_world_matrix()
 	//---- if the newly built firm is visual in the zoom window, redraw the zoom buffer ----//
 
 	if( is_in_zoom_win() )
-		sys.zoom_need_redraw = 1;  // set the flag on so it will be redrawn in the next frame
+		sys_info.zoom_need_redraw = 1;  // set the flag on so it will be redrawn in the next frame
 }
 //----------- End of function Firm::set_world_matrix --------//
 
@@ -1304,7 +1304,7 @@ void Firm::restore_world_matrix()
    //---- if the newly built firm is visual in the zoom window, redraw the zoom buffer ----//
 
    if( is_in_zoom_win() )
-      sys.zoom_need_redraw = 1;
+      sys_info.zoom_need_redraw = 1;
 }
 //----------- End of function Firm::restore_world_matrix --------//
 
@@ -1384,7 +1384,7 @@ void Firm::process_construction()
 	if( info.game_date <= last_attacked_date+1 )
 		return;
 
-	if( sys.frame_count%2!=0 )		// one build every 2 frames
+	if( sys_info.frame_count%2!=0 )		// one build every 2 frames
 		return;
 
 	//------ increase the construction progress ------//

@@ -26,7 +26,7 @@
 #include <vga_util.h>
 #include <ODATE.h>
 #include <OSTR.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OSITE.h>
 #include <OFONT.h>
 #include <OBUTTON.h>
@@ -88,7 +88,7 @@ void FirmMonster::init_derived()
 //
 FirmMonster::~FirmMonster()
 {
-	if( sys.signal_exit_flag )
+	if( sys_info.signal_exit_flag )
 		return;
 
 	int goldAmount = 800 * (monster_res[monster_id]->level*30 + misc.random(50)) / 100;
@@ -103,7 +103,7 @@ FirmMonster::~FirmMonster()
 //
 void FirmMonster::deinit_derived()
 {
-	if( sys.signal_exit_flag )
+	if( sys_info.signal_exit_flag )
 		return;
 
 	//-------- mobilize all monsters in the firm --------//

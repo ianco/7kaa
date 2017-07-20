@@ -45,7 +45,7 @@
 #include <OF_HARB.h>
 #include <OMONSRES.h>
 #include <OREMOTE.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include "gettext.h"
 
 #if(GAME_FRAMES_PER_DAY!=FRAMES_PER_DAY)
@@ -308,7 +308,7 @@ void Unit::init_unit_id(int unitId)
 
 void Unit::deinit_unit_id()
 {
-   if( sys.signal_exit_flag )
+   if( sys_info.signal_exit_flag )
       return;
 
    //-----------------------------------------//
@@ -437,7 +437,7 @@ void Unit::deinit()
 
    //-------- if this is a king --------//
 
-   if( !sys.signal_exit_flag && nation_recno )
+   if( !sys_info.signal_exit_flag && nation_recno )
    {
       if( rank_id == RANK_KING )    // check nation_recno because monster kings will die also.
 		{
@@ -663,7 +663,7 @@ void Unit::deinit_sprite(int keepSelected)
 //
 void Unit::deinit_unit_mode()
 {
-	if( sys.signal_exit_flag )
+	if( sys_info.signal_exit_flag )
 		return;
 
    //----- this unit was defending the town before it gets killed ----//

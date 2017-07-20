@@ -33,7 +33,7 @@
 #include <OPOWER.h>
 #include <OUNIT.h>
 #include <OGAMEINFO.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <ONATION.h>
 #include <OF_WAR.h>
 #include <OREMOTE.h>
@@ -692,7 +692,7 @@ void FirmWar::disp_war_info(int dispY1, int refreshFlag)
 	//-- unitInfo->build_days is the no. of days take to build the firm when productivity is 100, the actually no. of days will be longer if productivity is less than 100 --//
 
 	float buildProgressDays = build_progress_days
-									  + (float) (sys.frame_count-last_process_build_frame_no) / FRAMES_PER_DAY
+									  + (float) (sys_info.frame_count-last_process_build_frame_no) / FRAMES_PER_DAY
 									  * (float) (worker_count*6+productivity/2) / 100;
 
 	vga_front.indicator( 0, x-2, y+21, buildProgressDays, unitInfo->build_days, VGA_GRAY );
@@ -764,7 +764,7 @@ void FirmWar::process_queue()
 
 	//------- set building parameters -------//
 
-	last_process_build_frame_no = sys.frame_count;
+	last_process_build_frame_no = sys_info.frame_count;
 	build_progress_days = (float) 0;
 
 	if( firm_array.selected_recno == firm_recno )
@@ -788,7 +788,7 @@ void FirmWar::process_build()
 
 	build_progress_days += (float) (worker_count*6+productivity/2) / 100;
 
-	last_process_build_frame_no = sys.frame_count;
+	last_process_build_frame_no = sys_info.frame_count;
 
 	if( config.fast_build && nation_recno==nation_array.player_recno )
 		build_progress_days += (float) 2;

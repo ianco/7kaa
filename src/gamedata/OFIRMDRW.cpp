@@ -22,7 +22,7 @@
 //Description : Firm drawing routines
 
 #include <COLCODE.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OVGA.h>
 #include <ONATION.h>
 #include <OSPRITE.h>
@@ -195,11 +195,11 @@ void Firm::draw_full_size(int displayLayer)
 
 		//---------- decompress the image ---------//
 
-		IMGremapDecompress(sys.common_data_buf, firmBitmap->bitmap_ptr, colorRemapTable);
+		IMGremapDecompress(sys_info.common_data_buf, firmBitmap->bitmap_ptr, colorRemapTable);
 
 		//---------- pixelize the image -----------//
 
-		char* pixelPtr = sys.common_data_buf + sizeof(short) * 2;
+		char* pixelPtr = sys_info.common_data_buf + sizeof(short) * 2;
 
 		int y, bitmapWidth=abs_x2-abs_x1+1, bitmapHeight=abs_y2-abs_y1+1;
 		int lineCount;
@@ -222,7 +222,7 @@ void Firm::draw_full_size(int displayLayer)
 
 		if( x1 < 0 || x2 >= ZOOM_WIDTH || y1 < 0 || y2 >= ZOOM_HEIGHT )
 		{
-			vga_back.put_bitmap_area_trans( x1+ZOOM_X1, y1+ZOOM_Y1, sys.common_data_buf,
+			vga_back.put_bitmap_area_trans( x1+ZOOM_X1, y1+ZOOM_Y1, sys_info.common_data_buf,
 				MAX(0,x1)-x1, MAX(0,y1)-y1, MIN(ZOOM_WIDTH-1,x2)-x1, MIN(ZOOM_HEIGHT-1,y2)-y1 );
 		}
 
@@ -230,7 +230,7 @@ void Firm::draw_full_size(int displayLayer)
 
 		else
 		{
-			vga_back.put_bitmap_trans( x1+ZOOM_X1, y1+ZOOM_Y1, sys.common_data_buf );
+			vga_back.put_bitmap_trans( x1+ZOOM_X1, y1+ZOOM_Y1, sys_info.common_data_buf );
 		}
 	}
 	else	//----- display the normal image (not under construction) ----//

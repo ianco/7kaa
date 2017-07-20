@@ -27,7 +27,7 @@
 #include <ODATE.h>
 #include <OIMGRES.h>
 #include <OHELP.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OSTR.h>
 #include <OFONT.h>
 #include <OMOUSE.h>
@@ -415,7 +415,7 @@ void FirmCamp::put_info(int refreshFlag)
 	disp_spy_button(x, INFO_Y1+242, refreshFlag);
 
 	#ifdef DEBUG
-		if( sys.testing_session || sys.debug_session )
+		if( sys_info.testing_session || sys_info.debug_session )
 			disp_debug_info(this, refreshFlag);
 	#endif
 }

@@ -23,6 +23,7 @@
 
 #include <OSTR.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <ODATE.h>
 #include <OBOX.h>
 #include <OVGA.h>
@@ -240,7 +241,7 @@ void NationBase::deinit()
 
 	//-------- if the viewing nation is this nation -------//
 
-	if( !sys.signal_exit_flag )
+	if( !sys_info.signal_exit_flag )
 	{
 		if( info.default_viewing_nation_recno == nation_recno )
 		{
@@ -924,7 +925,7 @@ void NationBase::add_expense(int expenseType, float expenseAmt, int fixedExpense
 //
 void NationBase::add_cheat(float cheatAmount)
 {
-	if( sys.testing_session || nation_type == NATION_OWN )
+	if( sys_info.testing_session || nation_type == NATION_OWN )
 	{
 		add_income(INCOME_CHEAT, cheatAmount);
 	}

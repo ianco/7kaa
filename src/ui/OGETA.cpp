@@ -27,7 +27,7 @@
 #include <OFONT.h>
 #include <OMOUSE.h>
 #include <KEY.h>
-#include <OSYS.h>
+#include <OSYSINFO.h>
 #include <COLCODE.h>
 
 #define HIDE_CHAR '*'
@@ -263,7 +263,7 @@ void GetA::paint(int paintCursor)
 	int rightLimit = x_limit - x;
 	int textWidth = font_ptr->text_width(disp_field, -1, rightLimit)+1;
 	int textHeight = font_ptr->max_font_height;
-	char *bitmap = sys.common_data_buf;
+	char *bitmap = sys_info.common_data_buf;
 	err_when( 2*sizeof(short) + textWidth * textHeight > COMMON_DATA_BUF_SIZE );
 
 	*(short *)bitmap = textWidth;
@@ -331,7 +331,7 @@ void GetA::paint(int paintCursor)
 					vga_util.blt_buf( x+textWidth, y, x_limit, y + font_ptr->max_font_height-1, 0);
 				IMGjoinTrans(vga_front.buf_ptr(), vga_front.buf_pitch(), 
 					vga_back.buf_ptr(), vga_back.buf_pitch(),
-					x, y, sys.common_data_buf);
+					x, y, sys_info.common_data_buf);
 			}
 			else
 			{
@@ -340,7 +340,7 @@ void GetA::paint(int paintCursor)
 				if( textWidth < backGroundWidth && x+textWidth <= x_limit )		// fill right
 					vga_front.put_bitmap_area(x, y, back_ground_bitmap,
 					textWidth, 0, MIN(x_limit-x, backGroundWidth-1), backGroundHeight-1 );
-				vga_front.put_bitmap_trans(x, y, sys.common_data_buf);
+				vga_front.put_bitmap_trans(x, y, sys_info.common_data_buf);
 			}
 			break;
 
@@ -358,7 +358,7 @@ void GetA::paint(int paintCursor)
 				}
 				IMGjoinTrans(vga_front.buf_ptr(), vga_front.buf_pitch(), 
 					vga_back.buf_ptr(), vga_back.buf_pitch(),
-					l, y, sys.common_data_buf);
+					l, y, sys_info.common_data_buf);
 			}
 			else
 			{
@@ -375,7 +375,7 @@ void GetA::paint(int paintCursor)
 					vga_front.put_bitmap_area(x, y, back_ground_bitmap,
 						l+textWidth-x, 0, MIN(x_limit-x+1, backGroundWidth)-1, backGroundHeight-1);
 				}
-				vga_front.put_bitmap_trans(l, y, sys.common_data_buf);
+				vga_front.put_bitmap_trans(l, y, sys_info.common_data_buf);
 			}
 			break;
 
@@ -387,7 +387,7 @@ void GetA::paint(int paintCursor)
 					vga_util.blt_buf( x, y, l-1, y + font_ptr->max_font_height-1, 0);
 				IMGjoinTrans(vga_front.buf_ptr(), vga_front.buf_pitch(), 
 					vga_back.buf_ptr(), vga_back.buf_pitch(),
-					l, y, sys.common_data_buf);
+					l, y, sys_info.common_data_buf);
 			}
 			else
 			{
@@ -397,7 +397,7 @@ void GetA::paint(int paintCursor)
 				if( x < l )
 					vga_front.put_bitmap_area(0, 0, back_ground_bitmap,
 					0, 0, MIN(l-x, backGroundWidth)-1, backGroundHeight-1 );
-				vga_front.put_bitmap_trans(l, y, sys.common_data_buf);
+				vga_front.put_bitmap_trans(l, y, sys_info.common_data_buf);
 			}
 			break;
 		
@@ -412,14 +412,14 @@ void GetA::paint(int paintCursor)
 		{
 		case 0:		// left justified
 			IMGbltTrans( vga_back.buf_ptr(), vga_back.buf_pitch(),
-				x, y, sys.common_data_buf);
+				x, y, sys_info.common_data_buf);
 			break;
 
 		case 1:		// center justified
 			{
 				int l = x + (x_limit - x + 1 - textWidth ) / 2;
 				IMGbltTrans( vga_back.buf_ptr(), vga_back.buf_pitch(),
-					l, y, sys.common_data_buf);
+					l, y, sys_info.common_data_buf);
 			}
 
 			// BUGHERE : fill left and right
@@ -427,7 +427,7 @@ void GetA::paint(int paintCursor)
 
 		case -1:		// right justified
 			IMGbltTrans( vga_back.buf_ptr(), vga_back.buf_pitch(),
-				x_limit - textWidth + 1, y, sys.common_data_buf);
+				x_limit - textWidth + 1, y, sys_info.common_data_buf);
 			break;
 		
 		default:

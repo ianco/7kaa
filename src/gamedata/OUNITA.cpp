@@ -24,6 +24,7 @@
 #include <ALL.h>
 #include <OVGA.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OSTR.h>
 #include <OSPY.h>
 #include <OREMOTE.h>
@@ -411,7 +412,7 @@ void UnitArray::draw_dot()
 
 		nationColor = unitPtr->cur_action != SPRITE_ATTACK ?
 			nationColorArray[unitPtr->nation_recno] :
-			excitedColorArray[unitPtr->nation_recno][sys.frame_count % excitedColorCount];
+			excitedColorArray[unitPtr->nation_recno][sys_info.frame_count % excitedColorCount];
 
 		// ###### begin Gilbert 3/11 #######//
 		int dotSize = unitPtr->mobile_type == UNIT_LAND ? 2 : 3;
@@ -544,8 +545,8 @@ void UnitArray::process()
 	int i;
 	int arraySize = size();
 
-	int sysFrameCount = int(sys.frame_count%FRAMES_PER_DAY);
-	int yearFrameCount = int(sys.frame_count%YEAR_FRAME_COUNT); 
+	int sysFrameCount = int(sys_info.frame_count%FRAMES_PER_DAY);
+	int yearFrameCount = int(sys_info.frame_count%YEAR_FRAME_COUNT); 
 	int compareI = arraySize%FRAMES_PER_DAY;
 	if(compareI < sysFrameCount)
 		compareI += FRAMES_PER_DAY;

@@ -42,6 +42,7 @@
 #include <OSITE.h>
 #include <OWALLRES.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OUNIT.h>
 #include <OCOLTBL.h>
 #include <OINFO.h>
@@ -190,7 +191,7 @@ void Info::init_random_seed(int randomSeed)
 
 	//------ write random seed --------//
 
-	if( sys.testing_session )
+	if( sys_info.testing_session )
 	{
 		File fileMapSeed;
 
@@ -289,7 +290,7 @@ void Info::disp()
 	if( !power.enable_flag )
 		return;
 
-	if( sys.signal_exit_flag )
+	if( sys_info.signal_exit_flag )
 		return;
 
 	if( option_menu.is_active() )

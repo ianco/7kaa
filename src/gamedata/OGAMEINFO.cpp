@@ -24,6 +24,7 @@
 #include <ALL.h>
 #include <COLCODE.h>
 #include <OSYS.h>
+#include <OSYSINFO.h>
 #include <OVGA.h>
 #include <OFONT.h>
 #include <OMOUSE.h>
@@ -196,7 +197,7 @@ char* GameInfo::get_color_remap_table(int nationRecno, int selectedFlag)
       }
       else
       {
-         cycleId = sys.frame_count / CYCLE_FRAME_INTERVAL % (CYCLE_COLOR_COUNT*2-2);
+         cycleId = sys_info.frame_count / CYCLE_FRAME_INTERVAL % (CYCLE_COLOR_COUNT*2-2);
 
          if( cycleId >= CYCLE_COLOR_COUNT )              // cycle in reserved order
             cycleId = CYCLE_COLOR_COUNT*2-2 - cycleId;
