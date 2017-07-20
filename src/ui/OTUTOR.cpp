@@ -34,6 +34,7 @@
 #include <OBUTT3D.h>
 #include <OGFILE.h>
 #include <OGAMEINFO.h>
+#include <OGAMECTL.h>
 #include <OGAMESET.h>
 #include <OWORLD.h>
 #include <OFILETXT.h>
@@ -425,7 +426,7 @@ void Tutor::run(int tutorId, int inGameCall)
 	if( !inGameCall )
 	{
 		battle.run_loaded();
-		game_info.deinit();
+		game_ctl.deinit();
 	}
 }
 //----------- End of function Tutor::run ------------//

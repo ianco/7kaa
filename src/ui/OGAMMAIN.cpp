@@ -614,12 +614,12 @@ void GameMenu::single_player_menu()
 						if( game_file_array.menu(2) == 1)
 						{
 							battle.run_loaded();
-							game_info.deinit();
+							game_ctl.deinit();
 						}
 						{
 							char signalExitFlagBackup = sys.signal_exit_flag;
 							sys.signal_exit_flag = 2;
-							game_info.deinit();   // game.deinit() is needed if game_file_array.menu fails
+							game_ctl.deinit();   // game.deinit() is needed if game_file_array.menu fails
 							sys.signal_exit_flag = signalExitFlagBackup;
 						}
 						break;
@@ -650,11 +650,11 @@ void GameMenu::single_player_menu()
 //
 void GameMenu::test_game()
 {
-	game_info.init();
+	game_ctl.init();
 
 	battle.run_test();
 
-	game_info.deinit();
+	game_ctl.deinit();
 }
 //--------- End of function GameMenu::test_game ---------//
 
@@ -861,7 +861,7 @@ void GameMenu::multi_player_menu(int lobbied, char *game_host)
 							{
 								char signalExitFlagBackup = sys.signal_exit_flag;
 								sys.signal_exit_flag = 2;
-								game_info.deinit();		// game.deinit() is needed if game_file_array.menu fails
+								game_ctl.deinit();		// game.deinit() is needed if game_file_array.menu fails
 								sys.signal_exit_flag = signalExitFlagBackup;
 							}
 						// ##### end Gilbert 26/8 ######//

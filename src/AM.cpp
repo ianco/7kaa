@@ -43,6 +43,7 @@
 #include <OFLAME.h>
 #include <OFONT.h>
 #include <OGAMEMENU.h>
+#include <OGAMECTL.h>
 #include <OGAMEINFO.h>
 #include <OGAMESET.h>
 #include <OGFILE.h>
@@ -293,14 +294,14 @@ int main(int argc, char **argv)
 		sys.disp_fps_flag = 1;
 		config.help_mode = NO_HELP;
 		game_info.game_mode = GAME_DEMO;
-		game_info.init();
+		game_ctl.init();
 #ifdef HEADLESS_SIM
 		info.init_random_seed(0);
 		battle.run(0);
 #else
 		battle.run_test();
 #endif
-		game_info.deinit();
+		game_ctl.deinit();
 	}
 
 	sys.deinit();

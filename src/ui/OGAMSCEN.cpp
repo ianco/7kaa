@@ -33,6 +33,7 @@
 #include <OBOX.h>
 #include <OBATTLE.h>
 #include <OGAMEMENU.h>
+#include <OGAMECTL.h>
 #include <OGAMEINFO.h>
 
 //--------- declare static vars ----------//
@@ -163,7 +164,7 @@ int GameMenu::run_scenario(ScenInfo* scenInfo)
 
 			battle.run_loaded();
 		}
-		game_info.deinit();
+		game_ctl.deinit();
 		return 1;
 	}
 

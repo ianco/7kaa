@@ -4,6 +4,7 @@
 #include <OLOG.h>
 #include <OSYS.h>
 #include <OGAMESET.h>
+#include <OGAMECTL.h>
 #include <ORACERES.h>
 #include <OGJSON.h>
 #include "restclient-cpp/restclient.h"
@@ -51,7 +52,7 @@ OGJSONTest::testToJson()
 	new_config_dat_flag = 1;
 	config.init();
 	game_set.init();
-	game_info.init_internal(FALSE);
+	game_ctl.init_internal(FALSE);
 
   	// Process & Check
 	json jc = race_res;

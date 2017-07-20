@@ -27,6 +27,7 @@
 #include <ALL.h>
 #include <OCONFIG.h>
 #include <OGAMEINFO.h>
+#include <OGAMECTL.h>
 
 #pragma pack(1)
 class GameMenu
@@ -49,8 +50,6 @@ public:
 	// ###### begin Gilbert 13/2 #######//
 	void 			multi_player_menu(int lobbied, char *game_host);
 	// ###### end Gilbert 13/2 #######//
-
-	void 			mp_broadcast_setting();
 
 private:
 	void			disp_version();
@@ -82,7 +81,6 @@ private:
 };
 #pragma pack()
 
-extern GameInfo game_info;
 extern GameMenu game_menu;
 extern char game_demo_mode, game_design_mode;
 

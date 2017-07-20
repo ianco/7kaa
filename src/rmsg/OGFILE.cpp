@@ -34,6 +34,7 @@
 #include <OWORLD.h>
 #include <OPOWER.h>
 #include <OGAMEINFO.h>
+#include <OGAMECTL.h>
 #include <OTownNetwork.h>
 #include <OINFO.h>
 #include <OGFILE.h>
@@ -207,8 +208,8 @@ int GameFile::load_game(const char *base_path, char* fileName)
 	{
 		config.terrain_set = terrain_set;
 
-		game_info.deinit(1);		// deinit last game first, 1-it is called during loading of a game
-		game_info.init(1);			// init game
+		game_ctl.deinit(1);		// deinit last game first, 1-it is called during loading of a game
+		game_ctl.init(1);			// init game
 
 		//-------- read in saved game ----------//
 

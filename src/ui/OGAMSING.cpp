@@ -33,6 +33,7 @@
 #include <OGET.h>
 #include <OBATTLE.h>
 #include <OGAMEMENU.h>
+#include <OGAMECTL.h>
 #include <OGAMEINFO.h>
 #include <OCONFIG.h>
 #include <OMUSIC.h>
@@ -107,9 +108,9 @@ void GameMenu::single_player_game(int noAI)
 
 	//------ start single player game ----------//
 
-	game_info.init();
+	game_ctl.init();
 	battle.run(0);			// 0-not multiplayer game
-	game_info.deinit();
+	game_ctl.deinit();
 }
 //--------- End of function GameMenu::single_player_game ---------//
 

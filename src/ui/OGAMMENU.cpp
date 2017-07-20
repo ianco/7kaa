@@ -21,6 +21,7 @@
 //Filename   : OGAMMENU.CPP
 //Description: In Game Menu
 
+#include <ALL.h>
 #include <KEY.h>
 #include <OVGA.h>
 #include <vga_util.h>
@@ -34,6 +35,7 @@
 #include <OINFO.h>
 #include <OGAMEMENU.h>
 #include <OGAMEINFO.h>
+#include <OGAMECTL.h>
 #include <ONATION.h>
 #include <OCONFIG.h>
 #include <ORACERES.h>

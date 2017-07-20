@@ -134,6 +134,7 @@ MagicWeather      magic_weather;
 Config            config;
 GameInfo          game_info;
 GameMenu          game_menu;
+GameCtl           game_ctl;
 GameSet           game_set;         // no constructor
 Battle            battle;
 Power             power;

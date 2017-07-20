@@ -28,7 +28,7 @@
 #include <ONATION.h>
 #include <OUNIT.h>
 #include <OGAMEINFO.h>
-#include <OGAMEMENU.h>
+#include <OGAMECTL.h>
 #include <OREMOTE.h>
 #include <OFIRM.h>
 #include <OFIRMALL.h>
@@ -250,7 +250,7 @@ void RemoteMsg::new_nation()
 
 	int nationRecno = nation_array.new_nation( NATION_REMOTE, nationPtr->race_id, nationPtr->color_scheme_id, nationPtr->player_id );
 
-	game_menu.mp_broadcast_setting();
+	game_ctl.mp_broadcast_setting();
 }
 //--------- End of function RemoteMsg::new_nation ---------//
 

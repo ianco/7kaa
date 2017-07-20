@@ -99,10 +99,6 @@ public:
 public:
 	GameInfo();
 
-	int			init(int loadGameCall=0);
-	int 		init_internal(int loadGameCall);
-	void		deinit(int loadGameCall=0);
-
 	char*			get_color_remap_table(int nationRecno, int selectedFlag);
 	// ###### begin Gilbert 24/10 #######//
 	static void	disp_gen_map_status( int curStep, int maxStep, int section );

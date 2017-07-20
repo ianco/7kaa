@@ -15,13 +15,13 @@ CXXFLAGS += $(SDL_CFLAGS) -DDEBUG -DENABLE_LOG
 7kaa_LDADD =
 
 #7kaa_LDADD += ./ai/lib7kaaAI.a
-#7kaa_LDADD += ./rungame/lib7kaaRunGame.a
+7kaa_LDADD += ./rungame/lib7kaaRunGame.a
 7kaa_LDADD += ./gamedata/lib7kaaGameData.a
 7kaa_LDADD += ./graf/lib7kaaGraf.a
-7kaa_LDADD += ./res/lib7kaaRes.a
 7kaa_LDADD += ./enet/libmultiplayer.a
 7kaa_LDADD += ./rmsg/lib7kaaRmsg.a
 7kaa_LDADD += ./ui/lib7kaaUI.a
+7kaa_LDADD += ./res/lib7kaaRes.a
 7kaa_LDADD += ./core/lib7kaaCore.a
 
 if AUDIO_OPENAL

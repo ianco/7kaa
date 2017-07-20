@@ -5,7 +5,6 @@ lib7kaaGameData_a_SOURCES = \
 	OB_FLAME.cpp \
 	OB_HOMIN.cpp \
 	OB_PROJ.cpp \
-	OBATTLE.cpp \
 	OBULLET.cpp \
 	OBULLETA.cpp \
 	OCONFIG.cpp \
@@ -78,9 +77,6 @@ lib7kaaGameData_a_SOURCES = \
 	OSPY.cpp \
 	OSPY2.cpp \
 	OSPYA.cpp \
-	OSYS.cpp \
-	OSYS2.cpp \
-	OSYS3.cpp \
 	OTORNADO.cpp \
 	OTOWN.cpp \
 	OTOWNA.cpp \

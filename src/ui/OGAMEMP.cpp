@@ -35,6 +35,7 @@
 #include <OREMOTE.h>
 #include <OBATTLE.h>
 #include <OGAMEMENU.h>
+#include <OGAMECTL.h>
 #include <OGAMEINFO.h>
 #include <multiplayer.h>
 #ifdef HAVE_LIBCURL
@@ -449,55 +450,6 @@ void GameMenu::mp_disp_players()
 //--------- End of function GameMenu::mp_disp_players ---------//
 */
 
-//-------- Begin of function GameMenu::mp_broadcast_setting --------//
-//
-// Broadcast the latest game settings from the host to all clients.
-// This function should be called by the host only
-//
-// see also to RemoteMsg::update_game_setting
-//
-void GameMenu::mp_broadcast_setting()
-{
-	// send (long) random seed
-	// send (short) no. of nations
-	// for each nation, send :
-	//	(short) nation recno
-	// (DWORD) directPlay player id
-	// (short) color scheme
-	// (short) race id
-	//
-	short i;
-	int msgSize = sizeof(long)	+sizeof(short) + 
-		nation_array.size()*(3*sizeof(short)+sizeof(PID_TYPE));
-	RemoteMsg *remoteMsg = remote.new_msg( MSG_UPDATE_GAME_SETTING, msgSize );
-
-	char* dataPtr = remoteMsg->data_buf;
-
-	*(long*)dataPtr   = misc.get_random_seed();
-	dataPtr 		      += sizeof(long);
-
-	*(short*)dataPtr  = nation_array.size();
-	dataPtr           += sizeof(short);
-
-	for( i=1 ; i<=nation_array.size() ; i++)
-	{
-		*(short *)dataPtr = i;
-		dataPtr += sizeof(short);
-		*(PID_TYPE *)dataPtr = nation_array[i]->player_id;
-		dataPtr += sizeof(PID_TYPE);
-		*(short *)dataPtr = nation_array[i]->color_scheme_id;
-		dataPtr += sizeof(short);
-		*(short *)dataPtr = nation_array[i]->race_id;
-		dataPtr += sizeof(short);
-	}
-
-	err_when(dataPtr - remoteMsg->data_buf > msgSize);
-
-	remote.send_free_msg(remoteMsg);		// send out the message and free it after finishing sending
-}
-//--------- End of function GameMenu::mp_broadcast_setting ---------//
-
-
 //-------- Begin of function pregame_disconnect_handler --------//
 //
 // Host disconnection handler, called by Remote when one of the players
@@ -799,7 +751,7 @@ void GameMenu::multi_player_game(int lobbied, char *game_host)
 
 	remote.init_receive_queue(1);
 
-	game_info.init();
+	game_ctl.init();
 	remote.handle_vga_lock = 0;	// disable lock handling
 
 	sys.signal_exit_flag = 0; // Richard 24-12-2013: If player tried to exit just as the game loaded, cancel the exit request
@@ -813,7 +765,7 @@ void GameMenu::multi_player_game(int lobbied, char *game_host)
 	ws.deinit();
 #endif
 	mp_obj.deinit();
-	game_info.deinit();
+	game_ctl.deinit();
 }
 // --------- End of static function multi_player_game ----------//
 
@@ -1077,7 +1029,7 @@ void GameMenu::load_mp_game(char *fileName, int lobbied, char *game_host)
 	ws.deinit();
 #endif
 	mp_obj.deinit();
-	game_info.deinit();
+	game_ctl.deinit();
 }
 // --------- End of static function load_mp_game ----------//
 

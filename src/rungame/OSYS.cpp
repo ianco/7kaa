@@ -40,11 +40,11 @@
 #include <OSTR.h>
 #include <OVGA.h>
 #include <OGAMEINFO.h>
+#include <OGAMECTL.h>
 #include <ONEWS.h>
 #include <OGAMESET.h>
 #include <OGFILE.h>
 #include <OINFO.h>
-//#include <OVBROWSE.h>
 #include <OIMGRES.h>
 #include <OMOUSE.h>
 #include <OMOUSE2.h>
@@ -232,7 +232,7 @@ void Sys::deinit()
    if( !init_flag )
       return;
 
-   game_info.deinit();    // actually game_info.deinit() will be called by main_win_proc() and calling it here will have no effect
+   game_ctl.deinit();    // actually game_ctl.deinit() will be called by main_win_proc() and calling it here will have no effect
 
    deinit_objects();
 
@@ -366,7 +366,7 @@ int Sys::init_objects()
 
    //---------- init other objects ----------//
 
-   game_set.init();     // this must be called before game_info.init() as game_info.init() assume game_set has been initialized
+   game_set.init();     // this must be called before game_ctl.init() as game_ctl.init() assume game_set has been initialized
    help.init("HELP.RES");
 
    tutor.init();
