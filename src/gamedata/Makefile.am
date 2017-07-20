@@ -37,16 +37,8 @@ lib7kaaGameData_a_SOURCES = \
 	OFIRMDIE.cpp \
 	OFIRMDRW.cpp \
 	OFLAME.cpp \
-	OGAMCRED.cpp \
-	OGAME.cpp \
-	OGAMEMP.cpp \
-	OGAMENCY.cpp \
-	OGAMEND.cpp \
+	OGAMEINFO.cpp \
 	OGAMESTATE.cpp \
-	OGAMMAIN.cpp \
-	OGAMSCE2.cpp \
-	OGAMSCEN.cpp \
-	OGAMSING.cpp \
 	OGENHILL.cpp \
 	OGENMAP.cpp \
 	OGRPSEL.cpp \

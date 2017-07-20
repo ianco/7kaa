@@ -25,7 +25,7 @@
 #include <stdlib.h>
 
 #include <ALL.h>
-#include <OGAME.h>
+//#include <OGAME.h>
 #include <OSYS.h>
 #include <OFILETXT.h>
 #include <OTRANSL.h>
@@ -236,14 +236,14 @@ void Translate::multi_to_win(char *c, int len)
 {
 	// look up table to convert multilingual char set to windows char set
 	static unsigned char multi_to_win_table[] = 
-		"ÇüéâäàåçêëèïîìÄÅ"
-		"ÉæÆôöòûùÿÖÜø£Ø×\x83"
-		"áíóúñÑªº¿\xae¬½¼¡«»"
-		"?????ÁÂÀ©????¢¥?"
-		"??????ãÃ???????¤"
-		"ğĞÊËÈ'ÍÎÏ????¦Ì?"
-		"ÓßÔÒõÕµŞşÚÛÙıİ?´"
-		"·±=¾¶§÷?°¨?¹³²??";
+		"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+		"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\x83"
+		"ï¿½ï¿½ï¿½ï¿½ï¿½Ñªï¿½ï¿½\xaeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+		"?????ï¿½ï¿½ï¿½ï¿½????ï¿½ï¿½?"
+		"??????ï¿½ï¿½???????ï¿½"
+		"ï¿½ï¿½ï¿½ï¿½ï¿½'ï¿½ï¿½ï¿½????ï¿½ï¿½?"
+		"ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½"
+		"ï¿½ï¿½=ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½??";
 
 
 	unsigned char *textPtr = (unsigned char *)c;

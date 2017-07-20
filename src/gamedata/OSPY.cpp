@@ -22,7 +22,7 @@
 //Description : Object Spy
 
 #include <OPOWER.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <ODATE.h>
 #include <ONEWS.h>
 #include <OFONT.h>

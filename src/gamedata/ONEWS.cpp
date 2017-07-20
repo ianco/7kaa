@@ -24,7 +24,7 @@
 #include <OVGA.h>
 #include <OINFO.h>
 #include <OHELP.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OCONFIG.h>
 #include <OSYS.h>
 #include <OMOUSE.h>
@@ -205,7 +205,7 @@ int NewsArray::put(int detectAction)
 		//----- if display major news only ------//
 
 		if( config.disp_news_flag == OPTION_DISPLAY_MAJOR_NEWS ||
-			 game.game_mode == GAME_TUTORIAL )                    		// only display major news in the tutorial
+			 game_info.game_mode == GAME_TUTORIAL )                    		// only display major news in the tutorial
 		{
 			if( !newsPtr->is_major() )
 			{
@@ -241,7 +241,7 @@ int NewsArray::put(int detectAction)
 		//----- if display major news only ------//
 
 		if( config.disp_news_flag == OPTION_DISPLAY_MAJOR_NEWS ||
-			 game.game_mode == GAME_TUTORIAL )								// only display major news in the tutorial
+			 game_info.game_mode == GAME_TUTORIAL )								// only display major news in the tutorial
 		{
 			if( !newsPtr->is_major() )
 				continue;
@@ -429,7 +429,7 @@ int News::put(int y, int detectAction, int& newsHeight)
 
 		if( id==NEWS_CHAT_MSG )
 		{
-			char colorCode = game.color_remap_array[nation_color1].main_color;
+			char colorCode = game_info.color_remap_array[nation_color1].main_color;
 			nation_array.disp_nation_color(NEWS_X1, y+2, colorCode );
 		}
 	}

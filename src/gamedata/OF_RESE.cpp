@@ -34,7 +34,7 @@
 #include <OSYS.h>
 #include <OPOWER.h>
 #include <OUNIT.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <ONATION.h>
 #include <OTECHRES.h>
 #include <OF_RESE.h>

@@ -28,7 +28,7 @@
 #include <OWORLD.h>
 #include <OPOWER.h>
 #include <OCONFIG.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OUNIT.h>
 #include <ONEWS.h>
 #include <OSYS.h>

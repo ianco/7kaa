@@ -31,7 +31,7 @@
 #include <OSITE.h>
 #include <OFIRM.h>
 #include <OTOWN.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OUNIT.h>
 #include <ONATION.h>
 #include <OSPRITE.h>
@@ -1851,7 +1851,7 @@ void ZoomMatrix::draw_objects_now(DynArray* unitArray, int displayLayer)
 			case OBJECT_WALL:
 				{
 					int nationRecno = displaySortPtr->object_recno >> 8;
-					char *remapTable = game.get_color_remap_table(nationRecno, 0);
+					char *remapTable = game_info.get_color_remap_table(nationRecno, 0);
 					wall_res[displaySortPtr->object_recno & 0xff]->draw_at(
 						displaySortPtr->x_loc, displaySortPtr->y_loc, remapTable);
 				}

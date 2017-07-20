@@ -23,7 +23,7 @@
 
 #include <stdlib.h>
 #include <ALL.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OCONFIG.h>
 #include <OUNIT.h>
 #include <OFIRMALL.h>
@@ -353,7 +353,7 @@ Town* Nation::think_capture_enemy_town_target(Town* capturerTown)
 
 		if( !targetTown->ai_town )
 		{
-			if( game.game_mode == GAME_TUTORIAL )		// next attack the player in a tutorial game
+			if( game_info.game_mode == GAME_TUTORIAL )		// next attack the player in a tutorial game
 			{
 				continue;
 			}

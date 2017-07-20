@@ -34,7 +34,7 @@
 #include <OTUTOR.h>
 #include <ONATIONA.h>
 #include <OWORLDMT.h>
-#include <OGAME.h>
+#include <OGAMEMENU.h>
 #include <OOPTMENU.h>
 #include <OINGMENU.h>
 #include <OFONT.h>
@@ -234,7 +234,7 @@ int InGameMenu::detect()
                   shortPtr[0] = nation_array.player_recno;
                   shortPtr[1] = 1;     // retire
                }
-               game.game_end(0, 0, 0, 1);          // 1 - retire
+               game_menu.game_end(0, 0, 0, 1);          // 1 - retire
             }
          }
          break;

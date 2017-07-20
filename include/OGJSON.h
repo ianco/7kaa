@@ -5,7 +5,7 @@
 #define __OGJSON_H
 
 #include <string>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OGFILE.h>
 #include <ORACERES.h>
 

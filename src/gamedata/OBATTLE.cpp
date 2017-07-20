@@ -42,7 +42,7 @@
 #include <OWALLRES.h>
 #include <OINFO.h>
 #include <OUNITALL.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OBATTLE.h>
 #include <OMOUSECR.h>
 #include <vga_util.h>
@@ -86,7 +86,7 @@ void Battle::run(NewNationPara *mpGame, int mpPlayerCount)
 #endif
 
 #ifdef HEADLESS_SIM
-	game.game_mode = GAME_DEMO; // skip end screens
+	game_info.game_mode = GAME_DEMO; // skip end screens
 #endif
 
 	// ####### begin Gilbert 24/10 #######//
@@ -418,7 +418,7 @@ void Battle::create_pregame_object()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, newWorldSection);
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, newWorldSection);
 		vga_front.unlock_buf();
 	}
 	// ###### end Gilbert 24/10 ######//
@@ -521,7 +521,7 @@ void Battle::create_pregame_object()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, newWorldSection);
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, newWorldSection);
 		vga_front.unlock_buf();
 	}
 	// ###### end Gilbert 24/10 ######//
@@ -534,7 +534,7 @@ void Battle::create_pregame_object()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, newWorldSection);
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, newWorldSection);
 		vga_front.unlock_buf();
 	}
 	// ###### end Gilbert 24/10 ######//
@@ -553,7 +553,7 @@ void Battle::create_pregame_object()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, newWorldSection);
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, newWorldSection);
 		vga_front.unlock_buf();
 	}
 
@@ -598,7 +598,7 @@ void Battle::create_pregame_object()
 		if( dispProgress )
 		{
 			vga_front.lock_buf();
-			game.disp_gen_map_status( curGenMapSteps + j*(targetStep-curGenMapSteps)/maxLoopCount, maxGenMapSteps, newWorldSection);
+			game_info.disp_gen_map_status( curGenMapSteps + j*(targetStep-curGenMapSteps)/maxLoopCount, maxGenMapSteps, newWorldSection);
 			vga_front.unlock_buf();
 		}
 		// ###### end Gilbert 24/10 ######//
@@ -611,7 +611,7 @@ void Battle::create_pregame_object()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, newWorldSection);
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, newWorldSection);
 		vga_front.unlock_buf();
 	}
 	// ###### end Gilbert 24/10 ######//

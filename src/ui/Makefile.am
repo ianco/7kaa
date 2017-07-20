@@ -1,12 +1,20 @@
 CXXFLAGS += $(SDL_CFLAGS) -DDEBUG -DENABLE_LOG
 noinst_LIBRARIES = lib7kaaUI.a
 lib7kaaUI_a_SOURCES = \
-	OGAMMENU.cpp \
-	OGETA.cpp \
 	OFIRMIF.cpp \
 	OFIRMIF2.cpp \
 	OFIRMIF3.cpp \
+	OGAMCRED.cpp \
 	OGAMHALL.cpp \
+	OGAMEMP.cpp \
+	OGAMENCY.cpp \
+	OGAMEND.cpp \
+	OGAMMAIN.cpp \
+	OGAMMENU.cpp \
+	OGAMSCE2.cpp \
+	OGAMSCEN.cpp \
+	OGAMSING.cpp \
+	OGETA.cpp \
 	OHELP.cpp \
 	OINGMENU.cpp \
 	OMOUSE.cpp \

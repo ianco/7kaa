@@ -31,7 +31,7 @@
 #include <OF_MARK.h>
 #include <OF_MONS.h>
 #include <ONATION.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 
 #ifdef DEBUG
 #include <OFONT.h>
@@ -531,7 +531,7 @@ void TownArray::draw_dot()
 	{
 		if( i == 0 || !nation_array.is_deleted(i) )
 		{
-			char *remapTable = game.get_color_remap_table(i, 0);
+			char *remapTable = game_info.get_color_remap_table(i, 0);
 			excitedColorArray[i][0] = remapTable[0xe0];
 			excitedColorArray[i][1] = remapTable[0xe1];
 			excitedColorArray[i][2] = remapTable[0xe2];

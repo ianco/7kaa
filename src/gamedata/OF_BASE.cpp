@@ -33,7 +33,7 @@
 #include <OCONFIG.h>
 #include <OUNIT.h>
 #include <OSPY.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OBUTT3D.h>
 #include <ONATION.h>
 #include <ORACERES.h>

@@ -33,7 +33,7 @@
 #include <OPOWER.h>
 #include <OTOWN.h>
 #include <OU_MONS.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <ONATION.h>
 #include <OMONSRES.h>
 #include <OF_MONS.h>

@@ -42,7 +42,8 @@
 #include <OFIRM.h>
 #include <OFLAME.h>
 #include <OFONT.h>
-#include <OGAME.h>
+#include <OGAMEMENU.h>
+#include <OGAMEINFO.h>
 #include <OGAMESET.h>
 #include <OGFILE.h>
 #include <OGODRES.h>
@@ -280,10 +281,10 @@ int main(int argc, char **argv)
 	err.set_extra_handler( extra_error_handler );   // set extra error handler, save the game when a error happens
 
 	if (!lobbied && !demoSelection)
-		game.main_menu();
+		game_menu.main_menu();
 #ifndef DISABLE_MULTI_PLAYER
 	else if (!demoSelection)
-		game.multi_player_menu(lobbied, join_host);
+		game_menu.multi_player_menu(lobbied, join_host);
 #endif // DISABLE_MULTI_PLAYER
 	else if (!lobbied)
 	{
@@ -291,15 +292,15 @@ int main(int argc, char **argv)
 		sys.set_speed(demoSpeed);
 		sys.disp_fps_flag = 1;
 		config.help_mode = NO_HELP;
-		game.game_mode = GAME_DEMO;
-		game.init();
+		game_info.game_mode = GAME_DEMO;
+		game_info.init();
 #ifdef HEADLESS_SIM
 		info.init_random_seed(0);
 		battle.run(0);
 #else
 		battle.run_test();
 #endif
-		game.deinit();
+		game_info.deinit();
 	}
 
 	sys.deinit();
@@ -313,7 +314,7 @@ int main(int argc, char **argv)
 
 static void extra_error_handler()
 {
-	if( game.game_mode != GAME_SINGLE_PLAYER )
+	if( game_info.game_mode != GAME_SINGLE_PLAYER )
 		return;
 
 	game_file_array.save_new_game("ERROR.SAV");  // save a new game immediately without prompting menu

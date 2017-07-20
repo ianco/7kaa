@@ -22,7 +22,7 @@
 //Description : Object World
 
 #include <OSYS.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OVGA.h>
 #include <OFONT.h>
 #include <OMOUSE.h>

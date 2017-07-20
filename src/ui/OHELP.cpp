@@ -28,7 +28,7 @@
 #include <OMUSIC.h>
 #include <OFONT.h>
 #include <OINFO.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OUNIT.h>
 #include <OBOX.h>
 #include <OMOUSE.h>

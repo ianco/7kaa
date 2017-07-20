@@ -23,7 +23,8 @@
 
 
 #include <OSYS.h>
-#include <OGAME.h>
+#include <OGAMEMENU.h>
+#include <OGAMEINFO.h>
 #include <OMOUSE.h>
 #include <OMOUSECR.h>
 #include <OVGABUF.h>
@@ -109,7 +110,7 @@ enum {
 #define TUOPTION_ALL           0xffffffff
 
 
-//---------- Begin of function Game::select_scenario ----------//
+//---------- Begin of function GameMenu::select_scenario ----------//
 //
 // Select a scenario. 
 //
@@ -120,7 +121,7 @@ enum {
 // return : <int> >0 - id. of the scenario selected. 
 //                 0 - cancel
 //
-int Game::select_scenario(int scenCount, ScenInfo* scenInfoArray)
+int GameMenu::select_scenario(int scenCount, ScenInfo* scenInfoArray)
 {
 	char* scenFileName;
 	char	pictName[20];
@@ -549,7 +550,7 @@ int Game::select_scenario(int scenCount, ScenInfo* scenInfoArray)
 
 	return retFlag;
 }
-//------------ End of function Game::select_scenario -----------//
+//------------ End of function GameMenu::select_scenario -----------//
 
 
 static void disp_scroll_bar_func(SlideVBar *scroll, int)

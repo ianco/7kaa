@@ -30,7 +30,7 @@
 #include <OIMGRES.h>
 #include <OPOWER.h>
 #include <OWORLD.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OREMOTE.h>
 #include <OANLINE.h>
 #include <OPLANT.h>
@@ -113,7 +113,7 @@ void Town::draw_flag(int absBaseX, int absBaseY)
 
 	flagName[5] = '1' + (char) ((sys.frame_count+town_recno)%8) / 2;
 
-	char* colorRemapTable = game.get_color_remap_table(nation_recno, 0);
+	char* colorRemapTable = game_info.get_color_remap_table(nation_recno, 0);
 
 	int drawX = absBaseX - world.view_top_x + ZOOM_X1 - 9;
 	int drawY = absBaseY - world.view_top_y + ZOOM_Y1 - 97;

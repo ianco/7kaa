@@ -18,11 +18,11 @@
  *
  */
 
-//Filename	  : OGAME.H
-//Description : Header file for Game class
+//Filename	  : OGAMEINFO.H
+//Description : Header file for Game Info class
 
-#ifndef __OGAME_H
-#define __OGAME_H
+#ifndef __OGAMEINFO_H
+#define __OGAMEINFO_H
 
 #include <ALL.h>
 #include <OCONFIG.h>
@@ -84,7 +84,7 @@ struct Location;
 struct NewNationPara;
 
 #pragma pack(1)
-class Game
+class GameInfo
 {
 public:
 	char			init_flag;
@@ -97,34 +97,16 @@ public:
 	ColorRemap	color_remap_array[MAX_COLOR_SCHEME+1];
 
 public:
-	Game();
+	GameInfo();
 
 	int			init(int loadGameCall=0);
 	int 		init_internal(int loadGameCall);
 	void		deinit(int loadGameCall=0);
 
-	void			main_menu();
-   void			in_game_menu();
-	int			in_game_option_menu();
-	void 			game_end(int winNationRecno, int playerDestroyed=0, int surrenderToNationRecno=0, int retireFlag=0);
-
-	int 			select_run_scenario();
-	int 			select_scenario(int scenCount, ScenInfo* scenInfoArray);
-	int 			run_scenario(ScenInfo* scenInfo);
-
-	void 			demo_disp_ad_page();
-	void			demo_disp_logo();
-
-	void 			mp_broadcast_setting();
-
 	char*			get_color_remap_table(int nationRecno, int selectedFlag);
 	// ###### begin Gilbert 24/10 #######//
 	static void	disp_gen_map_status( int curStep, int maxStep, int section );
 	// ###### end Gilbert 24/10 #######//
-
-	// ###### begin Gilbert 13/2 #######//
-	void 			multi_player_menu(int lobbied, char *game_host);
-	// ###### end Gilbert 13/2 #######//
 
 	int 			write_file(File* filePtr);
 	int			read_file(File* filePtr);
@@ -132,36 +114,10 @@ public:
 private:
 	void			init_remap_table();
 
-	void			disp_version();
-	void			run_main_menu_option(int);
-	void 			single_player_menu();
-//	void 			multi_player_menu();
-
-	void			single_player_game(int);
-	void			multi_player_game(int lobbied, char *game_host);
-	void			test_game();
-	void			load_mp_game(char *saveFileName, int lobbied, char *game_host);
-	void			view_encyclopedia();
-	void			view_credits();
-
-	int			input_box(const char *tell_string, char *buf, int len, char hide_input=0);
-	int			input_name_pass(const char *txt[], char *name, int name_len, char *pass, int pass_len);
-
-	//------- multiplayer game functions -------//
-
-	int 			mp_select_mode(char *saveGameName, int service_mode);
-	int			mp_get_leader_board();
-	int			mp_join_session(int session_id);
-	void			mp_close_session();
-	int			mp_select_option(NewNationPara*, int*);
-	int			mp_select_service();
-	int			mp_select_session();
-	void			mp_disp_players();
-	int			mp_select_load_option(char *);
 };
 #pragma pack()
 
-extern Game game;
+extern GameInfo game_info;
 extern char game_demo_mode, game_design_mode;
 
 //-------------------------------------//

@@ -32,7 +32,7 @@
 #include <OBUTT3D.h>
 #include <OPOWER.h>
 #include <OUNIT.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OSYS.h>
 #include <ONATION.h>
 #include <OF_WAR.h>

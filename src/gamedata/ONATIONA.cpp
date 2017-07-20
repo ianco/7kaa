@@ -23,7 +23,7 @@
 
 #include <COLOR.h>
 #include <OPOWER.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OF_CAMP.h>
 #include <OUNIT.h>
 #include <OINFO.h>

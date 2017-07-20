@@ -32,7 +32,7 @@
 #include <OFONT.h>
 #include <OMOUSE.h>
 #include <OVBROWIF.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <ONATION.h>
 #include <OBUTT3D.h>
 #include <OIMGRES.h>
@@ -642,7 +642,7 @@ void Town::disp_basic_info(int refreshFlag)
 
 			char *nationPict = image_button.get_ptr("V_COLCOD");
 
-			vga_front.put_bitmap_trans_remap_decompress(INFO_X1+3, INFO_Y1+2, nationPict, game.get_color_remap_table(nation_recno, 0) );
+			vga_front.put_bitmap_trans_remap_decompress(INFO_X1+3, INFO_Y1+2, nationPict, game_info.get_color_remap_table(nation_recno, 0) );
 		}
 		else
 		{

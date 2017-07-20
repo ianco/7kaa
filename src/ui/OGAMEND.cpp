@@ -34,7 +34,8 @@
 #include <OMOUSE.h>
 #include <OIMGRES.h>
 #include <ORACERES.h>
-#include <OGAME.h>
+#include <OGAMEMENU.h>
+#include <OGAMEINFO.h>
 #include <OGFILE.h>
 #include <ONATION.h>
 #include <OMOUSECR.h>
@@ -62,7 +63,7 @@ static void put_stat(int y, const char* desStr, int dispValue);
 static void put_ranking(int y, int nationRecno);
 
 
-//---------- Begin of function Game::game_end --------//
+//---------- Begin of function GameMenu::game_end --------//
 //
 // <int> winNationRecno - the recno of the nation that won the game.
 //								  0 - if you are just defeated or surrender
@@ -73,11 +74,11 @@ static void put_ranking(int y, int nationRecno);
 // [int] surrenderToNationRecno - the nation your surrender to.
 // [int] retireFlag		 - 1 if the player retires
 //
-void Game::game_end(int winNationRecno, int playerDestroyed, int surrenderToNationRecno, int retireFlag)
+void GameMenu::game_end(int winNationRecno, int playerDestroyed, int surrenderToNationRecno, int retireFlag)
 {
 	//--- skip all game ending screens if in demo mode ---//
 
-	if( game_mode == GAME_DEMO )
+	if( game_info.game_mode == GAME_DEMO )
 	{
 		sys.signal_exit_flag = 2;
 		return;
@@ -85,7 +86,7 @@ void Game::game_end(int winNationRecno, int playerDestroyed, int surrenderToNati
 
 	//--- if the player has already won/lost the game and is just staying/observing the game ---//
 
-	if( game_has_ended && !retireFlag )		// don't repeat displaying the winning/losing screen
+	if( game_info.game_has_ended && !retireFlag )		// don't repeat displaying the winning/losing screen
 		return;
 
 	// ------ quit any menu mode ------//
@@ -175,7 +176,7 @@ void Game::game_end(int winNationRecno, int playerDestroyed, int surrenderToNati
 
 	//--- if the player has managed to get into the hall of fame ---//
 
-	if( !game_has_ended )
+	if( !game_info.game_has_ended )
 	{
 		if( !game_file_array.add_hall_of_fame(totalScore) )
 			vga_util.finish_disp_image_file();		// if add_hall_of_fame() has displayed the bitmap, it should have called vga_util.finish_disp_image_file() already
@@ -188,7 +189,7 @@ void Game::game_end(int winNationRecno, int playerDestroyed, int surrenderToNati
 	//--------- set game_has_ended to 1 --------//
 
 	music.stop();
-	game_has_ended = 1;
+	game_info.game_has_ended = 1;
 
 	//----------- reset all goals -----------//
 
@@ -245,7 +246,7 @@ void Game::game_end(int winNationRecno, int playerDestroyed, int surrenderToNati
 		}
 	}
 }
-//----------- End of function Game::game_end ---------//
+//----------- End of function GameMenu::game_end ---------//
 
 
 //----------- Begin of static function disp_goal_str -----------//

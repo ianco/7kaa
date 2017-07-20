@@ -22,7 +22,7 @@
 //Description: God Unit
 
 #include <OSYS.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OBUTT3D.h>
 #include <OGODRES.h>
 #include <OF_BASE.h>
@@ -60,7 +60,7 @@ void UnitGod::pre_process()
 {
 	Unit::pre_process();
 
-	if( game.game_mode == GAME_TEST )
+	if( game_info.game_mode == GAME_TEST )
 		return;
 
 	//---- set force_move_flag to 1 if the god does not have the ability to attack ----//
@@ -112,7 +112,7 @@ int UnitGod::process_attack()
 	if( !Sprite::process_attack() )		// return 1 if the unit just finished its current attack
 		return 0;
 
-	if( game.game_mode == GAME_TEST )
+	if( game_info.game_mode == GAME_TEST )
 		return 1;
 
 	//-*********** simulate aat ************-//
@@ -145,7 +145,7 @@ void UnitGod::disp_info(int refreshFlag)
 	if( !is_own() )
 		return;
 
-	if( game.game_mode == GAME_TEST )
+	if( game_info.game_mode == GAME_TEST )
 		return;
 
 	if( god_res[god_id]->can_cast_power )
@@ -226,7 +226,7 @@ void UnitGod::detect_info()
 	if( !is_own() )
 		return;
 
-	if( game.game_mode == GAME_TEST )
+	if( game_info.game_mode == GAME_TEST )
 		return;
 
 	if( god_res[god_id]->can_cast_power )

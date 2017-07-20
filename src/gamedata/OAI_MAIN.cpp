@@ -24,7 +24,7 @@
 #include <OSYS.h>
 #include <ONATION.h>
 #include <OWORLD.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OSPY.h>
 #include <OCONFIG.h>
 #include <OUNIT.h>
@@ -45,7 +45,7 @@ void Nation::process_ai()
 #endif
 	//-*********** simulate aat ************-//
 
-	if( config.disable_ai_flag || game.game_mode == GAME_TEST )
+	if( config.disable_ai_flag || game_info.game_mode == GAME_TEST )
 		return;
 
 	//---- if the king has just been killed ----//
@@ -113,7 +113,7 @@ void Nation::process_ai()
 	//
 	//-------------------------//
 
-	if( game.game_mode == GAME_TUTORIAL )
+	if( game_info.game_mode == GAME_TUTORIAL )
 	{
 		if( cash < 100 )
 			add_cheat( (float)200+misc.random(500) );
@@ -177,7 +177,7 @@ void Nation::process_ai_main()
 
 	int intervalDays = intervalDaysArray[config.ai_aggressiveness-OPTION_LOW];
 
-	if( game.game_mode == GAME_TUTORIAL )
+	if( game_info.game_mode == GAME_TUTORIAL )
 		intervalDays = 120;
 
 	switch( (info.game_date-nation_recno*4) % intervalDays )

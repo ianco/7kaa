@@ -33,7 +33,7 @@
 #include <OUNITALL.h>
 #include <OWORLD.h>
 #include <OCONFIG.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OANLINE.h>
 #include <OFONT.h>
 #include <CRC.h>
@@ -281,7 +281,7 @@ void UnitArray::draw_dot()
 	{
 		if( i == 0 || !nation_array.is_deleted(i) )
 		{
-			char *remapTable = game.get_color_remap_table(i, 0);
+			char *remapTable = game_info.get_color_remap_table(i, 0);
 			excitedColorArray[i][0] = remapTable[0xe0];
 			excitedColorArray[i][1] = remapTable[0xe1];
 			excitedColorArray[i][2] = remapTable[0xe2];

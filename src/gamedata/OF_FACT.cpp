@@ -26,7 +26,7 @@
 #include <vga_util.h>
 #include <OSTR.h>
 #include <OUNIT.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OFONT.h>
 #include <OMOUSE.h>
 #include <OBUTT3D.h>

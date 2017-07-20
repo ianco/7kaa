@@ -26,7 +26,7 @@
 #include <stdlib.h>
 
 #include <ALL.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OVGA.h>
 #include <OTERRAIN.h>
 #include <OWORLD.h>
@@ -46,7 +46,7 @@ void World::generate_map()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
 		vga_front.unlock_buf();
 	}
 
@@ -94,7 +94,7 @@ void World::generate_map()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
 		vga_front.unlock_buf();
 	}
 
@@ -171,7 +171,7 @@ void World::generate_map()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
 		vga_front.unlock_buf();
 	}
 	// ###### end Gilbert 27/8 ########//
@@ -188,7 +188,7 @@ void World::generate_map()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
 		vga_front.unlock_buf();
 	}
 
@@ -207,7 +207,7 @@ void World::generate_map()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
 		vga_front.unlock_buf();
 	}
 
@@ -216,7 +216,7 @@ void World::generate_map()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
 		vga_front.unlock_buf();
 	}
 
@@ -225,7 +225,7 @@ void World::generate_map()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
 		vga_front.unlock_buf();
 	}
 
@@ -238,7 +238,7 @@ void World::generate_map()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
 		vga_front.unlock_buf();
 	}
 
@@ -247,7 +247,7 @@ void World::generate_map()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
 		vga_front.unlock_buf();
 	}
 
@@ -256,7 +256,7 @@ void World::generate_map()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
 		vga_front.unlock_buf();
 	}
 
@@ -266,7 +266,7 @@ void World::generate_map()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
 		vga_front.unlock_buf();
 	}
 
@@ -275,7 +275,7 @@ void World::generate_map()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
 		vga_front.unlock_buf();
 	}
 
@@ -284,7 +284,7 @@ void World::generate_map()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
 		vga_front.unlock_buf();
 	}
 
@@ -293,7 +293,7 @@ void World::generate_map()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
 		vga_front.unlock_buf();
 	}
 
@@ -302,7 +302,7 @@ void World::generate_map()
 	if( dispProgress )
 	{
 		vga_front.lock_buf();
-		game.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
+		game_info.disp_gen_map_status( curGenMapSteps, maxGenMapSteps, 0 );
 		vga_front.unlock_buf();
 	}
 

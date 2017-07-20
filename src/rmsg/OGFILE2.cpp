@@ -28,7 +28,7 @@
 #include <OBULLET.h>
 #include <OFIRM.h>
 #include <OFIRMDIE.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OGFILE.h>
 #include <OGODRES.h>
 #include <OINFO.h>
@@ -308,7 +308,7 @@ int GameFile::write_file_2(File* filePtr)
 {
 	write_book_mark( BOOK_MARK+101 );
 
-	if( !game.write_file(filePtr) )
+	if( !game_info.write_file(filePtr) )
 		return 0;
 
 	write_book_mark( BOOK_MARK+102 );
@@ -534,7 +534,7 @@ int GameFile::read_file_2(File* filePtr)
 	if( !read_book_mark( BOOK_MARK+101 ) )
 		return 0;
 
-	if( !game.read_file(filePtr) )
+	if( !game_info.read_file(filePtr) )
 		return 0;
 
 	if( !read_book_mark( BOOK_MARK+102 ) )
@@ -1126,23 +1126,23 @@ int MonsterRes::read_file(File* filePtr)
 
 //***//
 
-//-------- Start of function Game::write_file -------------//
+//-------- Start of function GameInfo::write_file -------------//
 //
-int Game::write_file(File* filePtr)
+int GameInfo::write_file(File* filePtr)
 {
-	return filePtr->file_write( this, sizeof(Game) );
+	return filePtr->file_write( this, sizeof(GameInfo) );
 }
-//--------- End of function Game::write_file ---------------//
+//--------- End of function GameInfo::write_file ---------------//
 
 
-//-------- Start of function Game::read_file -------------//
+//-------- Start of function GameInfo::read_file -------------//
 //
-int Game::read_file(File* filePtr)
+int GameInfo::read_file(File* filePtr)
 {
 	MSG(__FILE__":%d: file_read(this, ...);\n", __LINE__);
-	return filePtr->file_read( this, sizeof(Game) );
+	return filePtr->file_read( this, sizeof(GameInfo) );
 }
-//--------- End of function Game::read_file ---------------//
+//--------- End of function GameInfo::read_file ---------------//
 
 //***//
 

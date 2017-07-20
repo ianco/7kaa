@@ -43,7 +43,8 @@
 #include <OFIRM.h>
 #include <OFLAME.h>
 #include <OFONT.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
+#include <OGAMEMENU.h>
 #include <OGAMESET.h>
 #include <OGFILE.h>
 #include <OGODRES.h>

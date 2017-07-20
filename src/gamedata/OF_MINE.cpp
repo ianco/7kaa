@@ -29,7 +29,7 @@
 #include <ONEWS.h>
 #include <OUNIT.h>
 #include <ORACERES.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OWORLD.h>
 #include <ONATION.h>
 #include <OSITE.h>

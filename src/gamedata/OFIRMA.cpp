@@ -26,7 +26,7 @@
 #include <OPOWER.h>
 #include <ONATION.h>
 #include <OSYS.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OTOWN.h>
 #include <OINFO.h>
 #include <OFIRMRES.h>
@@ -178,7 +178,7 @@ int FirmArray::build_firm(int xLoc, int yLoc, int nationRecno, int firmId, char*
 // create_firm() will be called directly by :
 //
 // 1. FirmArray::build_firm()  for setting up a new firm
-// 2. FirmArray::read_file() when loading game.
+// 2. FirmArray::read_file() when loading game
 //
 // <int> firmId = firm type id
 //
@@ -527,7 +527,7 @@ void FirmArray::draw_dot()
 	{
 		if( i == 0 || !nation_array.is_deleted(i) )
 		{
-			char *remapTable = game.get_color_remap_table(i, 0);
+			char *remapTable = game_info.get_color_remap_table(i, 0);
 			excitedColorArray[i][0] = remapTable[0xe0];
 			excitedColorArray[i][1] = remapTable[0xe1];
 			excitedColorArray[i][2] = remapTable[0xe2];

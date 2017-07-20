@@ -42,7 +42,7 @@
 #include <OBOX.h>
 #include <OFONT.h>
 #include <OINFO.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OGAMESET.h>
 #include <OGFILE.h>
 #include <OBUTT3D.h>
@@ -174,7 +174,7 @@ int GameFileArray::menu(int actionMode, int *recno)
 	{
 		// copy or restore screen to back buffer
 		int scrnX1, scrnY1, scrnX2, scrnY2;
-		if( game.game_mode==GAME_PREGAME )	  // called from the main menu, not in the game
+		if( game_info.game_mode==GAME_PREGAME )	  // called from the main menu, not in the game
 		{
 			scrnX1 = FILE_MAIN_MENU_X1;
 			scrnY1 = FILE_MAIN_MENU_Y1;
@@ -243,7 +243,7 @@ int GameFileArray::menu(int actionMode, int *recno)
 
 	//-------------------------------------//
 
-	if( game.game_mode==GAME_PREGAME )	  // called from the main menu, not in the game
+	if( game_info.game_mode==GAME_PREGAME )	  // called from the main menu, not in the game
 	{
 		menu_x1 = FILE_MAIN_MENU_X1;
 		menu_y1 = FILE_MAIN_MENU_Y1;

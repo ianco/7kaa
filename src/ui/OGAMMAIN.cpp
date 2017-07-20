@@ -34,7 +34,8 @@
 #include <OBATTLE.h>
 #include <OGFILE.h>
 #include <OMUSIC.h>
-#include <OGAME.h>
+#include <OGAMEMENU.h>
+#include <OGAMEINFO.h>
 #include <OVGALOCK.h>
 #include "gettext.h"
 
@@ -54,9 +55,9 @@ struct OptionInfo
 
 enum { SWORD1_X = 258, SWORD1_Y = 194 };
 
-//---------- Begin of function Game::main_menu ----------//
+//---------- Begin of function GameMenu::main_menu ----------//
 //
-void Game::main_menu()
+void GameMenu::main_menu()
 {
 	enum { MAIN_OPTION_COUNT = 6 };
 
@@ -84,7 +85,7 @@ void Game::main_menu()
 
 	// ###### begin Gilbert 25/9 #######//
 #ifdef DISABLE_MULTI_PLAYER
-	// disable multiplayer game, Game::multi_player_menu is disabled
+	// disable multiplayer game, GameMenu::multi_player_menu is disabled
 	main_option_flag[1] = 0;
 #endif
 	// ###### end Gilbert 25/9 #######//
@@ -106,7 +107,7 @@ void Game::main_menu()
 
 	while(1)
 	{
-		game_mode = GAME_PREGAME;
+		game_info.game_mode = GAME_PREGAME;
 
 		//------- Display game title and paint menu box --------//
 
@@ -280,14 +281,14 @@ void Game::main_menu()
 	//--------------------------------------//
 
 }
-//------------ End of function Game::main_menu -----------//
+//------------ End of function GameMenu::main_menu -----------//
 
 
-//-------- Begin of function Game::run_main_menu_option --------//
+//-------- Begin of function GameMenu::run_main_menu_option --------//
 //
 // Run the selected game option.
 //
-void Game::run_main_menu_option(int optionId)
+void GameMenu::run_main_menu_option(int optionId)
 {
 	//------- Single Player Game -------//
 
@@ -301,7 +302,7 @@ void Game::run_main_menu_option(int optionId)
 	if( optionId==2 )
 	{
 #ifndef DISABLE_MULTI_PLAYER
-		game_mode = GAME_MULTI_PLAYER;
+		game_info.game_mode = GAME_MULTI_PLAYER;
 		multi_player_menu(0, NULL);
 		// multi_player_game();
 #endif
@@ -311,7 +312,7 @@ void Game::run_main_menu_option(int optionId)
 
 	if( optionId==3 )
 	{
-		game_mode = GAME_ENCYCLOPEDIA;
+		game_info.game_mode = GAME_ENCYCLOPEDIA;
 		view_encyclopedia();
 	}
 
@@ -329,12 +330,12 @@ void Game::run_main_menu_option(int optionId)
 	{
 		if( misc.is_file_exist("TESTING2.SYS") )
 		{
-			game_mode = GAME_TEST;          // testing game instead
+			game_info.game_mode = GAME_TEST;          // testing game instead
 			test_game();
 		}
 		else
 		{
-			game_mode = GAME_CREDITS;
+			game_info.game_mode = GAME_CREDITS;
 			view_credits();
 		}
 	}
@@ -347,12 +348,12 @@ void Game::run_main_menu_option(int optionId)
 	}
 	// ####### end Gilbert 7/11 #########//
 }
-//---------- End of function Game::run_main_menu_option ---------//
+//---------- End of function GameMenu::run_main_menu_option ---------//
 
 
 //-------- Begin of static function disp_version --------//
 //
-void Game::disp_version()
+void GameMenu::disp_version()
 {
 	//----------- display version string --------//
 
@@ -383,12 +384,12 @@ void Game::disp_version()
 	else
 		font_news.right_put( VGA_WIDTH-10, VGA_HEIGHT-20, str );
 }
-//---------- End of function Game::disp_version ---------//
+//---------- End of function GameMenu::disp_version ---------//
 
 
-//---------- Begin of function Game::single_player_menu ----------//
+//---------- Begin of function GameMenu::single_player_menu ----------//
 //
-void Game::single_player_menu()
+void GameMenu::single_player_menu()
 {
 	enum { SINGLE_PLAYER_OPTION_COUNT = 5 };
 
@@ -422,7 +423,7 @@ void Game::single_player_menu()
 	};
 #endif
 
-	game_mode = GAME_SINGLE_PLAYER;
+	game_info.game_mode = GAME_SINGLE_PLAYER;
 
 	//------ display the single player menu options ------//
 
@@ -613,12 +614,12 @@ void Game::single_player_menu()
 						if( game_file_array.menu(2) == 1)
 						{
 							battle.run_loaded();
-							deinit();
+							game_info.deinit();
 						}
 						{
 							char signalExitFlagBackup = sys.signal_exit_flag;
 							sys.signal_exit_flag = 2;
-							game.deinit();   // game.deinit() is needed if game_file_array.menu fails
+							game_info.deinit();   // game.deinit() is needed if game_file_array.menu fails
 							sys.signal_exit_flag = signalExitFlagBackup;
 						}
 						break;
@@ -640,29 +641,29 @@ void Game::single_player_menu()
 	if( darkBitmap )
 		mem_del(darkBitmap);
 }
-//------------ End of function Game::single_player_menu -----------//
+//------------ End of function GameMenu::single_player_menu -----------//
 
 
-//-------- Begin of function Game::test_game --------//
+//-------- Begin of function GameMenu::test_game --------//
 //
 // <int> noAI - if there should be no AI in the game.
 //
-void Game::test_game()
+void GameMenu::test_game()
 {
-	init();
+	game_info.init();
 
 	battle.run_test();
 
-	deinit();
+	game_info.deinit();
 }
-//--------- End of function Game::test_game ---------//
+//--------- End of function GameMenu::test_game ---------//
 
 
 #ifndef DISABLE_MULTI_PLAYER
-//---------- Begin of function Game::multi_player_menu ----------//
+//---------- Begin of function GameMenu::multi_player_menu ----------//
 //
 // ####### begin Gilbert 13/2 ########//
-void Game::multi_player_menu(int lobbied, char *game_host)
+void GameMenu::multi_player_menu(int lobbied, char *game_host)
 // ####### end Gilbert 13/2 ########//
 {
 	enum { MULTI_PLAYER_OPTION_COUNT = 5 };
@@ -681,7 +682,7 @@ void Game::multi_player_menu(int lobbied, char *game_host)
 		-1, 1, 1, -1, 1,
 	};
 
-	game_mode = GAME_MULTI_PLAYER;
+	game_info.game_mode = GAME_MULTI_PLAYER;
 
 	//------ display the multi player menu options ------//
 
@@ -860,7 +861,7 @@ void Game::multi_player_menu(int lobbied, char *game_host)
 							{
 								char signalExitFlagBackup = sys.signal_exit_flag;
 								sys.signal_exit_flag = 2;
-								game.deinit();		// game.deinit() is needed if game_file_array.menu fails
+								game_info.deinit();		// game.deinit() is needed if game_file_array.menu fails
 								sys.signal_exit_flag = signalExitFlagBackup;
 							}
 						// ##### end Gilbert 26/8 ######//
@@ -883,6 +884,6 @@ void Game::multi_player_menu(int lobbied, char *game_host)
 	if( darkBitmap )
 		mem_del(darkBitmap);
 }
-//------------ End of function Game::multi_player_menu -----------//
+//------------ End of function GameMenu::multi_player_menu -----------//
 #endif
 

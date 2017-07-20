@@ -31,10 +31,9 @@
 #include <OSYS.h>
 #include <ORES.h>
 #include <OINFO.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OMOUSE.h>
 #include <ONATION.h>
-#include <OGAME.h>
 #include <OHELP.h>
 #include <OFONT.h>
 
@@ -80,7 +79,7 @@ struct FontInfo	// info for each character
 //#ifdef GERMAN
 //#define GERMAN_CHAR_COUNT  	7
 
-//	their DOS ascii characters:			 ü    ä    ß    ö    Ä    Ü    Ö
+//	their DOS ascii characters:			 ï¿½    ï¿½    ï¿½    ï¿½    ï¿½    ï¿½    ï¿½
 //static short german_ascii_array[]  = { 252, 228, 223, 246, 196, 220, 214 };
 //static short german_bmp_id_array[] = { 121, 100,  95, 116, 128, 151, 145 };
 //#endif
@@ -309,7 +308,7 @@ int Font::put(int x,int y,const char* textPtr, char clearBack, int x2 )
 			if( x2 >= 0 && x+NATION_COLOR_BAR_WIDTH-1 > x2 )      // exceed right border x2
 				break;
 
-			char colorCode = game.color_remap_array[textChar-FIRST_NATION_COLOR_CODE_IN_TEXT].main_color;
+			char colorCode = game_info.color_remap_array[textChar-FIRST_NATION_COLOR_CODE_IN_TEXT].main_color;
 
 			nation_array.disp_nation_color(x, y+2, colorCode);
 
@@ -735,7 +734,7 @@ void Font::put_paragraph(int x1, int y1, int x2, int y2, const char *textPtr,
 					if( x2 >= 0 && x+NATION_COLOR_BAR_WIDTH-1 > x2 )      // exceed right border x2
 						break;
 
-					char colorCode = game.color_remap_array[textChar-FIRST_NATION_COLOR_CODE_IN_TEXT].main_color;
+					char colorCode = game_info.color_remap_array[textChar-FIRST_NATION_COLOR_CODE_IN_TEXT].main_color;
 
 					nation_array.disp_nation_color(x, y+2, colorCode);
 

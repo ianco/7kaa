@@ -34,7 +34,8 @@
 #include <ORACERES.h>
 #include <OREMOTE.h>
 #include <OBATTLE.h>
-#include <OGAME.h>
+#include <OGAMEMENU.h>
+#include <OGAMEINFO.h>
 #include <multiplayer.h>
 #ifdef HAVE_LIBCURL
 #include <WebService.h>
@@ -426,8 +427,8 @@ static void pregame_disconnect_handler(DWORD playerId);
 static void ingame_disconnect_handler(DWORD playerId);
 
 /*
-//--------- Begin of function Game::mp_disp_player ---------//
-void Game::mp_disp_players()
+//--------- Begin of function GameMenu::mp_disp_player ---------//
+void GameMenu::mp_disp_players()
 {
 	enum { BUTTON_WIDTH=80, BUTTON_HEIGHT=22, BUTTON_Y_SPACE=26 };
 
@@ -445,17 +446,17 @@ void Game::mp_disp_players()
 	}
 
 }
-//--------- End of function Game::mp_disp_players ---------//
+//--------- End of function GameMenu::mp_disp_players ---------//
 */
 
-//-------- Begin of function Game::mp_broadcast_setting --------//
+//-------- Begin of function GameMenu::mp_broadcast_setting --------//
 //
 // Broadcast the latest game settings from the host to all clients.
 // This function should be called by the host only
 //
 // see also to RemoteMsg::update_game_setting
 //
-void Game::mp_broadcast_setting()
+void GameMenu::mp_broadcast_setting()
 {
 	// send (long) random seed
 	// send (short) no. of nations
@@ -494,7 +495,7 @@ void Game::mp_broadcast_setting()
 
 	remote.send_free_msg(remoteMsg);		// send out the message and free it after finishing sending
 }
-//--------- End of function Game::mp_broadcast_setting ---------//
+//--------- End of function GameMenu::mp_broadcast_setting ---------//
 
 
 //-------- Begin of function pregame_disconnect_handler --------//
@@ -546,7 +547,7 @@ static void ingame_disconnect_handler(DWORD playerId)
 // --------- Begin of static function multi_player_game ----------//
 // avoid creating local variable in this function
 // ###### begin Gilbert 13/2 #######//
-void Game::multi_player_game(int lobbied, char *game_host)
+void GameMenu::multi_player_game(int lobbied, char *game_host)
 // ###### end Gilbert 13/2 #######//
 {
 	sys.is_mp_game = 1;
@@ -798,7 +799,7 @@ void Game::multi_player_game(int lobbied, char *game_host)
 
 	remote.init_receive_queue(1);
 
-	init();
+	game_info.init();
 	remote.handle_vga_lock = 0;	// disable lock handling
 
 	sys.signal_exit_flag = 0; // Richard 24-12-2013: If player tried to exit just as the game loaded, cancel the exit request
@@ -812,14 +813,14 @@ void Game::multi_player_game(int lobbied, char *game_host)
 	ws.deinit();
 #endif
 	mp_obj.deinit();
-	deinit();
+	game_info.deinit();
 }
 // --------- End of static function multi_player_game ----------//
 
 
 // --------- Begin of static function load_mp_game ----------//
 // avoid creating local variable in this function
-void Game::load_mp_game(char *fileName, int lobbied, char *game_host)
+void GameMenu::load_mp_game(char *fileName, int lobbied, char *game_host)
 {
 	sys.is_mp_game = 1;
 	sub_game_mode = 1;
@@ -1076,19 +1077,19 @@ void Game::load_mp_game(char *fileName, int lobbied, char *game_host)
 	ws.deinit();
 #endif
 	mp_obj.deinit();
-	deinit();
+	game_info.deinit();
 }
 // --------- End of static function load_mp_game ----------//
 
 
-//-------- Begin of function Game::mp_select_service --------//
+//-------- Begin of function GameMenu::mp_select_service --------//
 //
 // Select multiplayer mode. Create a new game or connect
 // to an existing game ?
 //
 // return : <int> service selected, starting from 1
 // 
-int Game::mp_select_service()
+int GameMenu::mp_select_service()
 {
 	enum { BUTTON_NUM = 3 };
 	static short buttonX[BUTTON_NUM] = { 171, 171, 171 };
@@ -1234,12 +1235,12 @@ int Game::mp_select_service()
 
 	return choice;
 }
-//--------- End of function Game::mp_select_service ---------//
+//--------- End of function GameMenu::mp_select_service ---------//
 
 
-//-------- Begin of function Game::mp_select_mode --------//
+//-------- Begin of function GameMenu::mp_select_mode --------//
 // return 0 = cancel, 1 = create, 2 = join
-int Game::mp_select_mode(char *defSaveFileName, int service_mode)
+int GameMenu::mp_select_mode(char *defSaveFileName, int service_mode)
 {
 	enum { BUTTON_NUM = 3 };
 	static short buttonX[BUTTON_NUM] = { 171, 171, 171 };
@@ -1512,7 +1513,7 @@ int Game::mp_select_mode(char *defSaveFileName, int service_mode)
 
 	return rc;
 }
-//-------- End of function Game::mp_select_mode --------//
+//-------- End of function GameMenu::mp_select_mode --------//
 
 
 struct InfoBox {
@@ -1560,7 +1561,7 @@ int mp_info_box_detect(InfoBox *info)
 // Display a box to input a string. The buf provided will be used
 // to initialize the field. The user may edit the box as appropriate.
 // The return is 1 when ok is pressed, and 0 when cancel is pressed.
-int Game::input_box(const char *tell_string, char *buf, int len, char hide_input)
+int GameMenu::input_box(const char *tell_string, char *buf, int len, char hide_input)
 {
 	const char *buttonDes1 = _("Ok");
 	const char *buttonDes2 = _("Cancel");
@@ -1657,7 +1658,7 @@ int Game::input_box(const char *tell_string, char *buf, int len, char hide_input
 // Display a two part dialog box, with input for a name and password. The title
 // and field descriptions are provided by the caller using the array txt.
 // The return is 1 when ok is pressed, and 0 when cancel is pressed.
-int Game::input_name_pass(const char *txt[], char *name, int name_len, char *pass, int pass_len)
+int GameMenu::input_name_pass(const char *txt[], char *name, int name_len, char *pass, int pass_len)
 {
 	const char *title = txt[0];
 	const char *inputFieldDes1 = txt[1];
@@ -1789,8 +1790,8 @@ int Game::input_name_pass(const char *txt[], char *name, int name_len, char *pas
 }
 
 
-//-------- Begin of function Game::mp_select_session --------//
-int Game::mp_select_session()
+//-------- Begin of function GameMenu::mp_select_session --------//
+int GameMenu::mp_select_session()
 {
 
 #define SSOPTION_PAGE           0x00000010
@@ -2089,13 +2090,13 @@ exit_poll:
 
 	return choice;
 }
-//-------- End of function Game::mp_select_session --------//
+//-------- End of function GameMenu::mp_select_session --------//
 
 
 // The purpose of this function is to provide an event loop and status dialog
 // for establishing a connection with a game host. This will timeout if no
 // connection is seen for a period of time.
-int Game::mp_join_session(int session_id)
+int GameMenu::mp_join_session(int session_id)
 {
 	Button buttonCancel;
 	int width;
@@ -2209,7 +2210,7 @@ END:
 
 // The purpose of this function is to provide an event loop and status dialog
 // for terminating a session gracefully.
-void Game::mp_close_session()
+void GameMenu::mp_close_session()
 {
 	unsigned int pending;
 	Button buttonCancel;
@@ -2277,7 +2278,7 @@ void Game::mp_close_session()
 }
 
 
-int Game::mp_get_leader_board()
+int GameMenu::mp_get_leader_board()
 {
 	Button buttonCancel;
 	int width;
@@ -2379,9 +2380,9 @@ int Game::mp_get_leader_board()
 #define MGOPTION_ALL            0x7fffffff
 
 
-//-------- Begin of function Game::mp_select_option -----------//
+//-------- Begin of function GameMenu::mp_select_option -----------//
 // return 0 = cancel, 1 = ok
-int Game::mp_select_option(NewNationPara *nationPara, int *mpPlayerCount)
+int GameMenu::mp_select_option(NewNationPara *nationPara, int *mpPlayerCount)
 {
 	const int offsetY = 212;
 	char optionMode = OPTION_BASIC;
@@ -4273,12 +4274,12 @@ int Game::mp_select_option(NewNationPara *nationPara, int *mpPlayerCount)
 	#error
 #endif
 #undef Y_SHIFT_FLAG
-//-------- End of function Game::mp_select_option -----------//
+//-------- End of function GameMenu::mp_select_option -----------//
 
 
-//-------- Begin of function Game::mp_select_load_option -----------//
+//-------- Begin of function GameMenu::mp_select_load_option -----------//
 // return 0 = cancel, 1 = ok
-int Game::mp_select_load_option(char *fileName)
+int GameMenu::mp_select_load_option(char *fileName)
 {
 	const int offsetY = 212;
 	char optionMode = OPTION_BASIC;
@@ -5712,7 +5713,7 @@ int Game::mp_select_load_option(char *fileName)
 	#error
 #endif
 #undef Y_SHIFT_FLAG
-// --------- End of function Game::mp_select_load_option --------- //
+// --------- End of function GameMenu::mp_select_load_option --------- //
 
 
 

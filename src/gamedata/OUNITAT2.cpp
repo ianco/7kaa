@@ -28,7 +28,7 @@
 #include <OBULLET.h>
 #include <OU_MARI.h>
 #include <OFIRM.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OTOWN.h>
 #include <OF_CAMP.h>
 #include <OEFFECT.h>

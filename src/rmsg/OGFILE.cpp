@@ -33,7 +33,7 @@
 #include <ONATION.h>
 #include <OWORLD.h>
 #include <OPOWER.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OTownNetwork.h>
 #include <OINFO.h>
 #include <OGFILE.h>
@@ -78,7 +78,7 @@ int GameFile::save_game(const char* fileName)
 	if (!misc.path_cat(full_path, sys.dir_config, file_name, MAX_PATH))
 	{
 		rc = 0;
-		errStr = _("Path too long to the saved game.");
+		errStr = _("Path too long to the saved game");
 	}
 
 	if( rc )
@@ -207,8 +207,8 @@ int GameFile::load_game(const char *base_path, char* fileName)
 	{
 		config.terrain_set = terrain_set;
 
-		game.deinit(1);		// deinit last game first, 1-it is called during loading of a game
-		game.init(1);			// init game
+		game_info.deinit(1);		// deinit last game first, 1-it is called during loading of a game
+		game_info.init(1);			// init game
 
 		//-------- read in saved game ----------//
 

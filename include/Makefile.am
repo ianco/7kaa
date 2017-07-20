@@ -52,7 +52,8 @@ noinst_HEADERS = \
 	OF_MONS.h \
 	OF_RESE.h \
 	OF_WAR.h \
-	OGAME.h \
+	OGAMEINFO.h \
+	OGAMEMENU.h \
 	OGAMESET.h \
 	OGET.h \
 	OGETA.h \

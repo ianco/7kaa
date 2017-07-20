@@ -37,7 +37,7 @@
 #include <OPOWER.h>
 #include <OREGIONS.h>
 #include <OU_MARI.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <ONATION.h>
 #include <OF_HARB.h>
 #include <OREMOTE.h>

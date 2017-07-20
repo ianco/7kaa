@@ -22,7 +22,7 @@
 //Description : Object Rebel
 
 #include <OPOWER.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OUNIT.h>
 #include <OFIRM.h>
 #include <OTOWN.h>

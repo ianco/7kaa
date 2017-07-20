@@ -36,7 +36,7 @@
 #include <OPOWER.h>
 #include <OUNIT.h>
 #include <OINFO.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OSPY.h>
 #include <ONATION.h>
 #include <ORACERES.h>

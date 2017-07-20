@@ -36,8 +36,8 @@
 #include <ODATE.h>
 #include <OTOWN.h>
 #include <ODATE.h>
-#include <OGAME.h>
-//#include <OGFILE.h>
+#include <OGAMEINFO.h>
+#include <OGAMEMENU.h>
 #include <OPOWER.h>
 #include <OSITE.h>
 #include <OWALLRES.h>
@@ -166,7 +166,7 @@ void Info::deinit()
 
 //------- Begin of function Info::init_random_seed ------//
 //
-// [unsigned] randomSeed - if given, it will be the random seed of the game.
+// [unsigned] randomSeed - if given, it will be the random seed of the game
 //									random seed. otherwise a random seed will be
 //								   picked.
 //								   (default:0)
@@ -247,7 +247,7 @@ void Info::next_day()
 
 	//-------- deadline approaching message -------//
 
-	if( !game.game_has_ended && config.goal_year_limit_flag )
+	if( !game_info.game_has_ended && config.goal_year_limit_flag )
 	{
 		int dayLeft = goal_deadline-game_date;
 		int yearLeft = dayLeft/365;
@@ -256,7 +256,7 @@ void Info::next_day()
 			news_array.goal_deadline( yearLeft, 0 );
 
 		if( dayLeft==0 )		// deadline arrives, everybody loses the game
-			game.game_end(0, 0);
+			game_menu.game_end(0, 0);
 	}
 }
 //---------- End of function Info::next_day --------//

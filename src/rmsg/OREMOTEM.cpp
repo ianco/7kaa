@@ -27,7 +27,8 @@
 #include <OSYS.h>
 #include <ONATION.h>
 #include <OUNIT.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
+#include <OGAMEMENU.h>
 #include <OREMOTE.h>
 #include <OFIRM.h>
 #include <OFIRMALL.h>
@@ -249,7 +250,7 @@ void RemoteMsg::new_nation()
 
 	int nationRecno = nation_array.new_nation( NATION_REMOTE, nationPtr->race_id, nationPtr->color_scheme_id, nationPtr->player_id );
 
-	game.mp_broadcast_setting();
+	game_menu.mp_broadcast_setting();
 }
 //--------- End of function RemoteMsg::new_nation ---------//
 
@@ -323,11 +324,11 @@ void RemoteMsg::update_game_setting()
 //-------- Begin of function RemoteMsg::start_game ---------//
 //
 // The host sends MSG_START_GAME to the clients to notify them
-// to start the game.
+// to start the game
 //
 void RemoteMsg::start_game()
 {
-	game.started_flag = 1;
+	game_info.started_flag = 1;
 }
 //--------- End of function RemoteMsg::start_game ---------//
 

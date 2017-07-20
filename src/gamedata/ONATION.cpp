@@ -24,7 +24,7 @@
 #include <OSYS.h>
 #include <ONATION.h>
 #include <OWORLD.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OSPY.h>
 #include <OCONFIG.h>
 #include <OUNIT.h>

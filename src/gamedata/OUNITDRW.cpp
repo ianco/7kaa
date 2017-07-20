@@ -29,7 +29,7 @@
 #include <OIMGRES.h>
 #include <OPOWER.h>
 #include <OSYS.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <ONATION.h>
 #include <OUNIT.h>
 #include <OCONFIG.h>
@@ -83,7 +83,7 @@ void Unit::draw()
 
 	//------- get the color remap table for this sprite ------//
 
-	char* colorRemapTable = game.get_color_remap_table(nation_recno, 0); 		// selected_flag);
+	char* colorRemapTable = game_info.get_color_remap_table(nation_recno, 0); 		// selected_flag);
 
 	//---- only portion of the sprite is inside the view area ------//
 
@@ -403,7 +403,7 @@ void Unit::draw_outlined()
 
 	//------- get the color remap table for this sprite ------//
 
-	char* colorRemapTable = game.get_color_remap_table(nation_recno, 1);
+	char* colorRemapTable = game_info.get_color_remap_table(nation_recno, 1);
 
 	//---- only portion of the sprite is inside the view area ------//
 

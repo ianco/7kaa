@@ -51,7 +51,7 @@ OGJSONTest::testToJson()
 	new_config_dat_flag = 1;
 	config.init();
 	game_set.init();
-	game.init_internal(FALSE);
+	game_info.init_internal(FALSE);
 
   	// Process & Check
 	json jc = race_res;

@@ -29,7 +29,7 @@
 #include <OMOUSE.h>
 #include <OMUSIC.h>
 #include <OIMGRES.h>
-#include <OGAME.h>
+#include <OGAMEMENU.h>
 
 //------ Declare static functions --------//
 
@@ -41,9 +41,9 @@ static void disp_credits_5();
 static void disp_credits(int y, char** creditNameArray);
 */
 
-//------ Begin of function Game::view_credits ------//
+//------ Begin of function GameMenu::view_credits ------//
 
-void Game::view_credits()
+void GameMenu::view_credits()
 {
 	//----- display the first page ------//
 
@@ -99,7 +99,7 @@ void Game::view_credits()
 
 	vga_util.finish_disp_image_file();
 }
-//------ End of function Game::view_credits ------//
+//------ End of function GameMenu::view_credits ------//
 
 /*
 

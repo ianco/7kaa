@@ -23,7 +23,7 @@
 
 #include <ODATE.h>
 #include <OFONT.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OCONFIG.h>
 #include <OVBROWIF.h>
 #include <ONATION.h>
@@ -108,7 +108,7 @@ void Info::disp_rank(int refreshFlag)
 
 	//------ display goal -------//
 
-	if( !game.game_has_ended )	// if the ending screen has already appeared once, don't display the goal
+	if( !game_info.game_has_ended )	// if the ending screen has already appeared once, don't display the goal
 	{
 		disp_goal();
 		y = NATION_GOAL_Y2+6;
@@ -206,7 +206,7 @@ static void disp_goal()
 {
 	//----- if the ending screen has already appeared once -----//
 
-	if( game.game_has_ended )
+	if( game_info.game_has_ended )
 		return;
 
 	//------------------------------------//

@@ -32,21 +32,22 @@
 #include <ODIR.h>
 #include <OBOX.h>
 #include <OBATTLE.h>
-#include <OGAME.h>
+#include <OGAMEMENU.h>
+#include <OGAMEINFO.h>
 
 //--------- declare static vars ----------//
 
 static void init_scenario_var(ScenInfo* scenInfo);
 static int sort_scenario_func(const void *arg1, const void *arg2);
 
-//---------- Begin of function Game::select_run_scenario ----------//
+//---------- Begin of function GameMenu::select_run_scenario ----------//
 //
 // Select and play a scenario.
 //
 // return : <int> 1 - ok, a scenario is selected and run
 //                0 - cancel
 //
-int Game::select_run_scenario()
+int GameMenu::select_run_scenario()
 {
 	Directory gameDirList[MAX_SCENARIO_PATH];
 	ScenInfo* scenInfoArray = NULL;
@@ -124,14 +125,14 @@ int Game::select_run_scenario()
 
 	return rc;
 }
-//------------ End of function Game::select_run_scenario -----------//
+//------------ End of function GameMenu::select_run_scenario -----------//
 
 
-//---------- Begin of function Game::run_scenario ----------//
+//---------- Begin of function GameMenu::run_scenario ----------//
 //
 // <ScenInfo*> scenInfo - the pointer to ScenInfo of the selected scenario
 //
-int Game::run_scenario(ScenInfo* scenInfo)
+int GameMenu::run_scenario(ScenInfo* scenInfo)
 {
 	String str;
 
@@ -162,13 +163,13 @@ int Game::run_scenario(ScenInfo* scenInfo)
 
 			battle.run_loaded();
 		}
-		game.deinit();
+		game_info.deinit();
 		return 1;
 	}
 
 	return 0;
 }
-//------------ End of function Game::run_scenario -----------//
+//------------ End of function GameMenu::run_scenario -----------//
 
 
 //-------- Start of function init_scenario_var ----------//

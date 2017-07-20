@@ -31,7 +31,7 @@
 #include <OFIRM.h>
 #include <OSYS.h>
 #include <OPOWER.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OWORLD.h>
 #include <OTERRAIN.h>
 

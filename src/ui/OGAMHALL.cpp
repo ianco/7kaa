@@ -31,7 +31,7 @@
 #include <OMOUSE.h>
 #include <OIMGRES.h>
 #include <ORACERES.h>
-#include <OGAME.h>
+#include <OGAMEMENU.h>
 #include <ONATION.h>
 #include <OGFILE.h>
 #include "gettext.h"

@@ -28,7 +28,7 @@
 #include <ONATION.h>
 #include <OU_MARI.h>
 #include <OSPY.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OTOWN.h>
 #include <OF_CAMP.h>
 #include <OF_MONS.h>
@@ -951,7 +951,7 @@ int Unit::nation_can_attack(short nationRecno)
 	if(!ai_unit)
 	{
 		//return 1;
-		if( game.game_mode == GAME_TEST )	// in testing games, player units can attack their own units
+		if( game_info.game_mode == GAME_TEST )	// in testing games, player units can attack their own units
 			return 1;
 		else
 			return nationRecno!=nation_recno; // able to attack all nation except our own nation

@@ -29,7 +29,7 @@
 #include <OINFO.h>
 #include <ORAWRES.h>
 #include <OPOWER.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OANLINE.h>
 #include <OIMGRES.h>
 #include <OWORLD.h>
@@ -131,7 +131,7 @@ void Firm::draw_full_size(int displayLayer)
 
 	//------- get the color remap table for this bitmap ------//
 
-	char* colorRemapTable = game.get_color_remap_table(nation_recno, firm_array.selected_recno == firm_recno);
+	char* colorRemapTable = game_info.get_color_remap_table(nation_recno, firm_array.selected_recno == firm_recno);
 
 	// ######## begin Gilbert 29/10 #######//
 	// ------ draw flags behind the building -------//
@@ -283,7 +283,7 @@ void Firm::draw_frame(int frameId, int displayLayer)
 	int firstBitmap = firmBuild->first_bitmap(frameId);
 	int bitmapCount = firmBuild->bitmap_count(frameId);
 
-	char* colorRemapTable = game.get_color_remap_table(nation_recno, firm_array.selected_recno==firm_recno);
+	char* colorRemapTable = game_info.get_color_remap_table(nation_recno, firm_array.selected_recno==firm_recno);
 
 	for( i=0, bitmapRecno=firstBitmap ; i<bitmapCount ; i++, bitmapRecno++ )
 	{

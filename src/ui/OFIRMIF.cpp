@@ -41,7 +41,7 @@
 #include <OFIRM.h>
 #include <OREMOTE.h>
 #include <OIMGRES.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OSYS.h>
 #include "gettext.h"
 
@@ -210,7 +210,7 @@ void Firm::disp_basic_info(int dispY1, int refreshFlag)
 
 			char *nationPict = image_button.get_ptr("V_COLCOD");
 
-			vga_front.put_bitmap_remap(INFO_X1+3, dispY1+2, nationPict, game.get_color_remap_table(nation_recno, 0) );
+			vga_front.put_bitmap_remap(INFO_X1+3, dispY1+2, nationPict, game_info.get_color_remap_table(nation_recno, 0) );
 		}
 		else
 		{

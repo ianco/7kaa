@@ -30,7 +30,7 @@
 #include <OMOUSE.h>
 #include <OHELP.h>
 #include <OVBROWIF.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OTOWN.h>
 #include <OBUTT3D.h>
 #include <ONATION.h>

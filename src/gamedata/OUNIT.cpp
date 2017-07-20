@@ -32,7 +32,7 @@
 #include <ONATION.h>
 #include <OFONT.h>
 #include <OBULLET.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OTOWN.h>
 #include <ORACERES.h>
 #include <ORAWRES.h>
@@ -1647,7 +1647,7 @@ void Unit::change_nation(int newNationRecno)
 //
 void Unit::pay_expense()
 {
-   if( game.game_mode == GAME_TEST )      // no deduction in testing game
+   if( game_info.game_mode == GAME_TEST )      // no deduction in testing game
       return;
 
    if( !nation_recno )

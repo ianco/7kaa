@@ -25,7 +25,7 @@
 #include <ALL.h>
 #include <OWORLD.h>
 #include <OF_HARB.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <ONATION.h>
 #include <OU_MARI.h>
 #include <OSPATH.h>

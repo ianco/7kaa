@@ -33,7 +33,7 @@
 #include <OBUTTON.h>
 #include <OBUTT3D.h>
 #include <OGFILE.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OGAMESET.h>
 #include <OWORLD.h>
 #include <OFILETXT.h>
@@ -418,14 +418,14 @@ void Tutor::run(int tutorId, int inGameCall)
 
 	tutor.load(tutorId);			
 
-	game.game_mode = GAME_TUTORIAL;
+	game_info.game_mode = GAME_TUTORIAL;
 
 	//------------------------------------------//
 
 	if( !inGameCall )
 	{
 		battle.run_loaded();
-		game.deinit();
+		game_info.deinit();
 	}
 }
 //----------- End of function Tutor::run ------------//
@@ -564,7 +564,7 @@ int Tutor::detect()
 	if( button_quit_tutor.detect() )
 	{
 		stop_speech();
-		game.game_mode = GAME_SINGLE_PLAYER;
+		game_info.game_mode = GAME_SINGLE_PLAYER;
 		return 1;
 	}
 

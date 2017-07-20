@@ -25,7 +25,7 @@
 #include <OSTR.h>
 #include <OVGA.h>
 #include <OINFO.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <ONATION.h>
 #include <OSPRITE.h>
 #include <OCOLTBL.h>

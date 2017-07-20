@@ -39,7 +39,7 @@
 #include <OFONT.h>
 #include <OSTR.h>
 #include <OVGA.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <ONEWS.h>
 #include <OGAMESET.h>
 #include <OGFILE.h>
@@ -232,7 +232,7 @@ void Sys::deinit()
    if( !init_flag )
       return;
 
-   game.deinit();    // actually game.deinit() will be called by main_win_proc() and calling it here will have no effect
+   game_info.deinit();    // actually game_info.deinit() will be called by main_win_proc() and calling it here will have no effect
 
    deinit_objects();
 
@@ -366,7 +366,7 @@ int Sys::init_objects()
 
    //---------- init other objects ----------//
 
-   game_set.init();     // this must be called before game.init() as game.init() assume game_set has been initialized
+   game_set.init();     // this must be called before game_info.init() as game_info.init() assume game_set has been initialized
    help.init("HELP.RES");
 
    tutor.init();
@@ -1028,7 +1028,7 @@ void Sys::auto_save()
 
 //-------- Begin of function Sys::pause --------//
 //
-// If the game is running, pause the game. For the window manager to pause
+// If the game is running, pause the game  For the window manager to pause
 // the game when focus is lost.
 //
 void Sys::pause()
@@ -1046,7 +1046,7 @@ void Sys::pause()
 
 //-------- Begin of function Sys::unpause --------//
 //
-// If the game is not running, unpause the game. For the window manager to
+// If the game is not running, unpause the game  For the window manager to
 // unpause the game when focus is gained. Will not unpause if the user actually
 // paused the game first.
 //
@@ -1553,7 +1553,7 @@ void Sys::detect_letter_key(unsigned scanCode, unsigned skeyState)
 
       case 'o':
          // ##### begin Gilbert 5/11 #######//
-         // game.in_game_option_menu();
+         // game_menu.in_game_option_menu();
          option_menu.enter(!remote.is_enable());
          // ##### end Gilbert 5/11 #######//
          break;
@@ -1561,12 +1561,12 @@ void Sys::detect_letter_key(unsigned scanCode, unsigned skeyState)
       //--------- forward/backward tutorial text block --------//
 
       case ',':
-         if( game.game_mode == GAME_TUTORIAL )
+         if( game_info.game_mode == GAME_TUTORIAL )
             tutor.prev_text_block();
          break;
 
       case '.':
-         if( game.game_mode == GAME_TUTORIAL )
+         if( game_info.game_mode == GAME_TUTORIAL )
             tutor.next_text_block();
          break;
 
@@ -1698,7 +1698,7 @@ void Sys::detect_function_key(unsigned scanCode, unsigned skeyState)
 
       case KEY_F10:
          // ##### begin Gilbert 5/11 ######//
-         //game.in_game_menu();
+         //game_menu.in_game_menu();
          in_game_menu.enter(!remote.is_enable());
          // ##### end Gilbert 5/11 ######//
          break;

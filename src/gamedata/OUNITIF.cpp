@@ -36,7 +36,7 @@
 #include <OPOWER.h>
 #include <OSPY.h>
 #include <OSYS.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <ONATION.h>
 #include <OWORLD.h>
 #include <OU_VEHI.h>
@@ -320,7 +320,7 @@ void Unit::disp_basic_info(int dispY1, int refreshFlag)
 
 			char *nationPict = image_button.get_ptr("V_COLCOD");
 
-			vga_front.put_bitmap_remap(INFO_X1+3, dispY1+2, nationPict, game.get_color_remap_table(nation_recno, 0) );
+			vga_front.put_bitmap_remap(INFO_X1+3, dispY1+2, nationPict, game_info.get_color_remap_table(nation_recno, 0) );
 		}
 		else
 		{
@@ -695,7 +695,7 @@ void Unit::detect_button()
 		if( ++nationPtr->color_scheme_id > MAX_COLOR_SCHEME )
 			nationPtr->color_scheme_id = 1;
 
-		nationPtr->nation_color	= game.color_remap_array[nationPtr->color_scheme_id-1].main_color;
+		nationPtr->nation_color	= game_info.color_remap_array[nationPtr->color_scheme_id-1].main_color;
 	}
 */
 }
@@ -923,7 +923,7 @@ void Unit::disp_build_menu(int refreshFlag)
 				// button_build_array[firmId-1].paint( x, y, str, "F-DOWN");
 
 				button_build_array[i].paint( x, y, x+99-1, y+60-1,
-					disp_firm_button, ButtonCustomPara( game.get_color_remap_table(nation_recno,0) ,
+					disp_firm_button, ButtonCustomPara( game_info.get_color_remap_table(nation_recno,0) ,
 					(unit_id << 16) + (race_id << 8) + firmId) );
 
 				button_build_flag[i] = 1;

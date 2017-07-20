@@ -32,8 +32,8 @@
 #include <OBUTT3D.h>
 #include <OGET.h>
 #include <OBATTLE.h>
-//#include <OGFILE.h>
-#include <OGAME.h>
+#include <OGAMEMENU.h>
+#include <OGAMEINFO.h>
 #include <OCONFIG.h>
 #include <OMUSIC.h>
 #include <OBUTTCUS.h>
@@ -91,11 +91,11 @@ static char reverse_race_table[MAX_RACE] =		// race translation table
 
 static int	select_option();
 
-//-------- Begin of function Game::single_player_game --------//
+//-------- Begin of function GameMenu::single_player_game --------//
 //
 // <int> noAI - if there should be no AI in the game.
 //
-void Game::single_player_game(int noAI)
+void GameMenu::single_player_game(int noAI)
 {
 	sys.is_mp_game = 0;
 
@@ -107,11 +107,11 @@ void Game::single_player_game(int noAI)
 
 	//------ start single player game ----------//
 
-	init();
+	game_info.init();
 	battle.run(0);			// 0-not multiplayer game
-	deinit();
+	game_info.deinit();
 }
-//--------- End of function Game::single_player_game ---------//
+//--------- End of function GameMenu::single_player_game ---------//
 
 
 

@@ -62,7 +62,7 @@
 // documentation is only for caravans, since the method used for marine is absolutely equilvance.
 //
 // In this version of trading system, the player can only select one trade unit to view the unit detail
-// at any time and there are maximum 7 players in the game.  Thus, an array of size MAX_NATION is used
+// at any time and there are maximum 7 players in the game  Thus, an array of size MAX_NATION is used
 // to store the record number of trade units selected by each players.  A count, mp_selected_caravan_count,
 // is used to count the number of selected units in the array, mp_selected_caravan_recno.
 //

@@ -23,7 +23,7 @@
 
 
 #include <OSYS.h>
-#include <OGAME.h>
+//#include <OGAME.h>
 #include <OMOUSE.h>
 #include <OMOUSECR.h>
 #include <OVGABUF.h>

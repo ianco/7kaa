@@ -132,7 +132,8 @@ Info              info;
 Weather           weather, weather_forecast[MAX_WEATHER_FORECAST];
 MagicWeather      magic_weather;
 Config            config;
-Game              game;
+GameInfo          game_info;
+GameMenu          game_menu;
 GameSet           game_set;         // no constructor
 Battle            battle;
 Power             power;

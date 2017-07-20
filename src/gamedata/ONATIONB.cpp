@@ -30,7 +30,8 @@
 #include <ONEWS.h>
 #include <OWORLD.h>
 #include <OFIRM.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
+#include <OGAMEMENU.h>
 #include <OPOWER.h>
 #include <OREGIONS.h>
 #include <ORACERES.h>
@@ -112,7 +113,7 @@ void NationBase::init(int nationType, int raceId, int colorSchemeId, DWORD playe
 	player_id    	 = playerId;
 
 	colorSchemeId	 = MIN( colorSchemeId, MAX_COLOR_SCHEME );
-	nation_color	 = game.color_remap_array[colorSchemeId].main_color;
+	nation_color	 = game_info.color_remap_array[colorSchemeId].main_color;
 
 	last_war_date   = info.game_date;
 
@@ -278,7 +279,7 @@ void NationBase::init_relation(int relationNationRecno)
 
 	set_relation_should_attack(relationNationRecno, relationNationRecno!=nation_recno, COMMAND_AUTO);
 
-	if( is_ai() && nation_array[relationNationRecno]->is_ai() )		// AI has contact with each other in the beginning of the game.
+	if( is_ai() && nation_array[relationNationRecno]->is_ai() )		// AI has contact with each other in the beginning of the game
 		nationRelation->has_contact = 1;
 	else
 		nationRelation->has_contact = relationNationRecno==nation_recno || config.explore_whole_map;              // if the map is blackened out, no contact in the beginning
@@ -1745,7 +1746,7 @@ void NationBase::surrender(int toNationRecno)
 	//------- if the player surrenders --------//
 
 	if( nation_recno==nation_array.player_recno )
-		game.game_end(0, 1, toNationRecno);
+		game_menu.game_end(0, 1, toNationRecno);
 
 	//--- hand over the entire nation to another nation ---//
 
@@ -1764,7 +1765,7 @@ void NationBase::defeated()
 
 	if( nation_recno == nation_array.player_recno )
 	{
-		game.game_end(0, 1);		// the player lost the game 
+		game_menu.game_end(0, 1);		// the player lost the game 
 	}
 	else	// AI and remote players 
 	{
@@ -1891,7 +1892,7 @@ float NationBase::total_year_trade(int nationRecno)
 
 //---------- Begin of function NationBase::check_win --------//
 //
-// Check if the player has won the game.
+// Check if the player has won the game
 //
 void NationBase::check_win()
 {
@@ -1906,14 +1907,14 @@ void NationBase::check_win()
 
 	//--------------------------------------//
 
-	game.game_end(nation_recno, 0);		// if the player achieves the goal, the player wins, if one of the other kingdoms achieves the goal, it wins.
+	game_menu.game_end(nation_recno, 0);		// if the player achieves the goal, the player wins, if one of the other kingdoms achieves the goal, it wins.
 }
 //----------- End of function NationBase::check_win ---------//
 
 
 //---------- Begin of function NationBase::check_lose --------//
 //
-// Check if the player has lost the game.
+// Check if the player has lost the game
 //
 // If the player still hasn't selected a unit to succeed the
 // died king, declare defeated if the all units are killed.

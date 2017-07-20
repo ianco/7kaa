@@ -25,7 +25,7 @@
 #include <ORAWRES.h>
 #include <ORACERES.h>
 #include <OTOWN.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <ONATION.h>
 #include <OU_CARA.h>
 #include <OWORLD.h>

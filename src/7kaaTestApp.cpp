@@ -24,7 +24,7 @@
 #include <OFIRM.h>
 #include <OFLAME.h>
 #include <OFONT.h>
-#include <OGAME.h>
+//#include <OGAME.h>
 #include <OGAMESET.h>
 #include <OGFILE.h>
 #include <OGODRES.h>

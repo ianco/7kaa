@@ -32,8 +32,8 @@
 #include <OFONT.h>
 #include <OIMGRES.h>
 #include <OINFO.h>
-#include <OGAME.h>
-//#include <OGFILE.h>
+#include <OGAMEMENU.h>
+#include <OGAMEINFO.h>
 #include <ONATION.h>
 #include <OCONFIG.h>
 #include <ORACERES.h>
@@ -79,9 +79,19 @@ static int detect_game_option();
 static int slide_to_percent_volume(int);
 static int percent_to_slide_volume(int);
 
-//------- Begin of function Game::in_game_menu -------//
 
-void Game::in_game_menu()
+//-------- Begin of function GameMenu::GameMenu --------//
+//
+GameMenu::GameMenu()
+{
+	// t.b.d. nothing for now
+}
+//--------- End of function GameMenu::GameMenu ---------//
+
+
+//------- Begin of function GameMenu::in_game_menu -------//
+
+void GameMenu::in_game_menu()
 {
 	int x=GAME_MENU_X1+20, y=GAME_MENU_Y1+17;
 
@@ -149,7 +159,7 @@ void Game::in_game_menu()
 
 	power.win_opened = 0;
 }
-//-------- End of function Game::in_game_menu --------//
+//-------- End of function GameMenu::in_game_menu --------//
 
 // ------- Begin of static function init_game_menu_option_flag -----//
 static void init_game_menu_option_flag()
@@ -234,7 +244,7 @@ static int detect_game_option()
 			if( nation_array.player_recno )		// only when the player's kingdom still exists
 			{
 				if( box.ask("Do you really want to retire?", "Yes", "No", 175, 320) )
-					game.game_end(0, 0, 0, 1);				// 1 - retire
+					game_menu.game_end(0, 0, 0, 1);				// 1 - retire
 			}
 			break;
 
@@ -315,8 +325,8 @@ static void disp_slide_bar(SlideBar *slideBar, int);
 
 
 
-// ---------- begin of function Game::in_game_option_menu ------//
-int Game::in_game_option_menu()
+// ---------- begin of function GameMenu::in_game_option_menu ------//
+int GameMenu::in_game_option_menu()
 {
 	int i;
 	int retFlag = 0;
@@ -618,7 +628,7 @@ int Game::in_game_option_menu()
 
 	return retFlag;
 }
-// ---------- end of function Game::in_game_option_menu ------//
+// ---------- end of function GameMenu::in_game_option_menu ------//
 
 
 // ---------- begin of static function disp_virtual_button -----//
@@ -739,34 +749,3 @@ static int percent_to_slide_volume(int percentVolume)
 }
 
 
-void Game::disp_gen_map_status( int curStep, int maxStep, int section )
-{
-	const int POPUP_WINDOW_WIDTH = 266;
-	const int POPUP_WINDOW_HEIGHT = 149;
-	const int POPUP_WINDOW_X1 = (vga_front.buf_width() - POPUP_WINDOW_WIDTH) / 2;
-	const int POPUP_WINDOW_Y1 = (vga_front.buf_height() - POPUP_WINDOW_HEIGHT) / 2;
-
-	const int BAR_X1 = POPUP_WINDOW_X1 + 46;
-	// ###### begin Gilbert 29/10 ######//
-	const int BAR_Y1 = POPUP_WINDOW_Y1 + 106;
-	// ###### end Gilbert 29/10 ######//
-
-	const int MAX_SECTION = 2;		// section 0 for world.genmap, section 1 for battle.run
-	static int accSectionWeight[MAX_SECTION+1] = { 0, 60, 100 };
-
-	if( section == 0 && curStep == 0)
-	{
-		image_menu.put_front(POPUP_WINDOW_X1, POPUP_WINDOW_Y1, "NEWWORLD");
-	}
-
-	err_when( section < 0 || section >= MAX_SECTION );
-	err_when( curStep < 0 || curStep > maxStep );
-	if( curStep >= 0 && curStep <= maxStep)
-	{
-		float r = float(accSectionWeight[section]) + 
-			float((accSectionWeight[section+1]-accSectionWeight[section]) * curStep) / maxStep;
-		vga_front.indicator(4, BAR_X1, BAR_Y1, r, (float)accSectionWeight[MAX_SECTION], 0);
-	}
-
-	sys.blt_virtual_buf();
-}

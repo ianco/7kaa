@@ -18,8 +18,8 @@
  *
  */
 
-//Filename    : OGAME.CPP
-//Description : Main Game Object
+//Filename    : OGAMEINFO.CPP
+//Description : Main Game Object (re-factored from GameMenu)
 
 #include <ALL.h>
 #include <COLCODE.h>
@@ -49,7 +49,7 @@
 #include <OINFO.h>
 #include <OSPRITE.h>
 #include <OGAMESET.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OREBEL.h>
 #include <OSPY.h>
 #include <OBATTLE.h>
@@ -86,19 +86,19 @@
 //
 //-----------------------------------------------//
 
-//-------- Begin of function Game::Game --------//
+//-------- Begin of function GameInfo::GameInfo --------//
 //
-Game::Game()
+GameInfo::GameInfo()
 {
    init_flag = 0;
    game_mode = GAME_PREGAME;
 
 	init_remap_table();        // initialize color remap table
 }
-//--------- End of function Game::Game ---------//
+//--------- End of function GameInfo::GameInfo ---------//
 
 
-//-------- Begin of function Game::init --------//
+//-------- Begin of function GameInfo::init --------//
 //
 // Note: all functions called in this function cannot call
 //			misc.random(). Otherwise, it will cause random seed
@@ -108,7 +108,7 @@ Game::Game()
 //                      when a game is being loaded
 //                      (default: 0)
 //
-int Game::init(int loadGameCall)
+int GameInfo::init(int loadGameCall)
 {
    if( init_flag )
 		deinit();
@@ -131,9 +131,9 @@ int Game::init(int loadGameCall)
 
 	return iret;
 }
-//--------- End of function Game::init ---------//
+//--------- End of function GameInfo::init ---------//
 
-int Game::init_internal(int loadGameCall)
+int GameInfo::init_internal(int loadGameCall)
 {
 	int originalRandomSeed = misc.get_random_seed();
 
@@ -234,16 +234,16 @@ int Game::init_internal(int loadGameCall)
 
 	return TRUE;
 }
-//--------- End of function Game::init_internal ---------//
+//--------- End of function GameInfo::init_internal ---------//
 
 
-//-------- Begin of function Game::deinit --------//
+//-------- Begin of function GameInfo::deinit --------//
 //
 // [int] loadGameCall - weather this function is called
 //                      when a game is being loaded
 //                      (default: 0)
 //
-void Game::deinit(int loadGameCall)
+void GameInfo::deinit(int loadGameCall)
 {
 	if( !init_flag )
 		return;
@@ -323,12 +323,12 @@ void Game::deinit(int loadGameCall)
 
 	init_flag=0;
 }
-//--------- End of function Game::deinit ---------//
+//--------- End of function GameInfo::deinit ---------//
 
 
-//--------- Begin of function Game::init_remap_table --------//
+//--------- Begin of function GameInfo::init_remap_table --------//
 
-void Game::init_remap_table()
+void GameInfo::init_remap_table()
 {
 	//------------- Define constant ------------//
 
@@ -386,15 +386,15 @@ void Game::init_remap_table()
 //       colorRemap->color_table[FIRST_REMAP_KEY+j] = (char) (remap_method_array[i].secondary_color+j);
    }
 }
-//---------- End of function Game::init_remap_table --------//
+//---------- End of function GameInfo::init_remap_table --------//
 
 
-//--------- Begin of function Game::get_color_remap_table --------//
+//--------- Begin of function GameInfo::get_color_remap_table --------//
 //
 // <int> nationRecno  - 0 for independent nation
 // <int> selectedFlag - whether display outline around the bitmap
 //
-char* Game::get_color_remap_table(int nationRecno, int selectedFlag)
+char* GameInfo::get_color_remap_table(int nationRecno, int selectedFlag)
 {
    ColorRemap* colorRemap;
    char* colorRemapTable;
@@ -441,4 +441,37 @@ char* Game::get_color_remap_table(int nationRecno, int selectedFlag)
 
    return colorRemapTable;
 }
-//--------- End of function Game::get_color_remap_table --------//
+//--------- End of function GameInfo::get_color_remap_table --------//
+
+
+void GameInfo::disp_gen_map_status( int curStep, int maxStep, int section )
+{
+	const int POPUP_WINDOW_WIDTH = 266;
+	const int POPUP_WINDOW_HEIGHT = 149;
+	const int POPUP_WINDOW_X1 = (vga_front.buf_width() - POPUP_WINDOW_WIDTH) / 2;
+	const int POPUP_WINDOW_Y1 = (vga_front.buf_height() - POPUP_WINDOW_HEIGHT) / 2;
+
+	const int BAR_X1 = POPUP_WINDOW_X1 + 46;
+	// ###### begin Gilbert 29/10 ######//
+	const int BAR_Y1 = POPUP_WINDOW_Y1 + 106;
+	// ###### end Gilbert 29/10 ######//
+
+	const int MAX_SECTION = 2;		// section 0 for world.genmap, section 1 for battle.run
+	static int accSectionWeight[MAX_SECTION+1] = { 0, 60, 100 };
+
+	if( section == 0 && curStep == 0)
+	{
+		image_menu.put_front(POPUP_WINDOW_X1, POPUP_WINDOW_Y1, "NEWWORLD");
+	}
+
+	err_when( section < 0 || section >= MAX_SECTION );
+	err_when( curStep < 0 || curStep > maxStep );
+	if( curStep >= 0 && curStep <= maxStep)
+	{
+		float r = float(accSectionWeight[section]) + 
+			float((accSectionWeight[section+1]-accSectionWeight[section]) * curStep) / maxStep;
+		vga_front.indicator(4, BAR_X1, BAR_Y1, r, (float)accSectionWeight[MAX_SECTION], 0);
+	}
+
+	sys.blt_virtual_buf();
+}

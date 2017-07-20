@@ -22,7 +22,7 @@
 //Description : Object TownZone
 
 #include <OVGA.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OINFO.h>
 #include <OTOWN.h>
 #include <OWORLD.h>
@@ -66,7 +66,7 @@ void TownBuild::draw(int townRecno, int absBaseX, int absBaseY)
 
 	Town* townPtr = town_array[townRecno];
 
-	char* colorRemapTable = game.get_color_remap_table(townPtr->nation_recno, town_array.selected_recno==townRecno);
+	char* colorRemapTable = game_info.get_color_remap_table(townPtr->nation_recno, town_array.selected_recno==townRecno);
 
 	//---- only portion of the sprite is inside the view area ------//
 

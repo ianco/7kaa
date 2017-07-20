@@ -26,7 +26,7 @@
 #include <OFIRMRES.h>
 #include <OFIRMDIE.h>
 #include <OGAMESET.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <ORESDB.h>
 #include <ALL.h>
 
@@ -359,7 +359,7 @@ void FirmDie::draw(int displayLayer)
 	int firstBitmap = firmBuild->first_bitmap(frame);
 	int bitmapCount = firmBuild->bitmap_count(frame);
 
-	char* colorRemapTable = game.get_color_remap_table(nation_recno, 0);
+	char* colorRemapTable = game_info.get_color_remap_table(nation_recno, 0);
 
 	for( i=0, bitmapRecno=firstBitmap ; i<bitmapCount ; i++, bitmapRecno++ )
 	{

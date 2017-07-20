@@ -40,7 +40,7 @@
 #include <OREMOTE.h>
 #include <OSPY.h>
 #include <OINFO.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OWORLD.h>
 #include <OSYS.h>
 #include <ORAWRES.h>
@@ -410,7 +410,7 @@ void Sys::detect_button()
 	if( button_menu.detect() )
 	{
 		// ##### begin Gilbert 5/11 #######//
-		// game.in_game_menu();
+		// game_menu.in_game_menu();
 		in_game_menu.enter(!remote.is_enable());
 		// ##### end Gilbert 5/11 #######//
 		return;
@@ -686,7 +686,7 @@ void Sys::update_view()
 
 		//------ display tutorial text -------//
 
-		if( game.game_mode == GAME_TUTORIAL )
+		if( game_info.game_mode == GAME_TUTORIAL )
 			tutor.disp();
 
 		//----------- draw profile information -----------//
@@ -695,7 +695,7 @@ void Sys::update_view()
 		{
 			vga.use_back();
 /*
-			char* germanStr = "d ü    ä    ß    ö    Ä    Ü    Ö";
+			char* germanStr = "d ï¿½    ï¿½    ï¿½    ï¿½    ï¿½    ï¿½    ï¿½";
 
 			vga_back.bar( ZOOM_X1, ZOOM_Y1, ZOOM_X1+300, ZOOM_Y1+150, VGA_LIGHT_GREEN );
 
@@ -863,7 +863,7 @@ void Sys::detect_view()
 
 	//------ detect tutorial controls -------//
 
-	if( view_mode==MODE_NORMAL && game.game_mode==GAME_TUTORIAL )		// tutorial text is only displayed in non-report mode
+	if( view_mode==MODE_NORMAL && game_info.game_mode==GAME_TUTORIAL )		// tutorial text is only displayed in non-report mode
 	{
 		if( tutor.detect() )
 			return;
@@ -1059,7 +1059,7 @@ void Sys::disp_frames_per_second()
 	if( !config.show_ai_info && !sys.disp_fps_flag )// only display this in a debug session
 		return;
 
-	if( game.game_mode == GAME_TUTORIAL )		// don't display in tutorial mode as it overlaps with the tutorial text
+	if( game_info.game_mode == GAME_TUTORIAL )		// don't display in tutorial mode as it overlaps with the tutorial text
 		return;
 
 	//------- get the curren system time ---------//

@@ -23,7 +23,7 @@
 
 #include <OINFO.h>
 #include <OUNIT.h>
-#include <OGAME.h>
+#include <OGAMEINFO.h>
 #include <OFONT.h>
 #include <ONATION.h>
 #include <ORAWRES.h>

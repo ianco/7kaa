@@ -29,7 +29,7 @@
 #include <OMOUSE.h>
 #include <OMOUSECR.h>
 #include <OVGALOCK.h>
-#include <OGAME.h>
+#include <OGAMEMENU.h>
 #include <OMUSIC.h>
 
 //--------- define constant ---------//
@@ -137,9 +137,9 @@ static int detect_sub_class_button(int n, int firstButton=1);
 static void disp_class_buttons();
 static int  disp_picture( int selClass, int selSubClass, int firstDisp=0);
 
-//-------- Begin of function Game::view_encyclopedia ---------//
+//-------- Begin of function GameMenu::view_encyclopedia ---------//
 
-void Game::view_encyclopedia()
+void GameMenu::view_encyclopedia()
 {
 	music.stop();			// no music for encyclopedia as it reads files from the CDROM
 
@@ -315,7 +315,7 @@ void Game::view_encyclopedia()
 		vga.free_custom_palette();
 	}
 }
-//--------- End of function Game::view_encyclopedia ---------//
+//--------- End of function GameMenu::view_encyclopedia ---------//
 
 
 //-------- Begin of static function detect_main_class_button ---------//
