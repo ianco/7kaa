@@ -7,7 +7,6 @@ lib7kaaCore_a_SOURCES = \
 	ODIR.cpp \
 	ODYNARR.cpp \
 	OEFFECT.cpp \
-	OERRCTRL.cpp \
 	OFILE.cpp \
 	OFILETXT.cpp \
 	OLOG.cpp \
