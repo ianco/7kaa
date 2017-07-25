@@ -32,6 +32,7 @@
 #ifdef DEBUG
 #include <OBULLET.h>
 #include <OTORNADO.h>
+#include <OLOG.h>
 
 //### begin alex 3/10 ###//
 static int num_of_unit;
@@ -177,6 +178,7 @@ void SpriteArray::process()
 {
 	#define SYS_YIELD_INTERVAL	20
 	
+	LOG_MSG("Sprite.process()");
 	Sprite* spritePtr;
 	int arraySize = size();
 	if(arraySize<1)
@@ -282,6 +284,7 @@ void SpriteArray::process()
 			case SPRITE_MOVE:
 				#ifdef DEBUG
 					startTime = misc.get_time();
+					LOG_MSG("Sprite process_move()");
 				#endif
 				spritePtr->process_move();
 				#ifdef DEBUG

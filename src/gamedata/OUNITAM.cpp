@@ -34,6 +34,7 @@
 #include <OTERRAIN.h>
 #include <OUNIT.h>
 #include <dbglog.h>
+#include <OLOG.h>
 
 DBGLOG_DEFAULT_CHANNEL(Unit);
 
@@ -129,6 +130,8 @@ static int cal_rectangle_upper_left_y(int refYLoc)
 //
 void UnitArray::move_to(int destXLoc, int destYLoc, int divided, short* selectedUnitArray, int selectedCount, char remoteAction)
 {
+	LOG_MSG("UnitArray.move_to()");
+
 	err_when(destXLoc<0 || destYLoc<0 || destXLoc>MAX_WORLD_X_LOC-1 || destYLoc>MAX_WORLD_Y_LOC-1);
 
 	//-------- if it's a multiplayer game --------//
@@ -146,6 +149,7 @@ void UnitArray::move_to(int destXLoc, int destYLoc, int divided, short* selected
 	}
 	else
 	{
+		LOG_MSG("Local move");
 		err_when( selectedCount > 10000 );		// error
 
 		if(!divided)

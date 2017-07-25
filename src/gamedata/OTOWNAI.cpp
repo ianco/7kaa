@@ -51,25 +51,25 @@ void Town::process_ai()
 	logStr += town_recno;
 	logStr += " nation_recno=";
 	logStr += nation_recno;
-	LOG_MSG(logStr);
+	//LOG_MSG(logStr);
 #endif
 
 	//---- think about cancelling the base town status ----//
 
 	if( info.game_date%30==town_recno%30 )
 	{
-		LOG_MSG(" update_base_town_status");
+		//LOG_MSG(" update_base_town_status");
 		update_base_town_status();
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 	}
 
 	//------ think about granting villagers ---//
 
 	if( info.game_date%30==town_recno%30 )
 	{
-		LOG_MSG(" think_reward");
+		//LOG_MSG(" think_reward");
 		think_reward();
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 	}
 
 	//----- if this town should migrate now -----//
@@ -78,9 +78,9 @@ void Town::process_ai()
 	{
 		if( info.game_date%30==town_recno%30 )
 		{
-			LOG_MSG(" think_ai_migrate");
+			//LOG_MSG(" think_ai_migrate");
 			think_ai_migrate();
-			LOG_MSG(misc.get_random_seed());
+			//LOG_MSG(misc.get_random_seed());
 		}
 
 		return;		// don't do anything else if the town is about to migrate
@@ -91,13 +91,13 @@ void Town::process_ai()
 	if( info.game_date%30==town_recno%30 && !no_neighbor_space &&		// if there is no space in the neighbor area for building a new firm.
 		 population > 1 )
 	{
-		LOG_MSG(" think_build_camp");
+		//LOG_MSG(" think_build_camp");
 		if( think_build_camp() )
 		{
-			LOG_MSG(misc.get_random_seed());
+			//LOG_MSG(misc.get_random_seed());
 			return;
 		}
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 	}
 
 	//----- the following are base town only functions ----//
@@ -109,9 +109,9 @@ void Town::process_ai()
 
 	if( info.game_date%30==(town_recno+15)%30 )
 	{
-		LOG_MSG("think_collect_tax");
+		//LOG_MSG("think_collect_tax");
 		think_collect_tax();
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 	}
 
 	//---- think about scouting in an unexplored map ----//
@@ -125,61 +125,61 @@ void Town::process_ai()
 
 	if( info.game_date%30==town_recno%30 )
 	{
-		LOG_MSG("think_move_between_town");
+		//LOG_MSG("think_move_between_town");
 		think_move_between_town();
-		LOG_MSG(misc.get_random_seed() );
-		LOG_MSG("think_split_town");
+		//LOG_MSG(misc.get_random_seed() );
+		//LOG_MSG("think_split_town");
 		think_split_town();
-		LOG_MSG(misc.get_random_seed() );
+		//LOG_MSG(misc.get_random_seed() );
 	}
 
 	//---- think about attacking firms/units nearby ---//
 
 	if( info.game_date%30==town_recno%30 )
 	{
-		LOG_MSG(" think_attack_nearby_enemy");
+		//LOG_MSG(" think_attack_nearby_enemy");
 		if( think_attack_nearby_enemy() )
 		{
-			LOG_MSG(misc.get_random_seed());
+			//LOG_MSG(misc.get_random_seed());
 			return;
 		}
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 
-		LOG_MSG(" think_attack_linked_enemy");
+		//LOG_MSG(" think_attack_linked_enemy");
 		if( think_attack_linked_enemy() )
 		{
-			LOG_MSG(misc.get_random_seed());
+			//LOG_MSG(misc.get_random_seed());
 			return;
 		}
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 	}
 
 	//---- think about capturing linked enemy firms ----//
 
 	if( info.game_date%60==town_recno%60 )
 	{
-		LOG_MSG(" think_capture_linked_firm");
+		//LOG_MSG(" think_capture_linked_firm");
 		think_capture_linked_firm();
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 	}
 
 	//---- think about capturing enemy towns ----//
 
 	if( info.game_date%120==town_recno%120 )
 	{
-		LOG_MSG(" think_capture_enemy_town");
+		//LOG_MSG(" think_capture_enemy_town");
 		think_capture_enemy_town();
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 	}
 
 	//---- think about using spies on enemies ----//
 
 	if( info.game_date%60==(town_recno+10)%60 )
 	{
-		LOG_MSG(" think_spying_town");
+		//LOG_MSG(" think_spying_town");
 		if( think_spying_town() )
 		{
-			LOG_MSG(misc.get_random_seed());
+			//LOG_MSG(misc.get_random_seed());
 			return;
 		}
 	}
@@ -188,10 +188,10 @@ void Town::process_ai()
 
 	if( info.game_date%60==(town_recno+20)%60 )
 	{
-		LOG_MSG(" think_counter_spy");
+		//LOG_MSG(" think_counter_spy");
 		if( think_counter_spy() )
 		{
-			LOG_MSG(misc.get_random_seed());
+			//LOG_MSG(misc.get_random_seed());
 			return;
 		}
 	}
@@ -201,13 +201,13 @@ void Town::process_ai()
 	if( info.game_date%30==town_recno%30 && !no_neighbor_space &&		// if there is no space in the neighbor area for building a new firm.
 		 population >= 5 )
 	{
-		LOG_MSG(" think_build_market");
+		//LOG_MSG(" think_build_market");
 		if( think_build_market() )
 		{
-			LOG_MSG(misc.get_random_seed());
+			//LOG_MSG(misc.get_random_seed());
 			return;
 		}
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 
 		//--- the following functions will only be called when the nation has at least a mine ---//
 
@@ -222,36 +222,36 @@ void Town::process_ai()
 
       if( ownNation->ai_has_enough_food() )
 		{
-			LOG_MSG(" think_build_research");
+			//LOG_MSG(" think_build_research");
 			if( think_build_research() )
 			{
-				LOG_MSG(misc.get_random_seed());
+				//LOG_MSG(misc.get_random_seed());
 				return;
 			}
-			LOG_MSG(misc.get_random_seed());
+			//LOG_MSG(misc.get_random_seed());
 
-			LOG_MSG(" think_build_war_factory");
+			//LOG_MSG(" think_build_war_factory");
 			if( think_build_war_factory() )
 			{
-				LOG_MSG(misc.get_random_seed());
+				//LOG_MSG(misc.get_random_seed());
 				return;
 			}
-			LOG_MSG(misc.get_random_seed());
+			//LOG_MSG(misc.get_random_seed());
 
-			LOG_MSG(" think_build_base");
+			//LOG_MSG(" think_build_base");
 			if( think_build_base() )
 			{
-				LOG_MSG(misc.get_random_seed());
+				//LOG_MSG(misc.get_random_seed());
 				return;
 			}
-			LOG_MSG(misc.get_random_seed());
+			//LOG_MSG(misc.get_random_seed());
 		}
 
 		//-------- think build inn ---------//
 
-		LOG_MSG(" think_build_inn");
+		//LOG_MSG(" think_build_inn");
 		think_build_inn();
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 	}
 }
 //--------- End of function Town::process_ai ----------//

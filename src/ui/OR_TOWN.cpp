@@ -34,6 +34,8 @@
 #include <OUNIT.h>
 #include <OINFO.h>
 #include "gettext.h"
+#include <OLOG.h>
+
 
 //------------- Define coordinations -----------//
 
@@ -144,9 +146,11 @@ void Info::disp_town(int refreshFlag)
 void Info::detect_town()
 {
    //------- detect the town browser -------//
+	LOG_MSG("begin info.detect_town()");
 
 	if( browse_town.detect() )
 	{
+		LOG_MSG("browse_town.detect()");
 		browse_town_recno = browse_town.recno();
 
 		if( browse_town.double_click )
@@ -159,8 +163,10 @@ void Info::detect_town()
 
 	//------- detect the firm browser -------//
 
-	if( browse_firm.detect() )
+	if( browse_firm.detect() ) {
+		LOG_MSG("browse_firm.detect()");
 		browse_firm_recno = browse_firm.recno();
+	}
 }
 //----------- End of function Info::detect_town -----------//
 

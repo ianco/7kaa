@@ -90,7 +90,6 @@ lib7kaaGameData_a_SOURCES = \
 	OU_CART.cpp \
 	OU_GOD.cpp \
 	OU_MARI.cpp \
-	OU_MARIF.cpp \
 	OU_MARIS.cpp \
 	OU_MARIT.cpp \
 	OU_MONS.cpp \
@@ -114,7 +113,6 @@ lib7kaaGameData_a_SOURCES = \
 	OUNITDRW.cpp \
 	OUNITHB.cpp \
 	OUNITI.cpp \
-	OUNITIF.cpp \
 	OUNITIND.cpp \
 	OUNITM.cpp \
 	OUNITS.cpp \

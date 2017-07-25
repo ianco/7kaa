@@ -191,6 +191,18 @@ char* Remote::new_send_queue_msg(int msgId, int dataSize)
 {
 	char *dataPtr = send_queue[0].reserve(sizeof(short) + sizeof(DWORD) + dataSize);
 
+#if defined(DEBUG) && defined(ENABLE_LOG)
+	String logStr("begin send queue message id:");
+	logStr += (long) msgId;
+	logStr += " of ";
+	logStr += (long) dataSize;
+	if (FIRST_REMOTE_MSG_ID <= msgId && msgId <= LAST_REMOTE_MSG_ID) {
+		logStr += " : ";
+		logStr += msg_names[msgId-FIRST_REMOTE_MSG_ID];
+	}
+	LOG_MSG(logStr);
+#endif                  
+	
 	// ----- put the size of message ------//
 	*(short *)dataPtr = sizeof(DWORD) + dataSize;
 	dataPtr += sizeof(short);
@@ -473,6 +485,11 @@ void Remote::process_receive_queue()
 #if defined(DEBUG) && defined(ENABLE_LOG)
 						String logStr("begin process remote message id:");
 						logStr += (long) remoteMsgPtr->id;
+						if (FIRST_REMOTE_MSG_ID <= remoteMsgPtr->id && remoteMsgPtr->id <= LAST_REMOTE_MSG_ID) {
+							logStr += " (";
+							logStr += msg_names[remoteMsgPtr->id-FIRST_REMOTE_MSG_ID];
+							logStr += ") ";
+						}
 						logStr += " of nation ";
 						logStr += nation_processing;
 						LOG_MSG(logStr);

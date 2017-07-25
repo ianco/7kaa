@@ -56,6 +56,7 @@
 #include <OBLOB.h>
 #include <dbglog.h>
 #include "gettext.h"
+#include <OLOG.h>
 
 
 DBGLOG_DEFAULT_CHANNEL(GameMP);
@@ -621,6 +622,7 @@ void GameMenu::multi_player_game(int lobbied, char *game_host)
 			}
 		}
 
+		LOG_MSG("remote.init() and create_game()");
 		remote.init(&mp_obj);
 		remote.create_game();
 		break;
@@ -693,6 +695,7 @@ void GameMenu::multi_player_game(int lobbied, char *game_host)
 	}
 
 	// config game session ...
+	LOG_MSG("config game session");
 	NewNationPara *nationPara = (NewNationPara *)mem_add(sizeof(NewNationPara)*MAX_NATION);
 	int mpPlayerCount = 0;
 	if( !mp_select_option(nationPara, &mpPlayerCount) )
@@ -734,7 +737,7 @@ void GameMenu::multi_player_game(int lobbied, char *game_host)
 
 //	vga_front.bar(0,0,VGA_WIDTH-1,VGA_HEIGHT-1,V_LIGHT_BLUE);
 //	sys.blt_virtual_buf();
-
+	LOG_MSG("remote.init_start_mp()");
 	remote.init_start_mp();
 
 	// suppose inital sys.frame_count is 1
@@ -757,6 +760,7 @@ void GameMenu::multi_player_game(int lobbied, char *game_host)
 
 	sys_info.signal_exit_flag = 0; // Richard 24-12-2013: If player tried to exit just as the game loaded, cancel the exit request
 
+	LOG_MSG("battle.run()");
 	battle.run(nationPara, mpPlayerCount);
 
 	mem_del(nationPara);
@@ -2341,6 +2345,7 @@ int GameMenu::mp_select_option(NewNationPara *nationPara, int *mpPlayerCount)
 	char optionMode = OPTION_BASIC;
 	char menuTitleBitmap[] = "TOP-NMPG";
 	
+	LOG_MSG("in mp_select_option()");
 	Config tempConfig = config;
 	tempConfig.reset_cheat_setting();
 
@@ -2769,6 +2774,7 @@ int GameMenu::mp_select_option(NewNationPara *nationPara, int *mpPlayerCount)
 		vga_front.lock_buf();
 		// ####### end Gilbert 23/10 #######//
 
+		//LOG_MSG("input loop ...");
 		sys.yield();
 		vga.flip();
 		mouse.get_event();
@@ -3002,6 +3008,7 @@ int GameMenu::mp_select_option(NewNationPara *nationPara, int *mpPlayerCount)
 			music.stop();
 
 		// --------- detect remote message -------//
+		//LOG_MSG("poll_players()");
 		pollStatus = mp_obj.poll_players();
 		if (pollStatus == MP_POLL_LOGIN_FAILED)
 		{
@@ -3894,6 +3901,7 @@ int GameMenu::mp_select_option(NewNationPara *nationPara, int *mpPlayerCount)
 
 		if( readyButton.detect() )
 		{
+			LOG_MSG("readyButton.detect()");
 			mRefreshFlag |= MGOPTION_PLAYERS;
 			for(p = 0; p < regPlayerCount && regPlayerId[p] != mp_obj.get_my_player_id(); ++p);
 			if( p < regPlayerCount )
@@ -3913,8 +3921,11 @@ int GameMenu::mp_select_option(NewNationPara *nationPara, int *mpPlayerCount)
 				}
 			}
 		}
-		if( remote.is_host && startButton.detect() && regPlayerCount >= 2 )
+		// allow a multi player game with 1 player
+		//if( remote.is_host && startButton.detect() && regPlayerCount >= 2 )
+		if( remote.is_host && startButton.detect() && regPlayerCount >= 1 )
 		{
+			LOG_MSG("startButton.detect()");
 			// see if all player is ready
 			short sumBalance = 0;
 			int q;
@@ -3973,7 +3984,7 @@ int GameMenu::mp_select_option(NewNationPara *nationPara, int *mpPlayerCount)
 	// ###### end Gilbert 24/10 #######//
 
 	// ---------- final setup to start multiplayer game --------//
-
+	LOG_MSG("final setup for multi-player game");
 	if( retFlag )
 	{
 		retFlag = 0;

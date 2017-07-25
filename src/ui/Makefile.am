@@ -42,6 +42,8 @@ lib7kaaUI_a_SOURCES = \
 	OTOWNIF.cpp \
 	OTUTOR.cpp \
 	OTUTOR2.cpp \
+	OU_MARIF.cpp \
+	OUNITIF.cpp \
 	OVBROWIF.cpp \
 	OVBROWSE.cpp 
 

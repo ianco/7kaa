@@ -47,6 +47,7 @@
 #include <OSERES.h>
 #include <OBUTTCUS.h>
 #include "gettext.h"
+#include <OLOG.h>
 
 
 //------------- Define coordinations -----------//
@@ -121,6 +122,7 @@ static void i_disp_queue_skill_button(ButtonCustom *button, int);
 //
 void Town::disp_info(int refreshFlag)
 {
+	LOG_MSG("town.disp_info()");
 	if_town_recno = town_recno;
 
 	if( town_recno != last_town_recno ||
@@ -193,6 +195,7 @@ void Town::disp_info(int refreshFlag)
 //
 void Town::detect_info()
 {
+	//LOG_MSG("town.detect_info()");
 	if_town_recno = town_recno;
 
 	switch( town_menu_mode )
@@ -991,6 +994,7 @@ static void i_disp_queue_skill_button(ButtonCustom *button, int repaintBody)
 //
 void Town::detect_train_menu()
 {
+	LOG_MSG("town.detect_train_menu()");
 	int	x=INFO_X1+2, y=INFO_Y1+24, rc, quitFlag;
 
 	for(int b=1; b<=MAX_TRAINABLE_SKILL; ++b)

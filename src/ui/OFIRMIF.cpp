@@ -44,6 +44,7 @@
 #include <OGAMEINFO.h>
 #include <OSYS.h>
 #include "gettext.h"
+#include <OLOG.h>
 
 //---------- Define static variables ------------//
 
@@ -62,6 +63,8 @@ void Firm::disp_info_both(int refreshFlag)
 	static short lastFirmRecno;
 	static char  lastShouldShowInfo;
 	static short lastPlayerSpyCount;
+
+	//LOG_MSG("firm.disp_info_both()");
 
 	//------ check if under_construction has been changed -----//
 
@@ -158,6 +161,8 @@ void Firm::disp_info_both(int refreshFlag)
 //
 void Firm::detect_info_both()
 {
+	LOG_MSG("firm.detect_info_both()");
+
 	if( under_construction )
 		detect_basic_info();
 	else
