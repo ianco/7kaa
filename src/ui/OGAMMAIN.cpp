@@ -39,6 +39,7 @@
 #include <OGAMEINFO.h>
 #include <OVGALOCK.h>
 #include "gettext.h"
+#include <OLOG.h>
 
 #ifdef DEMO
 #define DISABLE_MULTI_PLAYER
@@ -839,10 +840,13 @@ void GameMenu::multi_player_menu(int lobbied, char *game_host)
 				}
 				refreshFlag = 1;
 
+				LOG_MSG("multi-player menu option:");
+
 				switch(i+1)
 				{
 					case 2:
 						// ####### begin Gilbert 13/2 #######//
+						LOG_MSG("multi_player_game()");
 						multi_player_game(lobbied, game_host);
 						// ####### end Gilbert 13/2 #######//
 						break;
@@ -852,10 +856,12 @@ void GameMenu::multi_player_menu(int lobbied, char *game_host)
 						{
 							int loadedRecno = 0;
 							game_file_array.init("*.SVM");
+							LOG_MSG("game_file_array.menu()");
 							if( game_file_array.menu(2, &loadedRecno) == 1 )
 							{
 								err_when( !loadedRecno );
 								// ####### begin Gilbert 13/2 #######//
+								LOG_MSG("load_mp_game()");
 								load_mp_game(game_file_array[loadedRecno]->file_name, lobbied, game_host);
 								// ####### begin Gilbert 13/2 #######//
 							}

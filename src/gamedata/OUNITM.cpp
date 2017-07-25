@@ -382,6 +382,7 @@ void Unit::disable_force_move()
 //
 void Unit::move_to(int destX, int destY, int preserveAction, short searchMode, short miscNo, short numOfPath, short reuseMode, short pathReuseStatus)
 {
+	LOG_MSG("Unit.move_to()");
 	err_when(destX<0 || destX>=MAX_WORLD_X_LOC || destY<0 || destY>=MAX_WORLD_Y_LOC);
 
 	if(!seek_path.total_node_avail)

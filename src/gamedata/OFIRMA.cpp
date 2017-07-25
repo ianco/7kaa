@@ -354,7 +354,7 @@ int FirmArray::process()
 		logStr += firmPtr->firm_recno;
 		logStr += " nation=";
 		logStr += firmPtr->nation_recno;
-		LOG_MSG(logStr);
+		//LOG_MSG(logStr);
 #endif
 
 		//-------- process visibility -----------//
@@ -370,9 +370,9 @@ int FirmArray::process()
 
 		if( firmPtr->under_construction )
 		{
-			LOG_MSG(" process_construction");
+			//LOG_MSG(" process_construction");
 			firmPtr->process_construction();
-			LOG_MSG(misc.get_random_seed());
+			//LOG_MSG(misc.get_random_seed());
 		}
 		else
 		{
@@ -384,9 +384,9 @@ int FirmArray::process()
 				#endif
 				//#### end alex 22/9 ####//
 
-				LOG_MSG(" next_day");
+				//LOG_MSG(" next_day");
 				firmPtr->next_day();
-				LOG_MSG(misc.get_random_seed());
+				//LOG_MSG(misc.get_random_seed());
 
 				//### begin alex 22/9 ###//
 				#ifdef DEBUG
@@ -411,9 +411,9 @@ int FirmArray::process()
 				if( firmPtr->firm_ai )
 				#endif
 				{
-					LOG_MSG(" process_common_ai");
+					//LOG_MSG(" process_common_ai");
 					firmPtr->process_common_ai();
-					LOG_MSG(misc.get_random_seed());
+					//LOG_MSG(misc.get_random_seed());
 
 					//### begin alex 22/9 ###//
 					#ifdef DEBUG
@@ -421,9 +421,9 @@ int FirmArray::process()
 					#endif
 					//#### end alex 22/9 ####//
 
-					LOG_MSG(" process_ai");
+					//LOG_MSG(" process_ai");
 					firmPtr->process_ai();
-					LOG_MSG(misc.get_random_seed());
+					//LOG_MSG(misc.get_random_seed());
 
 					//### begin alex 22/9 ###//
 					#ifdef DEBUG
@@ -444,9 +444,9 @@ int FirmArray::process()
 
 		//-------- process animation ---------//
 
-		LOG_MSG(" process_animation");
+		//LOG_MSG(" process_animation");
 		firmPtr->process_animation();
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 	}
 
 	return 0;
@@ -461,22 +461,22 @@ void FirmArray::next_month()
 	int	 i;
 	Firm*  firmPtr;
 
-	LOG_MSG("begin FirmArray::next_month");
-	LOG_MSG(misc.get_random_seed());
+	//LOG_MSG("begin FirmArray::next_month");
+	//LOG_MSG(misc.get_random_seed());
 	for(i=1; i <=size() ; i++)
 	{
 		firmPtr = (Firm*)get_ptr(i);
 
 		if( firmPtr && !firmPtr->under_construction )
 		{
-			LOG_MSG("Firm next_month");
-			LOG_MSG( i );
+			//LOG_MSG("Firm next_month");
+			//LOG_MSG( i );
 			firmPtr->next_month();
-			LOG_MSG(misc.get_random_seed());
+			//LOG_MSG(misc.get_random_seed());
 		}
 	}
-	LOG_MSG("end FirmArray::next_month");
-	LOG_MSG(misc.get_random_seed());
+	//LOG_MSG("end FirmArray::next_month");
+	//LOG_MSG(misc.get_random_seed());
 }
 //----------- End of function FirmArray::next_month -----------//
 
@@ -488,22 +488,22 @@ void FirmArray::next_year()
 	int	 i;
 	Firm*  firmPtr;
 
-	LOG_MSG("begin FirmArray::next_year");
-	LOG_MSG(misc.get_random_seed());
+	//LOG_MSG("begin FirmArray::next_year");
+	//LOG_MSG(misc.get_random_seed());
 	for(i=1; i <=size() ; i++)
 	{
 		firmPtr = (Firm*)get_ptr(i);
 
 		if( firmPtr && !firmPtr->under_construction )
 		{
-			LOG_MSG("Firm next_month");
-			LOG_MSG( i );
+			//LOG_MSG("Firm next_month");
+			//LOG_MSG( i );
 			firmPtr->next_year();
-			LOG_MSG(misc.get_random_seed() );
+			//LOG_MSG(misc.get_random_seed() );
 		}
 	}
-	LOG_MSG("end FirmArray::next_year");
-	LOG_MSG(misc.get_random_seed());
+	//LOG_MSG("end FirmArray::next_year");
+	//LOG_MSG(misc.get_random_seed());
 }
 //----------- End of function FirmArray::next_year -----------//
 

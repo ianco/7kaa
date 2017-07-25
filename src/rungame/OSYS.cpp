@@ -706,6 +706,7 @@ void Sys::main_loop(int isLoadedGame)
          vga.flip();
 #endif
 
+         // handle all UI events
          detect();
 
          //--------------------------------//
@@ -730,8 +731,11 @@ void Sys::main_loop(int isLoadedGame)
          {
             if( remote.is_enable() )      // && is_sync_frame )
             {
+               // receive all remote messages
                remote.poll_msg();
                misc.unlock_seed();
+
+               // send our messages to remote and process all rec'd remote messages
                rc = is_mp_sync(&unreadyPlayerFlag);         // if all players are synchronized
                misc.lock_seed();
             }

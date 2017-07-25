@@ -44,6 +44,7 @@
 #include <OSE.h>
 #include <OF_HARB.h>
 #include "gettext.h"
+#include <OLOG.h>
 
 #ifdef DEBUG
 #include <stdio.h>
@@ -86,6 +87,7 @@ static void update_ship_stop_and_goods_info_to_dummy(UnitMarine *shipPtr)
 //
 void UnitMarine::disp_info(int refreshFlag)
 {
+	LOG_MSG("unitmarine.disp_info()");
 	disp_basic_info(INFO_Y1, refreshFlag);
 
 	if( !should_show_info() )
@@ -144,6 +146,7 @@ void UnitMarine::disp_info(int refreshFlag)
 //
 void UnitMarine::detect_info()
 {
+	LOG_MSG("unitmarine.detect_info()");
 	if(!is_visible())
 		return;
 

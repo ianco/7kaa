@@ -49,38 +49,38 @@ void Town::think_independent_town()
 
 	logStr = "begin Town::think_independent_town, town_recno=";
 	logStr += town_recno;
-	LOG_MSG(logStr);
+	//LOG_MSG(logStr);
 #endif
 
 	//---- think about toggling town links ----//
 
 	if( info.game_date%15 == town_recno%15 )
 	{
-		LOG_MSG(" Town::think_independent_set_link");
+		//LOG_MSG(" Town::think_independent_set_link");
 		think_independent_set_link();
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 	}
 
 	//---- think about independent units join existing nations ----//
 
 	if( info.game_date%60 == town_recno%60 )
 	{
-		LOG_MSG(" Town::think_independent_unit_join_nation");
+		//LOG_MSG(" Town::think_independent_unit_join_nation");
 		think_independent_unit_join_nation();
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 	}
 
 	//----- think about form a new nation -----//
 
 	if( info.game_date%365 == town_recno%365 )
 	{
-		LOG_MSG(" Town::think_independent_form_new_nation");
+		//LOG_MSG(" Town::think_independent_form_new_nation");
 		think_independent_form_new_nation();
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 	}
 
-	LOG_MSG("end Town::think_independent_town");
-	LOG_MSG(misc.get_random_seed());
+	//LOG_MSG("end Town::think_independent_town");
+	//LOG_MSG(misc.get_random_seed());
 }
 //-------- End of function Town::think_independent_town ---------//
 

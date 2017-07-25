@@ -181,7 +181,7 @@ enum { MSG_QUEUE_HEADER=FIRST_REMOTE_MSG_ID,
 
 enum { REMOTE_MSG_TYPE_COUNT= LAST_REMOTE_MSG_ID - FIRST_REMOTE_MSG_ID };
 
-
+extern const char *msg_names[];
 
 //--------- Define struct RemoteMsg ---------//
 

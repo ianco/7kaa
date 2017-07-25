@@ -48,6 +48,8 @@
 
 #include <OU_MARI.h>
 #include "gettext.h"
+#include <OLOG.h>
+
 
 #ifdef NO_DEBUG_UNIT
 #undef err_when
@@ -139,6 +141,7 @@ static void group_drop_spy_identity();
 //
 void Unit::disp_info(int refreshFlag)
 {
+	LOG_MSG("unit.disp_info()");
 	if( sprite_recno != last_unit_recno )
 	{
 		unit_menu_mode  = UNIT_MENU_MAIN;
@@ -175,6 +178,7 @@ void Unit::disp_info(int refreshFlag)
 //
 void Unit::detect_info()
 {
+	//LOG_MSG("unit.detect_info()");
 	switch( unit_menu_mode )
 	{
 		case UNIT_MENU_MAIN:

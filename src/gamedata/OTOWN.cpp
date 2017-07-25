@@ -372,23 +372,23 @@ void Town::next_day()
 	logStr += townRecno;
 	logStr += " nation=";
 	logStr += nation_recno;
-	LOG_MSG(logStr);
+	//LOG_MSG(logStr);
 #endif
 
 	if( info.game_date%30 == town_recno%30 )
 	{
-		LOG_MSG(" population_grow");
+		//LOG_MSG(" population_grow");
 		population_grow();
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 	}
 
 	err_when(population>MAX_TOWN_POPULATION);
 
 	//------- update link status to camps ------//
 
-	LOG_MSG(" update_camp_link");
+	//LOG_MSG(" update_camp_link");
 	update_camp_link();
-	LOG_MSG(misc.get_random_seed());
+	//LOG_MSG(misc.get_random_seed());
 
 	//------ update target loyalty/resistance -------//
 
@@ -396,15 +396,15 @@ void Town::next_day()
 	{
 		if( nation_recno )
 		{
-			LOG_MSG(" update_target_loyalty");
+			//LOG_MSG(" update_target_loyalty");
 			update_target_loyalty();
 		}
 		else
 		{
-			LOG_MSG(" update_target_resistance");
+			//LOG_MSG(" update_target_resistance");
 			update_target_resistance();		// update resistance for independent towns
 		}
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 	}
 
 	//------ update loyalty/resistance -------//
@@ -413,15 +413,15 @@ void Town::next_day()
 	{
 		if( nation_recno )
 		{
-			LOG_MSG(" update_target_loyalty");
+			//LOG_MSG(" update_target_loyalty");
 			update_loyalty();
 		}
 		else
 		{
-			LOG_MSG(" update_target_resistance");
+			//LOG_MSG(" update_target_resistance");
 			update_resistance();
 		}
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 
 		if( town_array.is_deleted(townRecno) )
 			return;
@@ -429,9 +429,9 @@ void Town::next_day()
 
 	//------ think town people migration -------//
 
-	LOG_MSG(" think_migrate");
+	//LOG_MSG(" think_migrate");
 	think_migrate();
-	LOG_MSG(misc.get_random_seed());
+	//LOG_MSG(misc.get_random_seed());
 
 	if( town_array.is_deleted(townRecno) )
 		return;
@@ -440,9 +440,9 @@ void Town::next_day()
 
 	if( nation_recno && info.game_date%15 == town_recno%15 )
 	{
-		LOG_MSG(" think_rebel");
+		//LOG_MSG(" think_rebel");
 		think_rebel();
-		LOG_MSG(misc.get_random_seed() );
+		//LOG_MSG(misc.get_random_seed() );
 
 		if( town_array.is_deleted(townRecno) )
 			return;
@@ -453,9 +453,9 @@ void Town::next_day()
 	if( nation_recno &&
 		 ( info.game_date%15==town_recno%15 || average_loyalty()==0 ) )
 	{
-		LOG_MSG(" think_surrender");
+		//LOG_MSG(" think_surrender");
 		think_surrender();		// for nation town only, independent town surrender is handled in update_resistance()
-		LOG_MSG(misc.get_random_seed() );
+		//LOG_MSG(misc.get_random_seed() );
 
 		if( town_array.is_deleted(townRecno) )
 			return;
@@ -475,15 +475,15 @@ void Town::next_day()
 	{
 		if(train_unit_recno)
 		{
-			LOG_MSG(" process_train");
+			//LOG_MSG(" process_train");
 			process_train();
-			LOG_MSG(misc.get_random_seed() );
+			//LOG_MSG(misc.get_random_seed() );
 		}
 		else
 		{
-			LOG_MSG(" process_queue");
+			//LOG_MSG(" process_queue");
 			process_queue();
-			LOG_MSG(misc.get_random_seed() );
+			//LOG_MSG(misc.get_random_seed() );
 		}
 
 		if( town_array.is_deleted(townRecno) )	// when the last peasant in the town is trained, the town disappear
@@ -495,9 +495,9 @@ void Town::next_day()
 
 	if( nation_recno )
 	{
-		LOG_MSG(" process_food");
+		//LOG_MSG(" process_food");
 		process_food();
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 
 		if( town_array.is_deleted(townRecno) )
 			return;
@@ -507,9 +507,9 @@ void Town::next_day()
 
 	if( nation_recno )
 	{
-		LOG_MSG(" process_auto");
+		//LOG_MSG(" process_auto");
 		process_auto();
-		LOG_MSG(misc.get_random_seed() );
+		//LOG_MSG(misc.get_random_seed() );
 
 		if( town_array.is_deleted(townRecno) )
 			return;
@@ -524,12 +524,12 @@ void Town::next_day()
 
 	//------ catching spies -------//
 
-	LOG_MSG(" process_auto");
+	//LOG_MSG(" process_auto");
 
 	if( info.game_date%30 == town_recno%30 )
 		spy_array.catch_spy(SPY_TOWN, town_recno);
 
-	LOG_MSG(misc.get_random_seed() );
+	//LOG_MSG(misc.get_random_seed() );
 
 	if( town_array.is_deleted(townRecno) )
 		return;
@@ -546,7 +546,7 @@ void Town::next_day()
 
 	if( no_neighbor_space && info.game_date%180 == town_recno%180 )
 	{
-		LOG_MSG("begin finding neighor space");
+		//LOG_MSG("begin finding neighor space");
 		short buildXLoc, buildYLoc;
 
 		//--- for independent town, since we can't call find_best_firm_loc(), we just set no_neighbor_space to 0 every 6 months, if it still has no space, then no_neighbor_space will be set 1 again. ---//
@@ -554,7 +554,7 @@ void Town::next_day()
 		if( nation_recno==0 || nation_array[nation_recno]->find_best_firm_loc(FIRM_INN, loc_x1, loc_y1, buildXLoc, buildYLoc) )		// whether it's FIRM_INN or not really doesn't matter, just any firm type will do
 			no_neighbor_space = 0;
 
-		LOG_MSG(misc.get_random_seed());
+		//LOG_MSG(misc.get_random_seed());
 	}
 
 	//------ decrease penalties -----//
@@ -1614,6 +1614,8 @@ void Town::collect_yearly_tax()
 //
 void Town::collect_tax(char remoteAction)
 {
+	LOG_MSG("Town collect tax");
+	
 	if( !has_linked_own_camp )
 		return;
 
